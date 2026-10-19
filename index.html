@@ -52,6 +52,22 @@
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
             box-sizing: border-box;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        /* Eliminación total de la barra de desplazamiento derecha en iOS y contenedores internos */
+        *::-webkit-scrollbar,
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar,
+        main::-webkit-scrollbar,
+        div::-webkit-scrollbar,
+        section::-webkit-scrollbar,
+        form::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
         }
 
         html, body {
@@ -63,6 +79,15 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        main, .bottom-sheet-panel, .no-scrollbar {
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
         input, textarea, select {
@@ -71,11 +96,63 @@
         }
 
         .no-scrollbar::-webkit-scrollbar {
-            display: none;
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
         }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+
+        /* Iluminación ambiental de fondo (Ambient Mesh) para refracción de Liquid Glass */
+        .ambient-mesh-bg {
+            position: fixed;
+            top: 98px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .ambient-orb {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(68px);
+            -webkit-filter: blur(68px);
+            opacity: 0.55;
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+
+        .orb-purple {
+            width: 260px;
+            height: 260px;
+            top: 2%;
+            left: -50px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.42) 0%, rgba(124, 58, 237, 0) 75%);
+        }
+
+        .orb-pichincha {
+            width: 230px;
+            height: 230px;
+            top: 26%;
+            right: -65px;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.28) 0%, rgba(234, 179, 8, 0) 75%);
+        }
+
+        .orb-guayaquil {
+            width: 270px;
+            height: 270px;
+            top: 52%;
+            left: -60px;
+            background: radial-gradient(circle, rgba(255, 0, 122, 0.32) 0%, rgba(255, 51, 153, 0) 75%);
+        }
+
+        .orb-emerald {
+            width: 220px;
+            height: 220px;
+            bottom: 8%;
+            right: -45px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.24) 0%, rgba(48, 209, 88, 0) 75%);
         }
 
         /* Nitidez 1:1 en pantalla Super Retina XDR de iPhone 15 (Sin progressive blur de iOS) */
@@ -88,53 +165,95 @@
             will-change: transform;
         }
 
-        /* Superficies con acabado especular de iOS 27 */
+        /* Superficies con acabado óptico Apple Liquid Glass (iOS 27) */
         .ios27-card {
-            background: linear-gradient(165deg, #1B152E 0%, #110D1D 100%);
-            border: 1px solid rgba(167, 139, 250, 0.18);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(30, 22, 54, 0.50) 45%, rgba(16, 12, 28, 0.66) 100%);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border: 1px solid rgba(255, 255, 255, 0.16);
             box-shadow:
-                0 14px 34px -10px rgba(0, 0, 0, 0.75),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.09);
+                0 16px 38px -10px rgba(0, 0, 0, 0.68),
+                inset 0 1px 1px rgba(255, 255, 255, 0.35),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.05);
         }
 
         .pichincha-card {
-            background: linear-gradient(155deg, rgba(250, 204, 21, 0.14) 0%, #141022 70%);
+            background: linear-gradient(135deg, rgba(250, 204, 21, 0.22) 0%, rgba(255, 255, 255, 0.07) 42%, rgba(20, 16, 34, 0.58) 100%);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
             border: 1px solid rgba(250, 204, 21, 0.36);
-            box-shadow: inset 0 1px 0 0 rgba(250, 204, 21, 0.18);
+            box-shadow:
+                0 14px 32px -10px rgba(250, 204, 21, 0.16),
+                inset 0 1px 1px rgba(255, 255, 255, 0.35),
+                inset 0 -1px 1px rgba(250, 204, 21, 0.10);
         }
 
         .guayaquil-card {
-            background: linear-gradient(145deg, #310824 0%, #190B21 55%, #110819 100%);
-            border: 1px solid rgba(255, 0, 122, 0.44);
+            background: linear-gradient(135deg, rgba(255, 0, 122, 0.24) 0%, rgba(49, 8, 36, 0.54) 50%, rgba(17, 8, 25, 0.70) 100%);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border: 1px solid rgba(255, 105, 180, 0.36);
             box-shadow:
-                0 16px 38px -10px rgba(255, 0, 122, 0.24),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+                0 18px 40px -10px rgba(255, 0, 122, 0.26),
+                inset 0 1px 1px rgba(255, 255, 255, 0.35),
+                inset 0 -1px 1px rgba(255, 0, 122, 0.12);
         }
 
         .efectivo-card {
-            background: linear-gradient(155deg, rgba(16, 185, 129, 0.14) 0%, #141022 70%);
-            border: 1px solid rgba(16, 185, 129, 0.36);
-            box-shadow: inset 0 1px 0 0 rgba(48, 209, 88, 0.18);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(255, 255, 255, 0.07) 42%, rgba(20, 16, 34, 0.58) 100%);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border: 1px solid rgba(48, 209, 88, 0.36);
+            box-shadow:
+                0 14px 32px -10px rgba(16, 185, 129, 0.16),
+                inset 0 1px 1px rgba(255, 255, 255, 0.35),
+                inset 0 -1px 1px rgba(48, 209, 88, 0.10);
+        }
+
+        /* Botones secundarios y controles con refracción Liquid Glass */
+        .liquid-glass-btn {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 100%);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow:
+                0 6px 18px rgba(0, 0, 0, 0.35),
+                inset 0 1px 1px rgba(255, 255, 255, 0.35),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Barra de navegación inferior Liquid Glass */
+        .liquid-glass-dock {
+            background: linear-gradient(180deg, rgba(30, 22, 54, 0.58) 0%, rgba(9, 7, 16, 0.76) 100%);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border-top: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow:
+                0 -12px 34px rgba(0, 0, 0, 0.72),
+                inset 0 1px 1px rgba(255, 255, 255, 0.35);
         }
 
         /* Cápsula interactiva inspirada en Dynamic Island del iPhone 15 */
         .dynamic-island-pill {
             background: #000000;
-            border: 1px solid rgba(167, 139, 250, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.16);
             box-shadow:
                 0 6px 20px rgba(0, 0, 0, 0.8),
-                0 0 15px rgba(139, 92, 246, 0.16);
+                0 0 15px rgba(139, 92, 246, 0.18),
+                inset 0 1px 1px rgba(255, 255, 255, 0.25);
             transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
         }
         .dynamic-island-pill:active {
             transform: scale(0.96);
         }
 
-        /* Hojas modales inferiores estilo iOS 27 (Sin blur residual cuando están cerradas) */
+        /* Hojas modales inferiores estilo Liquid Glass iOS 27 */
         .bottom-sheet-backdrop {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             transition: opacity 0.28s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.28s;
         }
         .bottom-sheet-backdrop.open {
@@ -144,6 +263,14 @@
         }
 
         .bottom-sheet-panel {
+            background: linear-gradient(155deg, rgba(38, 28, 66, 0.72) 0%, rgba(15, 11, 26, 0.86) 100%) !important;
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border-top: 1px solid rgba(255, 255, 255, 0.20) !important;
+            box-shadow:
+                0 -18px 46px rgba(0, 0, 0, 0.82),
+                inset 0 1px 1px rgba(255, 255, 255, 0.35),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.05) !important;
             transform: translateY(105%);
             visibility: hidden;
             transition: transform 0.36s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.36s;
@@ -158,12 +285,15 @@
             width: 58px;
             height: 58px;
             border-radius: 9999px;
-            background: linear-gradient(145deg, #A855F7 0%, #7C3AED 52%, #5B21B6 100%);
+            background: linear-gradient(145deg, rgba(168, 85, 247, 0.95) 0%, rgba(124, 58, 237, 0.92) 52%, rgba(91, 33, 182, 0.95) 100%);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
             box-shadow:
                 0 8px 22px rgba(139, 92, 246, 0.55),
-                inset 0 2px 3px rgba(255, 255, 255, 0.38);
-            border: 4px solid #090710;
-            outline: 1.5px solid rgba(167, 139, 250, 0.55);
+                inset 0 1.5px 2px rgba(255, 255, 255, 0.45),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.10);
+            border: 3.5px solid rgba(9, 7, 16, 0.85);
+            outline: 1px solid rgba(255, 255, 255, 0.24);
         }
 
         @keyframes iosShake {
@@ -187,6 +317,14 @@
 </head>
 
 <body class="bg-iosBg text-slate-100 min-h-screen relative selection:bg-accent selection:text-white">
+
+    <!-- ==================== ILUMINACIÓN AMBIENTAL DE FONDO (AMBIENT MESH PARA LIQUID GLASS) ==================== -->
+    <div class="ambient-mesh-bg" aria-hidden="true">
+        <div class="ambient-orb orb-purple"></div>
+        <div class="ambient-orb orb-pichincha"></div>
+        <div class="ambient-orb orb-guayaquil"></div>
+        <div class="ambient-orb orb-emerald"></div>
+    </div>
 
     <!-- ==================== PANTALLA DE BLOQUEO IOS 27 (PIN + FACE ID + AES-GCM) ==================== -->
     <div id="lockScreen" class="fixed inset-0 z-[100] bg-[#07050C] flex flex-col justify-between items-center px-6 py-6 transition-opacity duration-300">
@@ -296,17 +434,17 @@
                 <!-- Controles rápidos superiores -->
                 <div class="flex items-center gap-1.5">
                     <!-- Modo Ojo Oculto -->
-                    <button type="button" id="privacyToggleBtn" onclick="togglePrivacyMode()" class="w-9 h-9 rounded-2xl bg-[#141022] border border-[#2C2248] flex items-center justify-center text-slate-200 active:scale-90 transition-all" title="Modo Ojo Oculto">
+                    <button type="button" id="privacyToggleBtn" onclick="togglePrivacyMode()" class="w-9 h-9 rounded-2xl liquid-glass-btn flex items-center justify-center text-slate-200 active:scale-90 transition-all" title="Modo Ojo Oculto">
                         <i id="privacyEyeIcon" data-lucide="eye" class="w-4 h-4 text-accentBright"></i>
                     </button>
 
                     <!-- Calibrar Saldos -->
-                    <button type="button" onclick="openBalanceCalibrationModal()" class="w-9 h-9 rounded-2xl bg-[#141022] border border-[#2C2248] flex items-center justify-center text-slate-200 active:scale-90 transition-all" title="Calibrar Saldos">
+                    <button type="button" onclick="openBalanceCalibrationModal()" class="w-9 h-9 rounded-2xl liquid-glass-btn flex items-center justify-center text-slate-200 active:scale-90 transition-all" title="Calibrar Saldos">
                         <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
                     </button>
 
                     <!-- Bloquear App -->
-                    <button type="button" onclick="lockAppNow()" class="w-9 h-9 rounded-2xl bg-[#141022] border border-[#2C2248] flex items-center justify-center text-slate-200 hover:text-rose-400 active:scale-90 transition-all" title="Bloquear Ahora">
+                    <button type="button" onclick="lockAppNow()" class="w-9 h-9 rounded-2xl liquid-glass-btn flex items-center justify-center text-slate-200 hover:text-rose-400 active:scale-90 transition-all" title="Bloquear Ahora">
                         <i data-lucide="lock" class="w-4 h-4"></i>
                     </button>
                 </div>
@@ -328,7 +466,7 @@
     </header>
 
     <!-- ==================== CONTENEDOR PRINCIPAL OPTIMIZADO IPHONE 15 (393px) ==================== -->
-    <main class="max-w-[393px] mx-auto px-4 pt-4 pb-32 space-y-4">
+    <main class="relative z-10 max-w-[393px] mx-auto px-4 pt-4 pb-32 space-y-4">
 
         <!-- ==================== PESTAÑA 1: GENERAL (DASHBOARD) ==================== -->
         <section id="tab-general" class="tab-view space-y-4">
@@ -474,10 +612,10 @@
 
                 <!-- Flujo de pago en 2 pasos -->
                 <div class="mt-4 pt-3.5 border-t border-guayaquil/25 grid grid-cols-2 gap-2">
-                    <button type="button" onclick="openStep1DepositGuayaquil()" class="w-full py-2.5 px-2.5 rounded-2xl bg-white/10 border border-pink-400/30 text-[11px] font-bold text-pink-100 flex items-center justify-center gap-1 active:scale-95 transition-all">
+                    <button type="button" onclick="openStep1DepositGuayaquil()" class="w-full py-2.5 px-2.5 rounded-2xl liquid-glass-btn text-[11px] font-bold text-pink-100 flex items-center justify-center gap-1 active:scale-95 transition-all">
                         <span>📥 1. Depositar a Cta</span>
                     </button>
-                    <button type="button" onclick="openStep2PayCreditCard()" class="w-full py-2.5 px-2.5 rounded-2xl bg-guayaquil text-[11px] font-extrabold text-white shadow-lg shadow-guayaquil/35 flex items-center justify-center gap-1 active:scale-95 transition-all">
+                    <button type="button" onclick="openStep2PayCreditCard()" class="w-full py-2.5 px-2.5 rounded-2xl bg-guayaquil text-[11px] font-extrabold text-white shadow-lg shadow-guayaquil/35 border border-white/25 flex items-center justify-center gap-1 active:scale-95 transition-all">
                         <span>💳 2. Pagar TC</span>
                     </button>
                 </div>
@@ -700,8 +838,8 @@
 
     </main>
 
-    <!-- ==================== BOTTOM TAB BAR IOS 27 (BOTÓN + CIRCULAR COMPLETO EN EL CENTRO) ==================== -->
-    <nav class="fixed bottom-0 inset-x-0 z-40 bg-[#090710]/95 backdrop-blur-xl border-t border-[#2C2248] safe-pb pt-1.5 px-2 shadow-[0_-10px_28px_rgba(0,0,0,0.75)]">
+    <!-- ==================== BOTTOM TAB BAR IOS 27 (LIQUID GLASS + BOTÓN CENTRAL CIRCULAR) ==================== -->
+    <nav class="fixed bottom-0 inset-x-0 z-40 liquid-glass-dock safe-pb pt-1.5 px-2">
         <div class="max-w-[393px] mx-auto grid grid-cols-5 items-end gap-1">
             <button type="button" onclick="switchTab('general')" id="nav-general" class="tab-btn flex flex-col items-center justify-center py-1 rounded-xl text-accentBright active:scale-90 transition-all">
                 <i data-lucide="layout-grid" class="w-5 h-5"></i>
