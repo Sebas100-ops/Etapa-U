@@ -486,7 +486,6 @@
 
                 <div class="my-2 flex items-baseline justify-between">
                     <h2 id="mainAvailableBalance" class="text-4xl font-black tracking-tight text-white">$0.00</h2>
-                    <span id="rolloverBadge" class="hidden text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">✨ Premio 50/50 activo</span>
                 </div>
 
                 <!-- Desglose de Bolsillos Líquidos (Código de Color Estricto) -->
@@ -591,7 +590,7 @@
                 </div>
             </div>
 
-            <!-- Suscripciones Fijas Apple (Tarifas y Fechas Reales + Botón Alertas Fondear Apple) -->
+            <!-- Suscripciones Fijas Apple (Diseño original limpio) -->
             <div class="ios27-card rounded-[24px] p-4">
                 <div class="flex items-center justify-between gap-2 mb-3">
                     <div>
@@ -599,38 +598,35 @@
                             <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accentBright"></i>
                             <span>Suscripciones Fijas Apple</span>
                         </h3>
-                        <p class="text-[10px] text-slate-400 mt-0.5">Con ajuste rápido de centavos IVA/ISD al cargar</p>
+                        <p class="text-[10px] text-slate-400 mt-0.5">Puedes ajustar el valor al cargar si varió por impuestos o promo</p>
                     </div>
-                    <button type="button" onclick="openAlertsModal()" class="px-2.5 py-1.5 rounded-xl liquid-glass-btn text-[10px] font-bold text-accentBright flex items-center gap-1 active:scale-95 transition-all shrink-0">
-                        <span>📲 Alertas Fondear Apple</span>
-                    </button>
                 </div>
 
                 <div class="grid grid-cols-2 gap-2.5">
-                    <!-- Apple Music ($7.09 Promo / Luego Día 12 Mensual) -->
+                    <!-- Apple Music ($3.49) -->
                     <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-3 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-1">
                                 <span class="text-base">🎵</span>
-                                <span id="subPriceAppleMusic" class="text-sm font-black text-white">$7.09</span>
+                                <span id="subPriceAppleMusic" class="text-sm font-black text-white">$3.49</span>
                             </div>
                             <p class="text-xs font-bold text-slate-100 leading-tight">Apple Music</p>
-                            <p class="text-[10px] text-pink-300/90 font-medium leading-snug mt-1">Promo hasta 12 Ene 2027 • Luego día 12 mensual</p>
+                            <p class="text-[10px] text-slate-400 font-medium mt-0.5">Suscripción mensual</p>
                         </div>
                         <button type="button" onclick="openSubChargeModal('apple_music')" class="mt-2.5 w-full py-1.5 rounded-xl bg-guayaquil/20 hover:bg-guayaquil/30 border border-guayaquil/40 text-pink-200 text-[11px] font-bold active:scale-95 transition-all">
                             Cargar a TC
                         </button>
                     </div>
 
-                    <!-- iCloud+ 200 GB ($2.99 Renueva cada día 14) -->
+                    <!-- iCloud+ 50 GB ($0.99) -->
                     <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-3 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-1">
                                 <span class="text-base">☁️</span>
-                                <span id="subPriceIcloud" class="text-sm font-black text-white">$2.99</span>
+                                <span id="subPriceIcloud" class="text-sm font-black text-white">$0.99</span>
                             </div>
-                            <p class="text-xs font-bold text-slate-100 leading-tight">iCloud+ 200 GB</p>
-                            <p class="text-[10px] text-sky-300/90 font-medium leading-snug mt-1">Renueva cada día 14 (Próx: 14 Nov)</p>
+                            <p class="text-xs font-bold text-slate-100 leading-tight">iCloud+ 50 GB</p>
+                            <p class="text-[10px] text-slate-400 font-medium mt-0.5">Almacenamiento nube</p>
                         </div>
                         <button type="button" onclick="openSubChargeModal('icloud')" class="mt-2.5 w-full py-1.5 rounded-xl bg-guayaquil/20 hover:bg-guayaquil/30 border border-guayaquil/40 text-pink-200 text-[11px] font-bold active:scale-95 transition-all">
                             Cargar a TC
@@ -683,46 +679,12 @@
                 </div>
             </div>
 
-            <!-- Tarjeta de Cierre de Mes: Repartir Sobrante 50/50 -->
-            <div class="ios27-card rounded-[26px] p-4 border border-purple-400/30">
-                <div class="flex items-start justify-between gap-2 mb-2">
-                    <div>
-                        <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full bg-accent/20 text-accentBright border border-accent/30">Estrategia Variable</span>
-                        <h3 class="text-sm font-extrabold text-white mt-1.5">✨ Cierre de Mes (Repartir Sobrante 50/50)</h3>
-                        <p class="text-[11px] text-slate-300 mt-0.5 leading-snug">
-                            De lo que no gastaste de tus topes mensuales: <b>50% va a una Meta de Ahorro</b> y <b>50% queda libre en tu disponible</b> como premio/rollover.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-3 gap-2 my-3 bg-black/30 rounded-2xl p-2.5 border border-white/10">
-                    <div>
-                        <span class="text-[9px] uppercase text-slate-400 font-semibold block">Sobrante Topes</span>
-                        <p id="surplusTotalValue" class="text-sm font-black text-white">$0.00</p>
-                    </div>
-                    <div>
-                        <span class="text-[9px] uppercase text-accentBright font-semibold block">50% a Meta</span>
-                        <p id="surplusGoalHalfValue" class="text-sm font-black text-accentBright">$0.00</p>
-                    </div>
-                    <div>
-                        <span class="text-[9px] uppercase text-emerald-300 font-semibold block">50% Premio</span>
-                        <p id="surplusRolloverHalfValue" class="text-sm font-black text-emerald-300">$0.00</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-2">
-                    <button type="button" onclick="openMonthClose5050Modal()" class="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-accent to-purple-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-accent/30 active:scale-95 transition-all">
-                        <span>✨ Cierre de Mes (Repartir Sobrante 50/50)</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Ranking de Gastos + Topes Mensuales Opcionales por Categoría -->
+            <!-- Ranking de Gastos de mayor a menor -->
             <div class="ios27-card rounded-[26px] p-4">
                 <div class="flex items-center justify-between mb-3">
                     <div>
-                        <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-200">Ranking y Topes Mensuales</h3>
-                        <p class="text-[10px] text-slate-400">Toca <b>🎯 Tope</b> en cualquier categoría (ej. Salidas: $10)</p>
+                        <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-200">Ranking de Gastos</h3>
+                        <p class="text-[10px] text-slate-400">Categorías ordenadas de mayor a menor consumo</p>
                     </div>
                 </div>
                 <div id="categoryRankingList" class="space-y-3"></div>
@@ -861,12 +823,12 @@
         </div>
     </div>
 
-    <!-- ==================== MODAL 2: PASO 1 - DEPOSITAR A CUENTA PUENTE GUAYAQUIL (+ PISO FIJO PRIMERO) ==================== -->
+    <!-- ==================== MODAL 2: PASO 1 - DEPOSITAR A CUENTA PUENTE GUAYAQUIL ==================== -->
     <div id="step1SheetBackdrop" onclick="closeStep1Modal(event)" class="fixed inset-0 z-50 bg-black/70 bottom-sheet-backdrop flex items-end justify-center">
         <div onclick="event.stopPropagation()" id="step1SheetPanel" class="bottom-sheet-panel w-full max-w-[393px] rounded-t-[30px] p-5 safe-pb max-h-[90vh] overflow-y-auto no-scrollbar">
             <div class="w-10 h-1.5 rounded-full bg-white/20 mx-auto mb-3"></div>
 
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between mb-3">
                 <div>
                     <span class="text-[10px] font-extrabold uppercase tracking-wider text-guayaquilSoft">Paso 1 de 2 • Fondear Cuenta Puente</span>
                     <h3 class="text-base font-extrabold text-white">📥 Depositar a Cta. Guayaquil</h3>
@@ -874,31 +836,6 @@
                 <button type="button" onclick="closeStep1Modal()" class="w-8 h-8 rounded-full liquid-glass-btn flex items-center justify-center text-slate-300">
                     <i data-lucide="x" class="w-4 h-4"></i>
                 </button>
-            </div>
-
-            <!-- Asistente de "Piso Fijo Primero" (Pills de 1 toque con redondeo de impuestos) -->
-            <div class="my-3 p-3 rounded-2xl bg-white/[0.04] border border-white/10">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-pink-200">⚡ Asistente "Piso Fijo Primero" (Con Impuestos)</span>
-                </div>
-                <div class="flex flex-col gap-1.5">
-                    <button type="button" onclick="selectStep1Preset(3.50, 'Piso fijo iCloud+ 200GB (Día 14)')" class="w-full px-3 py-2 rounded-xl liquid-glass-btn text-left flex items-center justify-between active:scale-95 transition-all">
-                        <span class="text-[11px] font-bold text-slate-100">☁️ Solo iCloud - Nov/Dic ($3.50)</span>
-                        <span class="text-[10px] font-extrabold text-sky-300 bg-sky-500/15 px-2 py-0.5 rounded-lg">$3.50</span>
-                    </button>
-                    <button type="button" onclick="selectStep1Preset(7.50, 'Piso fijo Mes Estudiante Apple Music + iCloud')" class="w-full px-3 py-2 rounded-xl liquid-glass-btn text-left flex items-center justify-between active:scale-95 transition-all">
-                        <span class="text-[11px] font-bold text-slate-100">🎓 Mes Estudiante - Desde Ene 2027 ($7.50)</span>
-                        <span class="text-[10px] font-extrabold text-emerald-300 bg-emerald-500/15 px-2 py-0.5 rounded-lg">$7.50</span>
-                    </button>
-                    <button type="button" onclick="selectStep1Preset(11.00, 'Piso fijo Promo Trimestral Apple Music + iCloud')" class="w-full px-3 py-2 rounded-xl liquid-glass-btn text-left flex items-center justify-between active:scale-95 transition-all">
-                        <span class="text-[11px] font-bold text-slate-100">🎵 Promo Trimestral + iCloud ($11.00)</span>
-                        <span class="text-[10px] font-extrabold text-pink-300 bg-guayaquil/20 px-2 py-0.5 rounded-lg">$11.00</span>
-                    </button>
-                    <button type="button" id="step1CurrentDebtPill" onclick="selectStep1CurrentDebt()" class="w-full px-3 py-2 rounded-xl bg-guayaquil/15 border border-guayaquil/35 text-left flex items-center justify-between active:scale-95 transition-all">
-                        <span class="text-[11px] font-bold text-pink-200">💳 Cubrir Deuda Actual de TC</span>
-                        <span id="step1CurrentDebtPillVal" class="text-[10px] font-extrabold text-white bg-guayaquil/40 px-2 py-0.5 rounded-lg">$0.00</span>
-                    </button>
-                </div>
             </div>
 
             <form onsubmit="submitStep1DepositGuayaquil(event)" class="space-y-3.5">
@@ -924,7 +861,7 @@
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">Concepto / Nota</label>
-                    <input type="text" inputmode="text" id="step1NoteInput" placeholder="Transferencia para respaldar TC Guayaquil" class="w-full px-3.5 py-2.5 rounded-xl bg-black/45 border border-white/15 text-xs text-white focus:outline-none focus:border-guayaquil">
+                    <input type="text" inputmode="text" id="step1NoteInput" placeholder="Transferencia para pago de TC Guayaquil" class="w-full px-3.5 py-2.5 rounded-xl bg-black/45 border border-white/15 text-xs text-white focus:outline-none focus:border-guayaquil">
                 </div>
 
                 <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-guayaquil to-pink-600 text-white font-extrabold text-sm shadow-lg shadow-guayaquil/35 active:scale-95 transition-all">
@@ -973,14 +910,14 @@
         </div>
     </div>
 
-    <!-- ==================== MODAL 4: CONFIRMAR CARGA DE SUSCRIPCIÓN APPLE (CON SELECTOR RÁPIDO EN APPLE MUSIC) ==================== -->
+    <!-- ==================== MODAL 4: CONFIRMAR CARGA DE SUSCRIPCIÓN APPLE ==================== -->
     <div id="subChargeBackdrop" onclick="closeSubChargeModal(event)" class="fixed inset-0 z-50 bg-black/70 bottom-sheet-backdrop flex items-end justify-center">
         <div onclick="event.stopPropagation()" id="subChargePanel" class="bottom-sheet-panel w-full max-w-[393px] rounded-t-[30px] p-5 safe-pb">
             <div class="w-10 h-1.5 rounded-full bg-white/20 mx-auto mb-3"></div>
 
             <div class="flex items-center justify-between mb-2">
                 <div>
-                    <span id="subModalScheduleTag" class="text-[10px] font-extrabold uppercase tracking-wider text-accentBright">Suscripción Fija Apple</span>
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-accentBright">Suscripción Fija Apple</span>
                     <h3 id="subModalTitle" class="text-base font-extrabold text-white">Cargar a Tarjeta Guayaquil</h3>
                 </div>
                 <button type="button" onclick="closeSubChargeModal()" class="w-8 h-8 rounded-full liquid-glass-btn flex items-center justify-center text-slate-300">
@@ -989,209 +926,50 @@
             </div>
 
             <p class="text-xs text-slate-300 mb-3">
-                Confirma o ajusta el valor si este mes varió por centavos de impuestos bancarios (IVA / ISD) o cambio de tarifa:
+                Confirma o modifica el valor si este mes varió por impuestos o promoción:
             </p>
-
-            <!-- Selector rápido de 1 toque exclusivo para Apple Music (Promo $7.09 vs Plan Estudiante $3.49 + imp.) -->
-            <div id="appleMusicQuickToggleBox" class="hidden mb-3.5 p-2.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1.5">
-                <span class="block text-[10px] font-extrabold uppercase tracking-wider text-pink-200">🎵 Selector Rápido de Tarifa Apple Music</span>
-                <div class="grid grid-cols-2 gap-2">
-                    <button type="button" onclick="setAppleMusicTariffPreset(7.09)" id="amPresetPromoBtn" class="py-2 px-2.5 rounded-xl border border-guayaquil bg-guayaquil/20 text-left transition-all active:scale-95">
-                        <span class="block text-[11px] font-extrabold text-white">Promo 3 Meses ($7.09)</span>
-                        <span class="block text-[9px] text-pink-200">Hasta 12 Ene 2027</span>
-                    </button>
-                    <button type="button" onclick="setAppleMusicTariffPreset(3.49)" id="amPresetStudentBtn" class="py-2 px-2.5 rounded-xl border border-white/15 bg-white/5 text-left transition-all active:scale-95">
-                        <span class="block text-[11px] font-extrabold text-white">Plan Estudiante Mensual</span>
-                        <span class="block text-[9px] text-emerald-300">$3.49 + imp. (Desde 12 Ene)</span>
-                    </button>
-                </div>
-            </div>
 
             <form onsubmit="confirmSubCharge(event)" class="space-y-3.5">
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">Valor exacto a cargar en TC ($)</label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">Valor a cargar en TC ($)</label>
                     <input type="text" inputmode="decimal" id="subChargeAmountInput" required class="w-full px-4 py-3 rounded-2xl bg-black/45 border border-white/15 text-2xl font-black text-white focus:outline-none focus:border-guayaquil">
                 </div>
 
                 <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-guayaquil to-pink-600 text-white font-extrabold text-sm shadow-lg shadow-guayaquil/35 active:scale-95 transition-all">
-                    Cargar a Tarjeta Guayaquil y Guardar Tarifa
+                    Cargar a Tarjeta Guayaquil
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- ==================== MODAL 5: AVISOS Y RECORDATORIOS NATIVOS IOS (.ICS) CON ALARMAS FONDEAR APPLE ==================== -->
+    <!-- ==================== MODAL 5: AVISOS DE CORTE Y PAGO TARJETA GUAYAQUIL (.ICS) ==================== -->
     <div id="alertsSheetBackdrop" onclick="closeAlertsModal(event)" class="fixed inset-0 z-50 bg-black/70 bottom-sheet-backdrop flex items-end justify-center">
-        <div onclick="event.stopPropagation()" id="alertsSheetPanel" class="bottom-sheet-panel w-full max-w-[393px] rounded-t-[30px] p-5 safe-pb max-h-[88vh] overflow-y-auto no-scrollbar">
+        <div onclick="event.stopPropagation()" id="alertsSheetPanel" class="bottom-sheet-panel w-full max-w-[393px] rounded-t-[30px] p-5 safe-pb">
             <div class="w-10 h-1.5 rounded-full bg-white/20 mx-auto mb-3"></div>
 
             <div class="flex items-center justify-between mb-3">
                 <div>
                     <span class="text-[10px] font-extrabold uppercase tracking-wider text-accentBright">Calendario Nativo de iPhone (.ics)</span>
-                    <h3 class="text-base font-extrabold text-white">🔔 Avisos y Alertas Fondear Apple</h3>
+                    <h3 class="text-base font-extrabold text-white">🔔 Avisos de Tarjeta Guayaquil</h3>
                 </div>
                 <button type="button" onclick="closeAlertsModal()" class="w-8 h-8 rounded-full liquid-glass-btn flex items-center justify-center text-slate-300">
                     <i data-lucide="x" class="w-4 h-4"></i>
                 </button>
             </div>
 
-            <!-- Sección 1: Alertas Fondear Apple (2 días antes a las 09:00 AM) -->
-            <div class="p-3.5 rounded-2xl bg-accent/10 border border-accent/30 space-y-2.5 mb-3.5">
-                <div class="flex items-center justify-between">
-                    <span class="text-xs font-extrabold text-white flex items-center gap-1.5">
-                        <span>📲 Alertas Fondear Apple (09:00 AM)</span>
-                    </span>
-                    <span class="text-[9px] font-bold uppercase px-2 py-0.5 rounded bg-accent/25 text-accentBright">2 días antes</span>
-                </div>
-                <p class="text-[11px] text-slate-300 leading-snug">
-                    Programa en el Calendario de tu iPhone los recordatorios automáticos para pasar dinero de Pichincha a Guayaquil antes del débito de Apple:
+            <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-3">
+                <p class="text-xs text-slate-300 leading-snug">
+                    Añade un recordatorio automático en el Calendario de tu iPhone para que te avise <b>2 días antes</b> y el mismo día a las 09:00 AM:
                 </p>
-
-                <!-- Alarma 1: iCloud Día 12 de cada mes (empezando 12 Nov 2026) -->
-                <div class="p-2.5 rounded-xl bg-black/40 border border-white/10 space-y-1.5">
-                    <div class="flex items-center justify-between">
-                        <span class="text-[11px] font-extrabold text-sky-300">☁️ Alarma 1: iCloud+ (Día 12 mensual)</span>
-                        <span class="text-[9px] text-slate-400">Inicia 12 Nov 2026</span>
-                    </div>
-                    <p class="text-[10px] text-slate-300 leading-snug italic">
-                        "Pasar $3.50 de Pichincha a Cta. Guayaquil para respaldar cobro de iCloud+ 200GB (Día 14)"
-                    </p>
-                    <button type="button" onclick="downloadAppleFundingICS('icloud_12')" class="w-full py-2 rounded-xl liquid-glass-btn text-[11px] font-bold text-sky-200 flex items-center justify-center gap-1.5 active:scale-95 transition-all">
-                        <i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i>
-                        <span>Añadir Alarma 1 al iPhone (Día 12 • 09:00 AM)</span>
-                    </button>
-                </div>
-
-                <!-- Alarma 2: Apple Music + iCloud Día 10 de cada mes desde Enero 2027 -->
-                <div class="p-2.5 rounded-xl bg-black/40 border border-white/10 space-y-1.5">
-                    <div class="flex items-center justify-between">
-                        <span class="text-[11px] font-extrabold text-pink-300">🎵 Alarma 2: Apple Music + iCloud (Día 10)</span>
-                        <span class="text-[9px] text-slate-400">Desde 10 Ene 2027</span>
-                    </div>
-                    <p class="text-[10px] text-slate-300 leading-snug italic">
-                        "Pasar piso fijo ($7.50 Estudiante o $11.00 si aplica promo) de Pichincha a Cta. Guayaquil antes del cobro de Apple Music (Día 12) e iCloud (Día 14)"
-                    </p>
-                    <button type="button" onclick="downloadAppleFundingICS('music_icloud_10')" class="w-full py-2 rounded-xl liquid-glass-btn text-[11px] font-bold text-pink-200 flex items-center justify-center gap-1.5 active:scale-95 transition-all">
-                        <i data-lucide="calendar-plus" class="w-3.5 h-3.5"></i>
-                        <span>Añadir Alarma 2 al iPhone (Día 10 • 09:00 AM)</span>
-                    </button>
-                </div>
-
-                <!-- Botón combinado para instalar ambas alarmas Apple de una vez -->
-                <button type="button" onclick="downloadAppleFundingICS('both_apple')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-accent to-purple-600 text-white text-xs font-extrabold shadow-lg shadow-accent/25 active:scale-95 transition-all">
-                    📲 Instalar Ambas Alarmas Apple (.ics)
-                </button>
-            </div>
-
-            <!-- Sección 2: Fechas de Corte (Día 15) y Límite de Pago (Día 05) Tarjeta Guayaquil -->
-            <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2.5">
-                <span class="text-xs font-extrabold text-pink-200 block">💳 Fechas de Tarjeta Banco Guayaquil</span>
-                <div class="grid grid-cols-2 gap-2">
-                    <button type="button" onclick="downloadCardReminderICS('pay_05')" class="py-2.5 px-2.5 rounded-xl liquid-glass-btn text-[11px] font-bold text-rose-200 flex items-center justify-center gap-1 active:scale-95">
-                        <span>📅 Día 05 (Pago)</span>
-                    </button>
-                    <button type="button" onclick="downloadCardReminderICS('cut_15')" class="py-2.5 px-2.5 rounded-xl liquid-glass-btn text-[11px] font-bold text-pink-200 flex items-center justify-center gap-1 active:scale-95">
-                        <span>🗓️ Día 15 (Corte)</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== MODAL 6: ASIGNAR TOPE MENSUAL OPCIONAL A CATEGORÍA ==================== -->
-    <div id="capModalBackdrop" onclick="closeCategoryCapModal(event)" class="fixed inset-0 z-50 bg-black/70 bottom-sheet-backdrop flex items-end justify-center">
-        <div onclick="event.stopPropagation()" id="capModalPanel" class="bottom-sheet-panel w-full max-w-[393px] rounded-t-[30px] p-5 safe-pb">
-            <div class="w-10 h-1.5 rounded-full bg-white/20 mx-auto mb-3"></div>
-
-            <div class="flex items-center justify-between mb-2">
-                <div>
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-accentBright">Presupuesto Flexible</span>
-                    <h3 id="capModalCategoryTitle" class="text-base font-extrabold text-white">🎯 Tope Mensual</h3>
-                </div>
-                <button type="button" onclick="closeCategoryCapModal()" class="w-8 h-8 rounded-full liquid-glass-btn flex items-center justify-center text-slate-300">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <p class="text-xs text-slate-300 mb-3">
-                Define cuánto máximo deseas gastar al mes en esta categoría (escribe <b>0</b> si prefieres dejarla sin límite):
-            </p>
-
-            <form onsubmit="saveCategoryCapForm(event)" class="space-y-3.5">
-                <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">Tope Mensual ($ USD)</label>
-                    <input type="text" inputmode="decimal" id="capModalAmountInput" required placeholder="10.00" class="w-full px-4 py-3 rounded-2xl bg-black/45 border border-white/15 text-2xl font-black text-white focus:outline-none focus:border-accent">
-                </div>
-
-                <div class="flex items-center gap-2">
-                    <button type="button" onclick="clearCategoryCap()" class="py-3 px-4 rounded-2xl liquid-glass-btn text-xs font-bold text-slate-300 active:scale-95">
-                        Quitar Tope
-                    </button>
-                    <button type="submit" class="flex-1 py-3 rounded-2xl bg-gradient-to-r from-accent to-purple-600 text-white font-extrabold text-xs shadow-lg shadow-accent/30 active:scale-95">
-                        Guardar Tope Mensual
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- ==================== MODAL 7: CIERRE DE MES (REPARTIR SOBRANTE 50/50) ==================== -->
-    <div id="close5050Backdrop" onclick="closeMonthClose5050Modal(event)" class="fixed inset-0 z-50 bg-black/70 bottom-sheet-backdrop flex items-end justify-center">
-        <div onclick="event.stopPropagation()" id="close5050Panel" class="bottom-sheet-panel w-full max-w-[393px] rounded-t-[30px] p-5 safe-pb max-h-[88vh] overflow-y-auto no-scrollbar">
-            <div class="w-10 h-1.5 rounded-full bg-white/20 mx-auto mb-3"></div>
-
-            <div class="flex items-center justify-between mb-2">
-                <div>
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-300">Regla 50/50 de Sobrante</span>
-                    <h3 class="text-base font-extrabold text-white">✨ Cierre de Mes Inteligente</h3>
-                </div>
-                <button type="button" onclick="closeMonthClose5050Modal()" class="w-8 h-8 rounded-full liquid-glass-btn flex items-center justify-center text-slate-300">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <p class="text-xs text-slate-300 mb-3 leading-snug">
-                Calculamos lo que te sobró de tus topes mensuales este mes. Con un toque envías el <b>50% a una Meta de Ahorro</b> y dejas el otro <b>50% en tu disponible como premio/rollover</b> para el siguiente mes.
-            </p>
-
-            <form onsubmit="executeMonthClose5050(event)" class="space-y-3.5">
-                <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">Sobrante Total a Repartir ($)</label>
-                    <input type="text" inputmode="decimal" id="close5050TotalInput" oninput="update5050Preview()" required placeholder="0.00" class="w-full px-4 py-2.5 rounded-2xl bg-black/45 border border-white/15 text-xl font-black text-white focus:outline-none focus:border-accent">
-                </div>
-
                 <div class="grid grid-cols-2 gap-2.5">
-                    <div class="p-3 rounded-2xl bg-accent/15 border border-accent/35">
-                        <span class="text-[10px] font-bold uppercase text-accentBright block">🎯 50% Abono a Meta</span>
-                        <p id="close5050GoalPreview" class="text-lg font-black text-white mt-0.5">$0.00</p>
-                    </div>
-                    <div class="p-3 rounded-2xl bg-emerald-500/15 border border-emerald-400/35">
-                        <span class="text-[10px] font-bold uppercase text-emerald-300 block">🎉 50% Premio Libre</span>
-                        <p id="close5050RolloverPreview" class="text-lg font-black text-white mt-0.5">$0.00</p>
-                    </div>
+                    <button type="button" onclick="downloadCardReminderICS('pay_05')" class="py-3 px-3 rounded-xl liquid-glass-btn text-xs font-bold text-rose-200 flex items-center justify-center gap-1.5 active:scale-95">
+                        <span>📅 Alarma Día 05 (Pago)</span>
+                    </button>
+                    <button type="button" onclick="downloadCardReminderICS('cut_15')" class="py-3 px-3 rounded-xl liquid-glass-btn text-xs font-bold text-pink-200 flex items-center justify-center gap-1.5 active:scale-95">
+                        <span>🗓️ Alarma Día 15 (Corte)</span>
+                    </button>
                 </div>
-
-                <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">¿A qué Meta de Ahorro va el 50%?</label>
-                    <select id="close5050GoalSelect" class="w-full px-3.5 py-2.5 rounded-xl bg-black/50 border border-white/15 text-xs font-bold text-white focus:outline-none focus:border-accent"></select>
-                </div>
-
-                <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">Descontar el 50% de la meta desde:</label>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button type="button" onclick="setClose5050Source('pichincha_debito')" id="close5050SrcPichincha" class="py-2.5 rounded-xl border border-pichincha bg-pichincha/20 text-xs font-bold text-white">
-                            🟡 Pichincha Débito
-                        </button>
-                        <button type="button" onclick="setClose5050Source('efectivo')" id="close5050SrcEfectivo" class="py-2.5 rounded-xl border border-white/15 bg-white/5 text-xs font-bold text-slate-300">
-                            🟢 Efectivo
-                        </button>
-                    </div>
-                </div>
-
-                <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-accent to-emerald-600 text-white font-extrabold text-xs shadow-lg shadow-accent/30 active:scale-95 transition-all">
-                    ✨ Aplicar Reparto 50/50 Ahora
-                </button>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -1377,27 +1155,18 @@
 
         function getDefaultAppState() {
             return {
-                version: '27.4',
+                version: '27.5',
                 privacyMode: false,
-                rolloverActive: false,
                 balances: {
                     pichincha_debito: 35.00,
                     efectivo: 12.50,
                     pichincha_ahorro: 60.00,
-                    guayaquil_cuenta: 3.50,
-                    guayaquil_deuda: 10.08
+                    guayaquil_cuenta: 4.48,
+                    guayaquil_deuda: 4.48
                 },
                 subscriptions: {
-                    apple_music: 7.09,
-                    icloud: 2.99
-                },
-                categoryCaps: {
-                    comida: 25.00,
-                    transporte: 12.00,
-                    fijos: 11.00,
-                    estudio: 10.00,
-                    ocio: 10.00,
-                    varios: 0
+                    apple_music: 3.49,
+                    icloud: 0.99
                 },
                 goals: [
                     {
@@ -1421,8 +1190,8 @@
                     {
                         id: 'tx_init_1',
                         type: 'expense',
-                        amount: 7.09,
-                        note: 'Apple Music (Promo 3 Meses)',
+                        amount: 3.49,
+                        note: 'Apple Music',
                         category: 'fijos',
                         method: 'guayaquil_tc',
                         date: new Date().toISOString()
@@ -1430,8 +1199,8 @@
                     {
                         id: 'tx_init_2',
                         type: 'expense',
-                        amount: 2.99,
-                        note: 'iCloud+ 200 GB (Día 14)',
+                        amount: 0.99,
+                        note: 'iCloud+ 50 GB',
                         category: 'fijos',
                         method: 'guayaquil_tc',
                         date: new Date().toISOString()
@@ -1459,10 +1228,8 @@
         let selectedTxMethod = 'pichincha_debito';
         let step1OriginSelected = 'pichincha_debito';
         let activeSubKey = 'apple_music';
-        let activeCapCategoryId = 'ocio';
         let activeGoalIdForContribution = null;
         let goalFundSourceSelected = 'pichincha_debito';
-        let close5050SourceSelected = 'pichincha_debito';
         let analysisPeriod = 'month';
         let historyFilter = 'all';
         let expensesChartInstance = null;
@@ -1563,20 +1330,18 @@
             appState = Object.assign({}, defaults, loaded);
             appState.balances = Object.assign({}, defaults.balances, loaded.balances || {});
             appState.subscriptions = Object.assign({}, defaults.subscriptions, loaded.subscriptions || {});
-            appState.categoryCaps = Object.assign({}, defaults.categoryCaps, loaded.categoryCaps || {});
 
-            /* Si viene de una versión anterior a 27.4 con tarifas antiguas (3.49 / 0.99), actualizar a tarifas reales */
-            if (loaded.version !== '27.4') {
-                if (Number(appState.subscriptions.icloud) === 0.99 || !appState.subscriptions.icloud) {
-                    appState.subscriptions.icloud = 2.99;
+            /* Si tenía los valores de la versión 27.4 (7.09 / 2.99), restaurar a los originales (3.49 / 0.99) */
+            if (loaded.version !== '27.5') {
+                if (Number(appState.subscriptions.apple_music) === 7.09) {
+                    appState.subscriptions.apple_music = 3.49;
                 }
-                if (Number(appState.subscriptions.apple_music) === 3.49 || !appState.subscriptions.apple_music) {
-                    appState.subscriptions.apple_music = 7.09;
+                if (Number(appState.subscriptions.icloud) === 2.99) {
+                    appState.subscriptions.icloud = 0.99;
                 }
-                if (typeof appState.categoryCaps.ocio === 'undefined') {
-                    appState.categoryCaps.ocio = 10.00;
-                }
-                appState.version = '27.4';
+                delete appState.categoryCaps;
+                delete appState.rolloverActive;
+                appState.version = '27.5';
             }
         }
 
@@ -1794,9 +1559,6 @@
             if (debt > 0 && (day >= 28 || day <= 5)) {
                 islandDot.className = 'w-2 h-2 rounded-full bg-rose-500 animate-ping shrink-0';
                 islandText.textContent = `Pago TC Día 05 • Deuda: ${formatUSD(debt)}`;
-            } else if (day >= 10 && day <= 14) {
-                islandDot.className = 'w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0';
-                islandText.textContent = `Fondear Apple (Día 12/14) • Cta. Guayaquil: ${formatUSD(appState.balances.guayaquil_cuenta)}`;
             } else {
                 islandDot.className = 'w-2 h-2 rounded-full bg-emerald-400 shrink-0';
                 islandText.textContent = `Disponible Hoy: ${formatUSD(liquid)} • AES-256`;
@@ -1814,12 +1576,6 @@
 
             const mainEl = document.getElementById('mainAvailableBalance');
             if (mainEl) mainEl.textContent = formatUSD(available);
-
-            const rolloverBadge = document.getElementById('rolloverBadge');
-            if (rolloverBadge) {
-                if (appState.rolloverActive) rolloverBadge.classList.remove('hidden');
-                else rolloverBadge.classList.add('hidden');
-            }
 
             const elPDeb = document.getElementById('balPichinchaDebito');
             const elEfec = document.getElementById('balEfectivo');
@@ -2098,11 +1854,9 @@
             const debt = Number(appState.balances.guayaquil_deuda) || 0;
             const amountEl = document.getElementById('step1AmountInput');
             const noteEl = document.getElementById('step1NoteInput');
-            const pillVal = document.getElementById('step1CurrentDebtPillVal');
 
-            if (pillVal) pillVal.textContent = `$${debt.toFixed(2)}`;
-            if (amountEl) amountEl.value = debt > 0 ? debt.toFixed(2) : '3.50';
-            if (noteEl) noteEl.value = debt > 0 ? 'Fondeo para pago de TC Guayaquil' : 'Piso fijo iCloud+ 200GB (Día 14)';
+            if (amountEl) amountEl.value = debt > 0 ? debt.toFixed(2) : '';
+            if (noteEl) noteEl.value = 'Transferencia para pago de TC Guayaquil';
 
             setStep1Origin('pichincha_debito');
             openBottomSheet('step1SheetBackdrop', 'step1SheetPanel');
@@ -2111,18 +1865,6 @@
         function closeStep1Modal(e) {
             if (e && e.target && e.target.id !== 'step1SheetBackdrop') return;
             closeBottomSheet('step1SheetBackdrop', 'step1SheetPanel');
-        }
-
-        function selectStep1Preset(amountVal, noteText) {
-            const amountEl = document.getElementById('step1AmountInput');
-            const noteEl = document.getElementById('step1NoteInput');
-            if (amountEl) amountEl.value = Number(amountVal).toFixed(2);
-            if (noteEl) noteEl.value = noteText;
-        }
-
-        function selectStep1CurrentDebt() {
-            const debt = Number(appState.balances.guayaquil_deuda) || 0;
-            selectStep1Preset(debt > 0 ? debt : 3.50, 'Fondeo para cubrir deuda actual TC Guayaquil');
         }
 
         function setStep1Origin(originId) {
@@ -2248,48 +1990,19 @@
         function openSubChargeModal(subKey) {
             activeSubKey = subKey;
             const titleEl = document.getElementById('subModalTitle');
-            const tagEl = document.getElementById('subModalScheduleTag');
             const inputEl = document.getElementById('subChargeAmountInput');
-            const toggleBox = document.getElementById('appleMusicQuickToggleBox');
 
             if (subKey === 'apple_music') {
                 if (titleEl) titleEl.textContent = '🎵 Cargar Apple Music a TC';
-                if (tagEl) tagEl.textContent = 'Promo hasta 12 Ene 2027 • Luego día 12 mensual';
-                if (toggleBox) toggleBox.classList.remove('hidden');
-                const currentVal = Number(appState.subscriptions.apple_music) || 7.09;
+                const currentVal = Number(appState.subscriptions.apple_music) || 3.49;
                 if (inputEl) inputEl.value = currentVal.toFixed(2);
-                highlightAppleMusicPresetButtons(currentVal);
             } else {
-                if (titleEl) titleEl.textContent = '☁️ Cargar iCloud+ 200 GB a TC';
-                if (tagEl) tagEl.textContent = 'Renueva cada día 14 (Próx: 14 Nov)';
-                if (toggleBox) toggleBox.classList.add('hidden');
-                const currentVal = Number(appState.subscriptions.icloud) || 2.99;
+                if (titleEl) titleEl.textContent = '☁️ Cargar iCloud+ 50 GB a TC';
+                const currentVal = Number(appState.subscriptions.icloud) || 0.99;
                 if (inputEl) inputEl.value = currentVal.toFixed(2);
             }
 
             openBottomSheet('subChargeBackdrop', 'subChargePanel');
-        }
-
-        function setAppleMusicTariffPreset(presetAmount) {
-            const inputEl = document.getElementById('subChargeAmountInput');
-            if (inputEl) inputEl.value = Number(presetAmount).toFixed(2);
-            highlightAppleMusicPresetButtons(presetAmount);
-        }
-
-        function highlightAppleMusicPresetButtons(val) {
-            const promoBtn = document.getElementById('amPresetPromoBtn');
-            const studentBtn = document.getElementById('amPresetStudentBtn');
-            const isPromo = Math.abs(Number(val) - 7.09) < 0.5;
-            if (promoBtn) {
-                promoBtn.className = isPromo
-                    ? 'py-2 px-2.5 rounded-xl border border-guayaquil bg-guayaquil/25 text-left transition-all active:scale-95'
-                    : 'py-2 px-2.5 rounded-xl border border-white/15 bg-white/5 text-left transition-all active:scale-95';
-            }
-            if (studentBtn) {
-                studentBtn.className = !isPromo
-                    ? 'py-2 px-2.5 rounded-xl border border-emerald-400 bg-emerald-500/20 text-left transition-all active:scale-95'
-                    : 'py-2 px-2.5 rounded-xl border border-white/15 bg-white/5 text-left transition-all active:scale-95';
-            }
         }
 
         function closeSubChargeModal(e) {
@@ -2313,9 +2026,7 @@
             appState.subscriptions[activeSubKey] = amount;
             appState.balances.guayaquil_deuda = Math.round((appState.balances.guayaquil_deuda + amount) * 100) / 100;
 
-            const label = activeSubKey === 'apple_music'
-                ? 'Apple Music (Suscripción Día 12)'
-                : 'iCloud+ 200 GB (Suscripción Día 14)';
+            const label = activeSubKey === 'apple_music' ? 'Apple Music' : 'iCloud+ 50 GB';
 
             appState.transactions.unshift({
                 id: 'tx_' + Date.now(),
@@ -2352,9 +2063,6 @@
             if (debt > 0 && (day >= 28 || day <= 5)) {
                 banner.classList.remove('hidden');
                 bannerTxt.textContent = `⚠️ Límite de pago Día 05: Cancela tus $${debt.toFixed(2)} para cuidar tu historial.`;
-            } else if (day >= 10 && day <= 14) {
-                banner.classList.remove('hidden');
-                bannerTxt.textContent = `📲 Semana de cobros Apple (Día 12 y 14) y Corte TC (Día 15). Verifica tu saldo en Guayaquil.`;
             } else {
                 banner.classList.add('hidden');
             }
@@ -2370,60 +2078,6 @@
             link.click();
             document.body.removeChild(link);
             setTimeout(() => URL.revokeObjectURL(url), 1500);
-        }
-
-        function downloadAppleFundingICS(mode) {
-            const events = [];
-
-            if (mode === 'icloud_12' || mode === 'both_apple') {
-                events.push([
-                    'BEGIN:VEVENT',
-                    'UID:unifinanzas-icloud-day12@iphone15.ec',
-                    'DTSTAMP:20261019T120000Z',
-                    'DTSTART:20261112T090000',
-                    'DTEND:20261112T093000',
-                    'RRULE:FREQ=MONTHLY;BYMONTHDAY=12',
-                    'SUMMARY:☁️ Fondear Guayaquil ($3.50) para iCloud+ 200GB',
-                    'DESCRIPTION:Pasar $3.50 de Pichincha a Cta. Guayaquil para respaldar cobro de iCloud+ 200GB (Día 14)',
-                    'BEGIN:VALARM',
-                    'TRIGGER:-PT0M',
-                    'ACTION:DISPLAY',
-                    'DESCRIPTION:Pasar $3.50 de Pichincha a Cta. Guayaquil para respaldar cobro de iCloud+ 200GB (Día 14)',
-                    'END:VALARM',
-                    'END:VEVENT'
-                ].join('\r\n'));
-            }
-
-            if (mode === 'music_icloud_10' || mode === 'both_apple') {
-                events.push([
-                    'BEGIN:VEVENT',
-                    'UID:unifinanzas-apple-floor-day10@iphone15.ec',
-                    'DTSTAMP:20261019T120000Z',
-                    'DTSTART:20270110T090000',
-                    'DTEND:20270110T093000',
-                    'RRULE:FREQ=MONTHLY;BYMONTHDAY=10',
-                    'SUMMARY:🎵 Fondear Piso Fijo Apple ($7.50 Est. / $11 Promo)',
-                    'DESCRIPTION:Pasar piso fijo ($7.50 Estudiante o $11.00 si aplica promo) de Pichincha a Cta. Guayaquil antes del cobro de Apple Music (Día 12) e iCloud (Día 14)',
-                    'BEGIN:VALARM',
-                    'TRIGGER:-PT0M',
-                    'ACTION:DISPLAY',
-                    'DESCRIPTION:Pasar piso fijo ($7.50 Estudiante o $11.00 si aplica promo) de Pichincha a Cta. Guayaquil antes del cobro de Apple Music (Día 12) e iCloud (Día 14)',
-                    'END:VALARM',
-                    'END:VEVENT'
-                ].join('\r\n'));
-            }
-
-            const icsFile = [
-                'BEGIN:VCALENDAR',
-                'VERSION:2.0',
-                'PRODID:-//UniFinanzas EC//iOS 27 Liquid Glass//ES',
-                'CALSCALE:GREGORIAN',
-                ...events,
-                'END:VCALENDAR'
-            ].join('\r\n');
-
-            triggerICSDownload(`alertas_fondear_apple_${mode}.ics`, icsFile);
-            showToast('Calendario de iPhone', 'Confirma en la ventana de iOS para activar la alarma a las 09:00 AM.');
         }
 
         function downloadCardReminderICS(type) {
@@ -2494,51 +2148,12 @@
             });
         }
 
-        function calculateMonthlySurplusFromCaps() {
-            const monthExpenses = getFilteredExpenses('month');
-            const spentByCat = {};
-            EXPENSE_CATEGORIES.forEach(c => { spentByCat[c.id] = 0; });
-            monthExpenses.forEach(tx => {
-                spentByCat[tx.category] = (spentByCat[tx.category] || 0) + (Number(tx.amount) || 0);
-            });
-
-            let totalSurplus = 0;
-            EXPENSE_CATEGORIES.forEach(cat => {
-                const cap = Number((appState.categoryCaps || {})[cat.id]) || 0;
-                if (cap > 0) {
-                    const remaining = cap - (spentByCat[cat.id] || 0);
-                    if (remaining > 0) {
-                        totalSurplus += remaining;
-                    }
-                }
-            });
-            return Math.round(totalSurplus * 100) / 100;
-        }
-
         function renderAnalysisTab() {
             const expenses = getFilteredExpenses(analysisPeriod);
             const totalSpent = expenses.reduce((acc, tx) => acc + (Number(tx.amount) || 0), 0);
 
             const totalEl = document.getElementById('analysisTotalSpent');
             if (totalEl) totalEl.textContent = formatUSD(totalSpent);
-
-            /* Totales del mes actual para los topes mensuales y la regla 50/50 */
-            const monthExpenses = getFilteredExpenses('month');
-            const monthSpentByCat = {};
-            EXPENSE_CATEGORIES.forEach(c => { monthSpentByCat[c.id] = 0; });
-            monthExpenses.forEach(tx => {
-                monthSpentByCat[tx.category] = (monthSpentByCat[tx.category] || 0) + (Number(tx.amount) || 0);
-            });
-
-            /* Actualizar tarjeta de Cierre de Mes 50/50 */
-            const surplus = calculateMonthlySurplusFromCaps();
-            const half = Math.round((surplus / 2) * 100) / 100;
-            const sTotEl = document.getElementById('surplusTotalValue');
-            const sGoalEl = document.getElementById('surplusGoalHalfValue');
-            const sRollEl = document.getElementById('surplusRolloverHalfValue');
-            if (sTotEl) sTotEl.textContent = formatUSD(surplus);
-            if (sGoalEl) sGoalEl.textContent = formatUSD(half);
-            if (sRollEl) sRollEl.textContent = formatUSD(surplus - half);
 
             /* Agrupar por categoría para el gráfico y ranking */
             const totalsByCat = {};
@@ -2548,7 +2163,7 @@
             });
 
             renderDoughnutChart(totalsByCat, totalSpent);
-            renderCategoryRankingAndCaps(totalsByCat, totalSpent, monthSpentByCat);
+            renderCategoryRanking(totalsByCat, totalSpent);
         }
 
         function renderDoughnutChart(totalsByCat, totalSpent) {
@@ -2606,7 +2221,7 @@
             });
         }
 
-        function renderCategoryRankingAndCaps(totalsByCat, totalSpent, monthSpentByCat) {
+        function renderCategoryRanking(totalsByCat, totalSpent) {
             const listEl = document.getElementById('categoryRankingList');
             if (!listEl) return;
 
@@ -2614,32 +2229,7 @@
 
             listEl.innerHTML = sorted.map(cat => {
                 const spent = totalsByCat[cat.id] || 0;
-                const monthSpent = monthSpentByCat[cat.id] || 0;
                 const pctOfTotal = totalSpent > 0 ? Math.round((spent / totalSpent) * 100) : 0;
-                const cap = Number((appState.categoryCaps || {})[cat.id]) || 0;
-
-                let capHTML = '';
-                if (cap > 0) {
-                    const remaining = Math.round((cap - monthSpent) * 100) / 100;
-                    const capPct = Math.min(100, Math.round((monthSpent / cap) * 100));
-                    const isOver = remaining < 0;
-                    const barColor = isOver ? '#F43F5E' : (capPct >= 85 ? '#F59E0B' : cat.color);
-                    const statusText = isOver
-                        ? `Excedido por ${formatUSD(Math.abs(remaining))}`
-                        : `Disponible del tope: ${formatUSD(remaining)} de ${formatUSD(cap)}`;
-
-                    capHTML = `
-                        <div class="mt-2 pt-2 border-t border-white/[0.07]">
-                            <div class="flex items-center justify-between text-[10px] mb-1">
-                                <span class="font-semibold ${isOver ? 'text-rose-300' : 'text-emerald-300'}">${statusText}</span>
-                                <span class="text-slate-400 font-bold">${capPct}% del tope</span>
-                            </div>
-                            <div class="w-full h-2 rounded-full bg-black/45 overflow-hidden">
-                                <div class="h-full rounded-full transition-all duration-500" style="width: ${capPct}%; background-color: ${barColor}"></div>
-                            </div>
-                        </div>
-                    `;
-                }
 
                 return `
                     <div class="p-3 rounded-2xl bg-white/[0.04] border border-white/10">
@@ -2651,164 +2241,16 @@
                                     <p class="text-[10px] text-slate-400">${pctOfTotal}% del gasto total</p>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <div class="text-right">
-                                    <p class="text-xs font-black text-white">${formatUSD(spent)}</p>
-                                    <p class="text-[9px] text-slate-400">${cap > 0 ? `Tope: ${formatUSD(cap)}` : 'Sin tope'}</p>
-                                </div>
-                                <button type="button" onclick="openCategoryCapModal('${cat.id}')" class="px-2.5 py-1.5 rounded-xl liquid-glass-btn text-[10px] font-bold text-accentBright active:scale-95">
-                                    🎯 Tope
-                                </button>
+                            <div class="text-right">
+                                <p class="text-xs font-black text-white">${formatUSD(spent)}</p>
                             </div>
                         </div>
                         <div class="w-full h-1.5 rounded-full bg-black/40 overflow-hidden mt-2">
                             <div class="h-full rounded-full transition-all duration-500" style="width: ${pctOfTotal}%; background-color: ${cat.color}"></div>
                         </div>
-                        ${capHTML}
                     </div>
                 `;
             }).join('');
-        }
-
-        function openCategoryCapModal(catId) {
-            activeCapCategoryId = catId;
-            const cat = EXPENSE_CATEGORIES.find(c => c.id === catId) || EXPENSE_CATEGORIES[0];
-            const titleEl = document.getElementById('capModalCategoryTitle');
-            const inputEl = document.getElementById('capModalAmountInput');
-            const currentCap = Number((appState.categoryCaps || {})[catId]) || 0;
-
-            if (titleEl) titleEl.textContent = `${cat.emoji} Tope Mensual: ${cat.name}`;
-            if (inputEl) inputEl.value = currentCap > 0 ? currentCap.toFixed(2) : '10.00';
-
-            openBottomSheet('capModalBackdrop', 'capModalPanel');
-        }
-
-        function closeCategoryCapModal(e) {
-            if (e && e.target && e.target.id !== 'capModalBackdrop') return;
-            closeBottomSheet('capModalBackdrop', 'capModalPanel');
-        }
-
-        function saveCategoryCapForm(e) {
-            e.preventDefault();
-            const inputEl = document.getElementById('capModalAmountInput');
-            const val = parseDecimalInput(inputEl ? inputEl.value : '0');
-            if (!appState.categoryCaps) appState.categoryCaps = {};
-            appState.categoryCaps[activeCapCategoryId] = val;
-
-            saveStateToEncryptedVault();
-            closeCategoryCapModal();
-            renderAllViews();
-            showToast('Tope Mensual Guardado', val > 0 ? `Límite fijado en $${val.toFixed(2)} al mes.` : 'Se desactivó el tope mensual.');
-        }
-
-        function clearCategoryCap() {
-            if (!appState.categoryCaps) appState.categoryCaps = {};
-            appState.categoryCaps[activeCapCategoryId] = 0;
-            saveStateToEncryptedVault();
-            closeCategoryCapModal();
-            renderAllViews();
-            showToast('Tope Eliminado', 'La categoría quedó sin límite mensual.');
-        }
-
-        function openMonthClose5050Modal() {
-            const surplus = calculateMonthlySurplusFromCaps();
-            const inputEl = document.getElementById('close5050TotalInput');
-            const selectEl = document.getElementById('close5050GoalSelect');
-
-            if (inputEl) inputEl.value = (surplus > 0 ? surplus : 10.00).toFixed(2);
-            if (selectEl) {
-                if ((appState.goals || []).length === 0) {
-                    selectEl.innerHTML = `<option value="pichincha_ahorro">🐖 Pichincha Ahorros Futuros</option>`;
-                } else {
-                    selectEl.innerHTML = appState.goals.map(g => `<option value="${g.id}">${g.emoji} ${escapeHTML(g.title)} (Faltan $${Math.max(0, g.target - g.saved).toFixed(2)})</option>`).join('');
-                }
-            }
-            setClose5050Source('pichincha_debito');
-            update5050Preview();
-            openBottomSheet('close5050Backdrop', 'close5050Panel');
-        }
-
-        function closeMonthClose5050Modal(e) {
-            if (e && e.target && e.target.id !== 'close5050Backdrop') return;
-            closeBottomSheet('close5050Backdrop', 'close5050Panel');
-        }
-
-        function update5050Preview() {
-            const inputEl = document.getElementById('close5050TotalInput');
-            const goalPrev = document.getElementById('close5050GoalPreview');
-            const rollPrev = document.getElementById('close5050RolloverPreview');
-            const total = parseDecimalInput(inputEl ? inputEl.value : '0');
-            const halfGoal = Math.round((total / 2) * 100) / 100;
-            const halfRoll = Math.round((total - halfGoal) * 100) / 100;
-
-            if (goalPrev) goalPrev.textContent = `$${halfGoal.toFixed(2)}`;
-            if (rollPrev) rollPrev.textContent = `$${halfRoll.toFixed(2)}`;
-        }
-
-        function setClose5050Source(src) {
-            close5050SourceSelected = src;
-            const btnP = document.getElementById('close5050SrcPichincha');
-            const btnE = document.getElementById('close5050SrcEfectivo');
-            if (btnP) btnP.className = src === 'pichincha_debito'
-                ? 'py-2.5 rounded-xl border border-pichincha bg-pichincha/20 text-xs font-bold text-white'
-                : 'py-2.5 rounded-xl border border-white/15 bg-white/5 text-xs font-bold text-slate-300';
-            if (btnE) btnE.className = src === 'efectivo'
-                ? 'py-2.5 rounded-xl border border-efectivoBright bg-efectivo/20 text-xs font-bold text-white'
-                : 'py-2.5 rounded-xl border border-white/15 bg-white/5 text-xs font-bold text-slate-300';
-        }
-
-        function executeMonthClose5050(e) {
-            e.preventDefault();
-            const inputEl = document.getElementById('close5050TotalInput');
-            const selectEl = document.getElementById('close5050GoalSelect');
-            const totalSurplus = parseDecimalInput(inputEl ? inputEl.value : '0');
-            const halfGoal = Math.round((totalSurplus / 2) * 100) / 100;
-            const halfRollover = Math.round((totalSurplus - halfGoal) * 100) / 100;
-
-            if (halfGoal <= 0) {
-                showToast('Monto inválido', 'Ingresa un sobrante mayor a $0.00 para repartir.');
-                return;
-            }
-
-            if (close5050SourceSelected === 'pichincha_debito') {
-                if (appState.balances.pichincha_debito < halfGoal) {
-                    showToast('Saldo insuficiente', 'No tienes suficiente saldo en Pichincha Débito para abonar el 50%.');
-                    return;
-                }
-                appState.balances.pichincha_debito = Math.round((appState.balances.pichincha_debito - halfGoal) * 100) / 100;
-            } else {
-                if (appState.balances.efectivo < halfGoal) {
-                    showToast('Efectivo insuficiente', 'No tienes suficiente efectivo para abonar el 50%.');
-                    return;
-                }
-                appState.balances.efectivo = Math.round((appState.balances.efectivo - halfGoal) * 100) / 100;
-            }
-
-            const targetGoalId = selectEl ? selectEl.value : '';
-            const goalObj = (appState.goals || []).find(g => g.id === targetGoalId);
-            let destinationLabel = 'Pichincha Ahorros';
-
-            if (goalObj) {
-                goalObj.saved = Math.round((goalObj.saved + halfGoal) * 100) / 100;
-                destinationLabel = goalObj.title;
-            }
-            appState.balances.pichincha_ahorro = Math.round((appState.balances.pichincha_ahorro + halfGoal) * 100) / 100;
-            appState.rolloverActive = true;
-
-            appState.transactions.unshift({
-                id: 'tx_' + Date.now(),
-                type: 'expense',
-                amount: halfGoal,
-                note: `✨ Cierre 50/50 → Meta: ${destinationLabel} (Premio libre: $${halfRollover.toFixed(2)})`,
-                category: 'varios',
-                method: close5050SourceSelected,
-                date: new Date().toISOString()
-            });
-
-            saveStateToEncryptedVault();
-            closeMonthClose5050Modal();
-            renderAllViews();
-            showToast('¡Cierre 50/50 Aplicado!', `$${halfGoal.toFixed(2)} abonados a "${destinationLabel}" y $${halfRollover.toFixed(2)} quedan como premio en tu disponible.`);
         }
 
         function renderGoalsTab() {
