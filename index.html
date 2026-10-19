@@ -633,14 +633,14 @@
                         </button>
                     </div>
 
-                    <!-- iCloud+ 50 GB ($0.99) -->
+                    <!-- iCloud+ ($0.99) -->
                     <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-3 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-1">
                                 <span class="text-base">☁️</span>
                                 <span id="subPriceIcloud" class="text-sm font-black text-white">$0.99</span>
                             </div>
-                            <p class="text-xs font-bold text-slate-100 leading-tight">iCloud+ 50 GB</p>
+                            <p class="text-xs font-bold text-slate-100 leading-tight">iCloud+</p>
                             <p class="text-[10px] text-slate-400 font-medium mt-0.5">Almacenamiento nube</p>
                         </div>
                         <button type="button" onclick="openSubChargeModal('icloud')" class="mt-2.5 w-full py-1.5 rounded-xl bg-guayaquil/20 hover:bg-guayaquil/30 border border-guayaquil/40 text-pink-200 text-[11px] font-bold active:scale-95 transition-all">
@@ -1142,6 +1142,9 @@
             { id: 'fijos', name: 'Fijos/Apple', emoji: '📱', color: '#FF007A' },
             { id: 'estudio', name: 'Estudio', emoji: '📚', color: '#A78BFA' },
             { id: 'ocio', name: 'Salidas/Ocio', emoji: '🍿', color: '#FB923C' },
+            { id: 'scouts', name: 'Scouts', emoji: '⚜️', color: '#2DD4BF' },
+            { id: 'salud', name: 'Salud', emoji: '💊', color: '#F43F5E' },
+            { id: 'compras_personales', name: 'Compras Pers.', emoji: '🛒', color: '#818CF8' },
             { id: 'varios', name: 'Varios', emoji: '🛍️', color: '#30D158' }
         ];
 
@@ -1215,7 +1218,7 @@
                         id: 'tx_init_2',
                         type: 'expense',
                         amount: 0.99,
-                        note: 'iCloud+ 50 GB',
+                        note: 'iCloud+',
                         category: 'fijos',
                         method: 'guayaquil_tc',
                         date: new Date().toISOString()
@@ -2012,7 +2015,7 @@
                 const currentVal = Number(appState.subscriptions.apple_music) || 3.49;
                 if (inputEl) inputEl.value = currentVal.toFixed(2);
             } else {
-                if (titleEl) titleEl.textContent = '☁️ Cargar iCloud+ 50 GB a TC';
+                if (titleEl) titleEl.textContent = '☁️ Cargar iCloud+ a TC';
                 const currentVal = Number(appState.subscriptions.icloud) || 0.99;
                 if (inputEl) inputEl.value = currentVal.toFixed(2);
             }
@@ -2041,7 +2044,7 @@
             appState.subscriptions[activeSubKey] = amount;
             appState.balances.guayaquil_deuda = Math.round((appState.balances.guayaquil_deuda + amount) * 100) / 100;
 
-            const label = activeSubKey === 'apple_music' ? 'Apple Music' : 'iCloud+ 50 GB';
+            const label = activeSubKey === 'apple_music' ? 'Apple Music' : 'iCloud+';
 
             appState.transactions.unshift({
                 id: 'tx_' + Date.now(),
