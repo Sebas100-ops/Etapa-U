@@ -571,8 +571,8 @@
             <!-- Cabecera: CUENTAS SECUNDARIAS Y RESERVAS + Botón ⇆ TRASPASAR -->
             <div class="space-y-2.5">
                 <div class="flex items-center justify-between px-1">
-                    <h3 class="text-[8px] font-extrabold uppercase tracking-wider text-slate-300">CUENTAS SECUNDARIAS Y RESERVAS</h3>
-                    <button type="button" onclick="openTransferModal()" class="px-3 py-1.5 rounded-xl liquid-glass-btn text-[8px] font-extrabold text-accentBright flex items-center gap-1.5 active:scale-80 transition-all">
+                    <h3 class="text-[9px] font-extrabold uppercase tracking-wider text-slate-300">CUENTAS SECUNDARIAS Y RESERVAS</h3>
+                    <button type="button" onclick="openTransferModal()" class="px-3 py-1.5 rounded-xl liquid-glass-btn text-[9px] font-extrabold text-accentBright flex items-center gap-1.5 active:scale-95 transition-all">
                         <span>⇆ TRASPASAR</span>
                     </button>
                 </div>
@@ -1505,15 +1505,15 @@
                 isCreatingNewPin = true;
                 if (titleEl) titleEl.textContent = 'Crea tu PIN de 4 dígitos';
                 if (subEl) subEl.textContent = 'Se usará para cifrar tu bóveda local con AES-256 en tu iPhone 15';
-                if (splashSub) splashSub.textContent = 'Configura tu PIN de 4 dígitos por primera vez para crear tu bóveda';
-                showPinKeypadView();
+                if (splashSub) splashSub.textContent = 'Bóveda privada con diseño Liquid Glass para tu iPhone 15';
             } else {
                 isCreatingNewPin = false;
                 if (titleEl) titleEl.textContent = 'Ingresa tu PIN';
                 if (subEl) subEl.textContent = 'Desbloquea tu bóveda AES-256 local';
                 if (splashSub) splashSub.textContent = 'Elige cómo deseas desbloquear tu bóveda privada';
-                showSplashWelcomeView();
             }
+            /* Mostrar siempre primero la pantalla de bienvenida previa antes del teclado de PIN */
+            showSplashWelcomeView();
             enteredPinBuffer = '';
             updatePinDotsUI();
         }
