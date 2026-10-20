@@ -498,8 +498,9 @@
 
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent to-purple-900 flex items-center justify-center shadow-md shadow-accent/20 border border-purple-400/30 p-1.5 overflow-hidden">
-                        <img src="https://freepngimg.com/thumb/snoopy/142799-snoopy.png" alt="Logo" class="w-full h-full object-contain">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent to-purple-900 flex items-center justify-center shadow-md shadow-accent/20 border border-purple-400/30 overflow-hidden relative">
+                        <img id="headerCustomImg" src="" alt="Logo" class="hidden w-full h-full object-cover">
+                        <span id="headerDefaultIcon" class="text-base">🎓</span>
                     </div>
                     <div>
                         <div class="flex items-center gap-1.5">
@@ -571,8 +572,8 @@
             <!-- Cabecera: CUENTAS SECUNDARIAS Y RESERVAS + Botón ⇆ TRASPASAR -->
             <div class="space-y-1.5">
                 <div class="flex items-center justify-between px-1">
-                    <h3 class="text-[10px] font-extrabold uppercase tracking-wider text-slate-300">CUENTAS SECUNDARIAS Y RESERVAS</h3>
-                    <button type="button" onclick="openTransferModal()" class="px-2 py-1 bg-transparent text-[10px] font-extrabold text-accentBright flex items-center gap-1 active:opacity-70 transition-all">
+                    <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-300">CUENTAS SECUNDARIAS Y RESERVAS</h3>
+                    <button type="button" onclick="openTransferModal()" class="px-2 py-1 bg-transparent text-[11px] font-extrabold text-accentBright flex items-center gap-1 active:opacity-70 transition-all">
                         <span>⇆ TRASPASAR</span>
                     </button>
                 </div>
