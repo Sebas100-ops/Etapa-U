@@ -1537,36 +1537,48 @@
             updatePinDotsUI();
         }
 
-        function loadCustomBgFromStorage() {
-            const dataUrl = localStorage.getItem(STORAGE_CUSTOM_BG_KEY);
-            const bgDiv = document.getElementById('lockCustomBg');
-            const imgPrev = document.getElementById('splashCustomImgPreview');
-            const defIcon = document.getElementById('splashDefaultIcon');
+function loadCustomBgFromStorage() {
+    const dataUrl = localStorage.getItem(STORAGE_CUSTOM_BG_KEY);
+    const bgDiv = document.getElementById('lockCustomBg');
+    const imgPrev = document.getElementById('splashCustomImgPreview');
+    const defIcon = document.getElementById('splashDefaultIcon');
+    const headerImg = document.getElementById('headerCustomImg');
+    const headerDef = document.getElementById('headerDefaultIcon');
 
-            if (dataUrl) {
-                if (bgDiv) {
-                    bgDiv.style.backgroundImage = `url('${dataUrl}')`;
-                    bgDiv.classList.remove('opacity-0');
-                    bgDiv.classList.add('opacity-100');
-                }
-                if (imgPrev) {
-                    imgPrev.src = dataUrl;
-                    imgPrev.classList.remove('hidden');
-                }
-                if (defIcon) defIcon.classList.add('hidden');
-            } else {
-                if (bgDiv) {
-                    bgDiv.style.backgroundImage = '';
-                    bgDiv.classList.remove('opacity-100');
-                    bgDiv.classList.add('opacity-0');
-                }
-                if (imgPrev) {
-                    imgPrev.src = '';
-                    imgPrev.classList.add('hidden');
-                }
-                if (defIcon) defIcon.classList.remove('hidden');
-            }
+    if (dataUrl) {
+        if (bgDiv) {
+            bgDiv.style.backgroundImage = `url('${dataUrl}')`;
+            bgDiv.classList.remove('opacity-0');
+            bgDiv.classList.add('opacity-100');
         }
+        if (imgPrev) {
+            imgPrev.src = dataUrl;
+            imgPrev.classList.remove('hidden');
+        }
+        if (defIcon) defIcon.classList.add('hidden');
+        if (headerImg) {
+            headerImg.src = dataUrl;
+            headerImg.classList.remove('hidden');
+        }
+        if (headerDef) headerDef.classList.add('hidden');
+    } else {
+        if (bgDiv) {
+            bgDiv.style.backgroundImage = '';
+            bgDiv.classList.remove('opacity-100');
+            bgDiv.classList.add('opacity-0');
+        }
+        if (imgPrev) {
+            imgPrev.src = '';
+            imgPrev.classList.add('hidden');
+        }
+        if (defIcon) defIcon.classList.remove('hidden');
+        if (headerImg) {
+            headerImg.src = '';
+            headerImg.classList.add('hidden');
+        }
+        if (headerDef) headerDef.classList.remove('hidden');
+    }
+}
 
         function handleCustomBgUpload(event) {
             const file = event.target.files && event.target.files[0];
