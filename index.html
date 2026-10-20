@@ -26,6 +26,7 @@
                         iosBorder: '#2C2248',
                         pichincha: '#FACC15',
                         pichinchaDark: '#EAB308',
+                        pichinchaTransf: '#4B1D7E',
                         guayaquil: '#FF007A',
                         guayaquilSoft: '#FF3399',
                         efectivo: '#10B981',
@@ -341,90 +342,132 @@
         <div class="ambient-orb orb-emerald"></div>
     </div>
 
-    <!-- ==================== PANTALLA DE BLOQUEO IOS 27 (PIN + FACE ID + AES-GCM) ==================== -->
-    <div id="lockScreen" class="fixed inset-0 z-[100] bg-[#07050C] flex flex-col justify-between items-center px-6 py-6 transition-opacity duration-300">
+    <!-- ==================== PANTALLA DE BLOQUEO IOS 27 (SPLASH PERSONALIZABLE + FACE ID WEBAUTHN + PIN) ==================== -->
+    <div id="lockScreen" class="fixed inset-0 z-[100] bg-[#07050C] flex flex-col justify-between items-center px-6 py-6 transition-opacity duration-300 overflow-hidden">
+        <!-- Fondo e Imagen Personalizada (Snoopy / Galería) con filtro Liquid Glass -->
+        <div id="lockCustomBg" class="absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-500 pointer-events-none" style="filter: blur(8px) brightness(0.55) saturate(140%); transform: scale(1.06);"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#07050C]/70 via-[#07050C]/55 to-[#07050C]/95 pointer-events-none"></div>
+
         <!-- Dynamic Island Status Pill en Pantalla de Bloqueo -->
-        <div class="w-full flex flex-col items-center pt-2">
-            <div class="dynamic-island-pill px-4 py-1.5 rounded-full flex items-center gap-2 mb-5">
+        <div class="w-full flex flex-col items-center pt-2 relative z-10">
+            <div class="dynamic-island-pill px-4 py-1.5 rounded-full flex items-center gap-2 mb-4">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span id="lockCryptoBadge" class="text-[11px] font-semibold tracking-wide text-slate-200">Bóveda Cifrada iOS 27 • AES-256</span>
             </div>
+        </div>
 
-            <div class="w-14 h-14 rounded-[20px] bg-accent/15 border border-accent/35 flex items-center justify-center mb-3 shadow-lg shadow-accent/15">
-                <i data-lucide="shield-check" class="w-7 h-7 text-accentBright"></i>
+        <!-- VISTA 1: PANTALLA DE BIENVENIDA PREVIA (SPLASH SCREEN) -->
+        <div id="lockSplashView" class="w-full max-w-[330px] my-auto flex flex-col items-center text-center relative z-10 space-y-5 transition-all duration-300">
+            <!-- Avatar / Marco de Imagen Personalizable (Snoopy / Galería) -->
+            <div class="relative group">
+                <div id="splashAvatarCard" class="w-28 h-28 rounded-[30px] ios27-card p-1.5 flex items-center justify-center overflow-hidden shadow-2xl border border-white/25">
+                    <img id="splashCustomImgPreview" src="" alt="Fondo personalizado" class="hidden w-full h-full object-cover rounded-[24px]" />
+                    <div id="splashDefaultIcon" class="w-full h-full rounded-[24px] bg-gradient-to-br from-accent/30 to-purple-900/50 flex flex-col items-center justify-center">
+                        <span class="text-4xl">🎓</span>
+                    </div>
+                </div>
+                <label title="Cambiar imagen (Ej. Snoopy)" class="absolute -bottom-2 -right-2 w-9 h-9 rounded-full bg-accent text-white shadow-lg shadow-accent/40 border border-white/30 flex items-center justify-center cursor-pointer active:scale-90 transition-transform">
+                    <i data-lucide="image-plus" class="w-4 h-4"></i>
+                    <input type="file" accept="image/*" onchange="handleCustomBgUpload(event)" class="hidden">
+                </label>
             </div>
-            <h1 id="lockTitle" class="text-2xl font-bold tracking-tight text-white">Ingresa tu PIN</h1>
-            <p id="lockSubtitle" class="text-xs text-slate-400 mt-1 text-center max-w-[260px]">Tus datos se desencriptan localmente en tu iPhone 15</p>
-        </div>
 
-        <!-- Indicadores de PIN de 4 dígitos -->
-        <div class="my-2 flex flex-col items-center">
-            <div id="pinDotsContainer" class="flex items-center gap-5 my-2">
-                <div class="pin-dot w-4 h-4 rounded-full border-2 border-purple-400/60 transition-all duration-150"></div>
-                <div class="pin-dot w-4 h-4 rounded-full border-2 border-purple-400/60 transition-all duration-150"></div>
-                <div class="pin-dot w-4 h-4 rounded-full border-2 border-purple-400/60 transition-all duration-150"></div>
-                <div class="pin-dot w-4 h-4 rounded-full border-2 border-purple-400/60 transition-all duration-150"></div>
+            <div>
+                <h1 class="text-2xl font-black tracking-tight text-white">UniFinanzas EC</h1>
+                <p id="splashSubtitle" class="text-xs text-slate-300 mt-1 max-w-[260px] mx-auto">Bóveda privada con diseño Liquid Glass para tu iPhone 15</p>
             </div>
-            <p id="pinErrorMsg" class="text-xs text-rose-400 font-semibold h-4 mt-2 opacity-0 transition-opacity">PIN incorrecto, vuelve a intentar</p>
+
+            <!-- Dos opciones principales de 1 toque -->
+            <div class="w-full space-y-2.5 pt-1">
+                <button type="button" onclick="triggerBiometricUnlock()" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-accent to-purple-600 text-white font-extrabold text-xs shadow-lg shadow-accent/35 flex items-center justify-center gap-2.5 active:scale-95 transition-all">
+                    <i data-lucide="scan-face" class="w-5 h-5"></i>
+                    <span>👤 Desbloquear con Face ID</span>
+                </button>
+
+                <button type="button" onclick="showPinKeypadView()" class="w-full py-3.5 px-4 rounded-2xl liquid-glass-btn text-white font-extrabold text-xs flex items-center justify-center gap-2.5 active:scale-95 transition-all">
+                    <i data-lucide="grid" class="w-4 h-4 text-accentBright"></i>
+                    <span>🔢 Ingresar con PIN de 4 dígitos</span>
+                </button>
+            </div>
         </div>
 
-        <!-- Teclado Numérico Nativo Estilo iOS 27 -->
-        <div class="w-full max-w-[288px] grid grid-cols-3 gap-x-6 gap-y-3.5 my-2">
-            <button type="button" onclick="handlePinKey('1')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">1</span>
-                <span class="text-[9px] tracking-widest opacity-0">.</span>
-            </button>
-            <button type="button" onclick="handlePinKey('2')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">2</span>
-                <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">ABC</span>
-            </button>
-            <button type="button" onclick="handlePinKey('3')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">3</span>
-                <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">DEF</span>
-            </button>
-            <button type="button" onclick="handlePinKey('4')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">4</span>
-                <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">GHI</span>
-            </button>
-            <button type="button" onclick="handlePinKey('5')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">5</span>
-                <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">JKL</span>
-            </button>
-            <button type="button" onclick="handlePinKey('6')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">6</span>
-                <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">MNO</span>
-            </button>
-            <button type="button" onclick="handlePinKey('7')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">7</span>
-                <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">PQRS</span>
-            </button>
-            <button type="button" onclick="handlePinKey('8')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">8</span>
-                <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">TUV</span>
-            </button>
-            <button type="button" onclick="handlePinKey('9')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">9</span>
-                <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">WXYZ</span>
-            </button>
+        <!-- VISTA 2: TECLADO NUMÉRICO DE 4 DÍGITOS (SIN BOTÓN FLOTANTE DE FACE ID) -->
+        <div id="lockPinView" class="hidden w-full flex-1 flex flex-col justify-between items-center relative z-10 py-1">
+            <div class="flex flex-col items-center text-center mt-1">
+                <div class="w-12 h-12 rounded-[18px] bg-accent/15 border border-accent/35 flex items-center justify-center mb-2 shadow-lg shadow-accent/15">
+                    <i data-lucide="shield-check" class="w-6 h-6 text-accentBright"></i>
+                </div>
+                <h2 id="lockTitle" class="text-xl font-bold tracking-tight text-white">Ingresa tu PIN</h2>
+                <p id="lockSubtitle" class="text-xs text-slate-400 mt-0.5 max-w-[250px]">Tus datos se desencriptan localmente en tu iPhone 15</p>
 
-            <!-- Botón Face ID / Biometría -->
-            <button type="button" id="faceIdBtn" onclick="triggerBiometricUnlock()" class="h-[70px] w-[70px] mx-auto rounded-full flex flex-col items-center justify-center text-accentBright active:scale-90 transition-all">
-                <i data-lucide="scan-face" class="w-7 h-7"></i>
-                <span class="text-[9px] font-semibold mt-1">Face ID</span>
-            </button>
+                <!-- Indicadores de PIN de 4 dígitos -->
+                <div id="pinDotsContainer" class="flex items-center gap-5 mt-4 mb-1">
+                    <div class="pin-dot w-4 h-4 rounded-full border-2 border-purple-400/60 transition-all duration-150"></div>
+                    <div class="pin-dot w-4 h-4 rounded-full border-2 border-purple-400/60 transition-all duration-150"></div>
+                    <div class="pin-dot w-4 h-4 rounded-full border-2 border-purple-400/60 transition-all duration-150"></div>
+                    <div class="pin-dot w-4 h-4 rounded-full border-2 border-purple-400/60 transition-all duration-150"></div>
+                </div>
+                <p id="pinErrorMsg" class="text-xs text-rose-400 font-semibold h-4 mt-1 opacity-0 transition-opacity">PIN incorrecto, vuelve a intentar</p>
+            </div>
 
-            <button type="button" onclick="handlePinKey('0')" class="h-[70px] w-[70px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
-                <span class="text-2xl font-semibold leading-none">0</span>
-            </button>
+            <!-- Teclado Numérico Simplificado (3x4 limpio sin botón Face ID) -->
+            <div class="w-full max-w-[288px] grid grid-cols-3 gap-x-6 gap-y-3 my-1">
+                <button type="button" onclick="handlePinKey('1')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">1</span>
+                    <span class="text-[9px] tracking-widest opacity-0">.</span>
+                </button>
+                <button type="button" onclick="handlePinKey('2')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">2</span>
+                    <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">ABC</span>
+                </button>
+                <button type="button" onclick="handlePinKey('3')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">3</span>
+                    <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">DEF</span>
+                </button>
+                <button type="button" onclick="handlePinKey('4')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">4</span>
+                    <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">GHI</span>
+                </button>
+                <button type="button" onclick="handlePinKey('5')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">5</span>
+                    <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">JKL</span>
+                </button>
+                <button type="button" onclick="handlePinKey('6')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">6</span>
+                    <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">MNO</span>
+                </button>
+                <button type="button" onclick="handlePinKey('7')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">7</span>
+                    <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">PQRS</span>
+                </button>
+                <button type="button" onclick="handlePinKey('8')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">8</span>
+                    <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">TUV</span>
+                </button>
+                <button type="button" onclick="handlePinKey('9')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">9</span>
+                    <span class="text-[9px] tracking-widest text-slate-400 mt-0.5">WXYZ</span>
+                </button>
 
-            <!-- Borrar dígito -->
-            <button type="button" onclick="handlePinBackspace()" class="h-[70px] w-[70px] mx-auto rounded-full flex items-center justify-center text-slate-300 active:scale-90 transition-all">
-                <i data-lucide="delete" class="w-6 h-6"></i>
-            </button>
+                <!-- Botón Volver al Inicio (reemplaza al botón flotante de Face ID) -->
+                <button type="button" onclick="showSplashWelcomeView()" class="h-[68px] w-[68px] mx-auto rounded-full flex flex-col items-center justify-center text-slate-400 active:scale-90 transition-all">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    <span class="text-[9px] font-semibold mt-0.5">Inicio</span>
+                </button>
+
+                <button type="button" onclick="handlePinKey('0')" class="h-[68px] w-[68px] mx-auto rounded-full liquid-glass-btn active:scale-90 active:bg-accent/40 flex flex-col items-center justify-center transition-all">
+                    <span class="text-2xl font-semibold leading-none">0</span>
+                </button>
+
+                <!-- Borrar dígito -->
+                <button type="button" onclick="handlePinBackspace()" class="h-[68px] w-[68px] mx-auto rounded-full flex items-center justify-center text-slate-300 active:scale-90 transition-all">
+                    <i data-lucide="delete" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
 
-        <div class="text-center pb-1">
-            <p class="text-[11px] text-slate-500">100% Privado • Cifrado Web Crypto PBKDF2 + AES-GCM</p>
+        <div class="text-center pb-1 relative z-10">
+            <p class="text-[11px] text-slate-400">100% Privado • Cifrado Web Crypto PBKDF2 + AES-GCM</p>
         </div>
     </div>
 
@@ -525,26 +568,36 @@
                 </div>
             </div>
 
-            <!-- Cuentas Secundarias Blindadas (Ahorro Futuro + Cuenta Puente Guayaquil) -->
-            <div class="grid grid-cols-2 gap-2.5">
-                <!-- Pichincha Ahorro Futuro -->
-                <div class="ios27-card rounded-2xl p-3.5 border-l-4 border-l-pichincha">
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-bold uppercase tracking-wide text-pichincha">🐖 Pichincha</span>
-                        <span class="text-[9px] px-1.5 py-0.5 rounded bg-pichincha/15 text-pichincha font-semibold">Blindado</span>
-                    </div>
-                    <p class="text-[11px] text-slate-400 mt-0.5">Ahorros Futuros</p>
-                    <p id="balPichinchaAhorro" class="text-base font-extrabold text-white mt-1">$0.00</p>
+            <!-- Cabecera: CUENTAS SECUNDARIAS Y RESERVAS + Botón ⇆ TRASPASAR -->
+            <div class="space-y-2.5">
+                <div class="flex items-center justify-between px-1">
+                    <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-300">CUENTAS SECUNDARIAS Y RESERVAS</h3>
+                    <button type="button" onclick="openTransferModal()" class="px-3 py-1.5 rounded-xl liquid-glass-btn text-[11px] font-extrabold text-accentBright flex items-center gap-1.5 active:scale-95 transition-all">
+                        <span>⇆ TRASPASAR</span>
+                    </button>
                 </div>
 
-                <!-- Cuenta Banco Guayaquil (Puente para pagar TC) -->
-                <div class="ios27-card rounded-2xl p-3.5 border-l-4 border-l-guayaquil">
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-bold uppercase tracking-wide text-guayaquilSoft">🏦 Guayaquil</span>
-                        <span class="text-[9px] px-1.5 py-0.5 rounded bg-guayaquil/15 text-pink-300 font-semibold">Puente TC</span>
+                <!-- Cuentas Secundarias Blindadas (Ahorro Futuro + Cuenta Puente Guayaquil) -->
+                <div class="grid grid-cols-2 gap-2.5">
+                    <!-- Pichincha Ahorro Futuro -->
+                    <div class="ios27-card rounded-2xl p-3.5 border-l-4 border-l-pichincha">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-bold uppercase tracking-wide text-pichincha">🐖 Pichincha</span>
+                            <span class="text-[9px] px-1.5 py-0.5 rounded bg-pichincha/15 text-pichincha font-semibold">Blindado</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Ahorros Futuros</p>
+                        <p id="balPichinchaAhorro" class="text-base font-extrabold text-white mt-1">$0.00</p>
                     </div>
-                    <p class="text-[11px] text-slate-400 mt-0.5">Cta. Ahorros / Pago</p>
-                    <p id="balGuayaquilCuenta" class="text-base font-extrabold text-white mt-1">$0.00</p>
+
+                    <!-- Cuenta Banco Guayaquil (Puente para pagar TC) -->
+                    <div class="ios27-card rounded-2xl p-3.5 border-l-4 border-l-guayaquil">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-bold uppercase tracking-wide text-guayaquilSoft">🏦 Guayaquil</span>
+                            <span class="text-[9px] px-1.5 py-0.5 rounded bg-guayaquil/15 text-pink-300 font-semibold">Puente TC</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Cta. Ahorros / Pago</p>
+                        <p id="balGuayaquilCuenta" class="text-base font-extrabold text-white mt-1">$0.00</p>
+                    </div>
                 </div>
             </div>
 
@@ -589,9 +642,15 @@
                 <div class="w-full h-2.5 rounded-full bg-black/40 overflow-hidden p-0.5 border border-white/10 my-2">
                     <div id="ccProgressBar" class="h-full rounded-full bg-gradient-to-r from-guayaquil to-pink-400 transition-all duration-500" style="width: 0%"></div>
                 </div>
-                <div class="flex items-center justify-between text-[10px] text-pink-200/80 mb-3">
+                <div class="flex items-center justify-between text-[10px] text-pink-200/80 mb-2">
                     <span id="ccUsagePercentLabel">0% utilizado</span>
                     <span id="ccBridgeStatusLabel">En Cta. Guayaquil: $0.00</span>
+                </div>
+
+                <!-- Alerta Dinámica de Cupo (> 80%) debajo de la barra de progreso -->
+                <div id="ccOver80Alert" class="hidden mb-3 rounded-xl bg-amber-500/20 border border-amber-400/50 px-3 py-2 flex items-center gap-2">
+                    <span class="text-xs leading-none">⚠️</span>
+                    <p class="text-[11px] font-extrabold text-amber-200 leading-tight">Has superado el 80% de tu cupo disponible</p>
                 </div>
 
                 <!-- Botones del Flujo de Pago en 2 Pasos -->
@@ -1102,14 +1161,28 @@
                 </button>
             </form>
 
-            <!-- Opciones de Seguridad: Face ID y Respaldo JSON -->
-            <div class="mt-4 pt-3 border-t border-white/10 space-y-2">
+            <!-- Opciones de Seguridad y Personalización: Face ID, Imagen de Fondo (Snoopy) y Respaldo JSON -->
+            <div class="mt-4 pt-3 border-t border-white/10 space-y-2.5">
                 <div class="flex items-center justify-between">
-                    <span class="text-[11px] font-bold text-slate-300">Desbloqueo rápido con Face ID</span>
+                    <span class="text-[11px] font-bold text-slate-300">Desbloqueo real con Face ID</span>
                     <button type="button" onclick="registerBiometricCredential()" class="px-3 py-1.5 rounded-xl liquid-glass-btn text-[11px] font-bold text-accentBright active:scale-95">
                         Vincular Face ID
                     </button>
                 </div>
+
+                <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-bold text-slate-300">Imagen de Inicio (Ej. Snoopy)</span>
+                    <div class="flex items-center gap-1.5">
+                        <label class="px-3 py-1.5 rounded-xl liquid-glass-btn text-[11px] font-bold text-emerald-300 cursor-pointer active:scale-95">
+                            Subir Foto
+                            <input type="file" accept="image/*" onchange="handleCustomBgUpload(event)" class="hidden">
+                        </label>
+                        <button type="button" onclick="clearCustomBgImage()" title="Quitar imagen" class="px-2 py-1.5 rounded-xl liquid-glass-btn text-[11px] font-bold text-rose-300 active:scale-95">
+                            Quitar
+                        </button>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-2 gap-2 pt-1">
                     <button type="button" onclick="exportEncryptedBackup()" class="py-2 rounded-xl liquid-glass-btn text-[11px] font-bold text-slate-200 flex items-center justify-center gap-1">
                         <i data-lucide="download" class="w-3.5 h-3.5"></i>
@@ -1125,6 +1198,62 @@
         </div>
     </div>
 
+    <!-- ==================== MODAL 10: ⇆ TRASPASAR ENTRE CUENTAS ==================== -->
+    <div id="transferBackdrop" onclick="closeTransferModal(event)" class="fixed inset-0 z-50 bg-black/70 bottom-sheet-backdrop flex items-end justify-center">
+        <div onclick="event.stopPropagation()" id="transferPanel" class="bottom-sheet-panel w-full max-w-[393px] rounded-t-[30px] p-5 safe-pb max-h-[90vh] overflow-y-auto no-scrollbar">
+            <div class="w-10 h-1.5 rounded-full bg-white/20 mx-auto mb-3"></div>
+
+            <div class="flex items-center justify-between mb-3">
+                <div>
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-accentBright">Movimiento Interno • Sin Costo</span>
+                    <h3 class="text-base font-extrabold text-white">⇆ Traspasar entre Cuentas</h3>
+                </div>
+                <button type="button" onclick="closeTransferModal()" class="w-8 h-8 rounded-full liquid-glass-btn flex items-center justify-center text-slate-300">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <form onsubmit="submitInternalTransfer(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">Monto a Traspasar ($)</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-black text-accentBright">$</span>
+                        <input type="text" inputmode="decimal" id="transferAmountInput" required placeholder="0.00" autocomplete="off" class="w-full pl-10 pr-4 py-3 rounded-2xl bg-black/45 border border-white/15 text-2xl font-black text-white placeholder-slate-600 focus:outline-none focus:border-accent">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">Desde la cuenta (Origen)</label>
+                    <select id="transferFromSelect" class="w-full px-3.5 py-3 rounded-2xl bg-black/55 border border-white/15 text-xs font-extrabold text-white focus:outline-none focus:border-accent">
+                        <option value="pichincha_debito">🟡 Pichincha Débito</option>
+                        <option value="efectivo">🟢 Billetera Efectivo</option>
+                        <option value="pichincha_ahorro">🐖 Pichincha Ahorro Futuro</option>
+                        <option value="guayaquil_cuenta">🏦 Cuenta Guayaquil (Puente TC)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">Hacia la cuenta (Destino)</label>
+                    <select id="transferToSelect" class="w-full px-3.5 py-3 rounded-2xl bg-black/55 border border-white/15 text-xs font-extrabold text-white focus:outline-none focus:border-accent">
+                        <option value="pichincha_ahorro">🐖 Pichincha Ahorro Futuro</option>
+                        <option value="guayaquil_cuenta">🏦 Cuenta Guayaquil (Puente TC)</option>
+                        <option value="pichincha_debito">🟡 Pichincha Débito</option>
+                        <option value="efectivo">🟢 Billetera Efectivo</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">Nota opcional</label>
+                    <input type="text" inputmode="text" id="transferNoteInput" placeholder="Ej. Pasar a ahorros, Fondear Guayaquil..." class="w-full px-3.5 py-2.5 rounded-xl bg-black/45 border border-white/15 text-xs text-white focus:outline-none focus:border-accent">
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-accent to-purple-600 text-white font-extrabold text-sm shadow-lg shadow-accent/35 active:scale-95 transition-all">
+                    Confirmar Traspaso ⇆
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script>
         /* ============================================================================
          * UNIFINANZAS EC — iOS 27 LIQUID GLASS + BÓVEDA AES-GCM 256-BIT
@@ -1133,6 +1262,7 @@
         const STORAGE_VAULT_KEY = 'unifinanzas_ec_ios27_vault_v1';
         const STORAGE_PLAINTEXT_FALLBACK = 'unifinanzas_ec_ios27_state_v1';
         const STORAGE_BIOMETRIC_KEY = 'unifinanzas_ec_biometric_v1';
+        const STORAGE_CUSTOM_BG_KEY = 'unifinanzas_ec_custom_bg_v1';
         const GUAYAQUIL_CREDIT_LIMIT = 50.00;
 
         /* Categorías Universitarias con colores estrictos para el gráfico y topes opcionales */
@@ -1159,7 +1289,7 @@
         /* Métodos según el tipo (Regla estricta: TC jamás es opción de depósito) */
         const EXPENSE_METHODS = [
             { id: 'pichincha_debito', name: 'Pichincha Débito', badge: '💳 Amarillo', borderClass: 'border-pichincha bg-pichincha/20 text-white' },
-            { id: 'pichincha_transf', name: 'Pichincha Transf.', badge: '📲 Amarillo', borderClass: 'border-pichincha bg-pichincha/20 text-white' },
+            { id: 'pichincha_transf', name: 'Pichincha Transf.', badge: '📲 Transferencia', borderClass: 'border-[#4B1D7E] bg-[#4B1D7E]/75 text-white shadow-md shadow-[#4B1D7E]/40' },
             { id: 'guayaquil_tc', name: 'Guayaquil Crédito', badge: '💳 Magenta', borderClass: 'border-guayaquil bg-guayaquil/20 text-white' },
             { id: 'efectivo', name: 'Efectivo', badge: '💵 Verde', borderClass: 'border-efectivoBright bg-efectivo/20 text-white' }
         ];
@@ -1367,17 +1497,116 @@
             const hasVault = !!localStorage.getItem(STORAGE_VAULT_KEY);
             const titleEl = document.getElementById('lockTitle');
             const subEl = document.getElementById('lockSubtitle');
+            const splashSub = document.getElementById('splashSubtitle');
+
+            loadCustomBgFromStorage();
+
             if (!hasVault) {
                 isCreatingNewPin = true;
                 if (titleEl) titleEl.textContent = 'Crea tu PIN de 4 dígitos';
                 if (subEl) subEl.textContent = 'Se usará para cifrar tu bóveda local con AES-256 en tu iPhone 15';
+                if (splashSub) splashSub.textContent = 'Configura tu PIN de 4 dígitos por primera vez para crear tu bóveda';
+                showPinKeypadView();
             } else {
                 isCreatingNewPin = false;
                 if (titleEl) titleEl.textContent = 'Ingresa tu PIN';
                 if (subEl) subEl.textContent = 'Desbloquea tu bóveda AES-256 local';
+                if (splashSub) splashSub.textContent = 'Elige cómo deseas desbloquear tu bóveda privada';
+                showSplashWelcomeView();
             }
             enteredPinBuffer = '';
             updatePinDotsUI();
+        }
+
+        function showSplashWelcomeView() {
+            const splash = document.getElementById('lockSplashView');
+            const pinView = document.getElementById('lockPinView');
+            if (splash) splash.classList.remove('hidden');
+            if (pinView) pinView.classList.add('hidden');
+            enteredPinBuffer = '';
+            updatePinDotsUI();
+        }
+
+        function showPinKeypadView() {
+            const splash = document.getElementById('lockSplashView');
+            const pinView = document.getElementById('lockPinView');
+            if (splash) splash.classList.add('hidden');
+            if (pinView) pinView.classList.remove('hidden');
+            enteredPinBuffer = '';
+            updatePinDotsUI();
+        }
+
+        function loadCustomBgFromStorage() {
+            const dataUrl = localStorage.getItem(STORAGE_CUSTOM_BG_KEY);
+            const bgDiv = document.getElementById('lockCustomBg');
+            const imgPrev = document.getElementById('splashCustomImgPreview');
+            const defIcon = document.getElementById('splashDefaultIcon');
+
+            if (dataUrl) {
+                if (bgDiv) {
+                    bgDiv.style.backgroundImage = `url('${dataUrl}')`;
+                    bgDiv.classList.remove('opacity-0');
+                    bgDiv.classList.add('opacity-100');
+                }
+                if (imgPrev) {
+                    imgPrev.src = dataUrl;
+                    imgPrev.classList.remove('hidden');
+                }
+                if (defIcon) defIcon.classList.add('hidden');
+            } else {
+                if (bgDiv) {
+                    bgDiv.style.backgroundImage = '';
+                    bgDiv.classList.remove('opacity-100');
+                    bgDiv.classList.add('opacity-0');
+                }
+                if (imgPrev) {
+                    imgPrev.src = '';
+                    imgPrev.classList.add('hidden');
+                }
+                if (defIcon) defIcon.classList.remove('hidden');
+            }
+        }
+
+        function handleCustomBgUpload(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const maxDim = 720;
+                    let w = img.width;
+                    let h = img.height;
+                    if (w > h && w > maxDim) {
+                        h = Math.round((h * maxDim) / w);
+                        w = maxDim;
+                    } else if (h >= w && h > maxDim) {
+                        w = Math.round((w * maxDim) / h);
+                        h = maxDim;
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+                    try {
+                        localStorage.setItem(STORAGE_CUSTOM_BG_KEY, compressedDataUrl);
+                        loadCustomBgFromStorage();
+                        showToast('Imagen Personalizada Lista', 'Tu imagen se aplicó en la pantalla de bienvenida.');
+                    } catch (e) {
+                        showToast('Imagen muy pesada', 'Intenta con otra imagen más ligera.');
+                    }
+                };
+                img.src = evt.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearCustomBgImage() {
+            localStorage.removeItem(STORAGE_CUSTOM_BG_KEY);
+            loadCustomBgFromStorage();
+            showToast('Imagen Restaurada', 'Se restauró el icono original de la pantalla de inicio.');
         }
 
         function handlePinKey(digit) {
@@ -1471,32 +1700,105 @@
         }
 
         async function registerBiometricCredential() {
-            if (!window.PublicKeyCredential || !activePinSession) {
-                showToast('Face ID Local', 'Se habilitó el acceso rápido biométrico en este dispositivo.');
-                localStorage.setItem(STORAGE_BIOMETRIC_KEY, btoa(activePinSession));
+            if (!activePinSession) {
+                showToast('Desbloquea primero', 'Ingresa con tu PIN antes de vincular Face ID.');
                 return;
             }
-            try {
-                localStorage.setItem(STORAGE_BIOMETRIC_KEY, btoa(activePinSession));
-                showToast('Face ID Vinculado', 'Ahora puedes tocar el ícono de Face ID en la pantalla de bloqueo.');
-            } catch (e) {
-                showToast('Aviso Face ID', 'Se guardó el acceso rápido biométrico para tu iPhone.');
+
+            if (window.PublicKeyCredential && navigator.credentials && navigator.credentials.create) {
+                try {
+                    const challenge = window.crypto.getRandomValues(new Uint8Array(32));
+                    const userId = window.crypto.getRandomValues(new Uint8Array(16));
+                    const cred = await navigator.credentials.create({
+                        publicKey: {
+                            challenge: challenge,
+                            rp: { name: 'UniFinanzas EC' },
+                            user: {
+                                id: userId,
+                                name: 'estudiante@unifinanzas.ec',
+                                displayName: 'UniFinanzas EC'
+                            },
+                            pubKeyCredParams: [
+                                { type: 'public-key', alg: -7 },
+                                { type: 'public-key', alg: -257 }
+                            ],
+                            authenticatorSelection: {
+                                authenticatorAttachment: 'platform',
+                                userVerification: 'required'
+                            },
+                            timeout: 60000
+                        }
+                    });
+
+                    if (cred && cred.rawId) {
+                        const bioPayload = {
+                            credId: bufToBase64(cred.rawId),
+                            pin: btoa(activePinSession)
+                        };
+                        localStorage.setItem(STORAGE_BIOMETRIC_KEY, JSON.stringify(bioPayload));
+                        showToast('Face ID Activado', 'Tu rostro quedó vinculado con el autenticador nativo de iOS.');
+                        return;
+                    }
+                } catch (err) {
+                    showToast('Verificación Cancelada', 'Debes confirmar tu rostro en el aviso de iOS para activar Face ID.');
+                    return;
+                }
+            } else {
+                showToast('Face ID requiere HTTPS', 'Abre la app desde tu servidor seguro o usa tu PIN de 4 dígitos.');
             }
         }
 
         async function triggerBiometricUnlock() {
-            const savedBio = localStorage.getItem(STORAGE_BIOMETRIC_KEY);
-            if (!savedBio) {
-                showToast('Configura Face ID primero', 'Desbloquea con tu PIN y toca "Vincular Face ID" en Calibrar Saldos.');
+            const savedBioRaw = localStorage.getItem(STORAGE_BIOMETRIC_KEY);
+            if (!savedBioRaw) {
+                showToast('Vincula Face ID primero', 'Entra con tu PIN y toca "Vincular Face ID" en Ajustes (⚙️).');
+                showPinKeypadView();
                 return;
             }
+
+            let bioData = null;
             try {
-                const pinRecovered = atob(savedBio);
-                enteredPinBuffer = pinRecovered;
-                updatePinDotsUI();
-                await verifyOrCreatePin(pinRecovered);
+                bioData = JSON.parse(savedBioRaw);
             } catch (e) {
-                showToast('Usa tu PIN', 'Ingresa tus 4 dígitos para desencriptar la bóveda.');
+                bioData = null;
+            }
+
+            if (!bioData || !bioData.credId || !bioData.pin) {
+                localStorage.removeItem(STORAGE_BIOMETRIC_KEY);
+                showToast('Vuelve a vincular Face ID', 'Entra con tu PIN y vincula Face ID en Ajustes (⚙️) para usar el sensor real.');
+                showPinKeypadView();
+                return;
+            }
+
+            if (!window.PublicKeyCredential || !navigator.credentials || !navigator.credentials.get) {
+                showToast('Sensor no disponible', 'Ingresa con tu PIN de 4 dígitos.');
+                showPinKeypadView();
+                return;
+            }
+
+            try {
+                const challenge = window.crypto.getRandomValues(new Uint8Array(32));
+                const assertion = await navigator.credentials.get({
+                    publicKey: {
+                        challenge: challenge,
+                        allowCredentials: [{
+                            id: base64ToBuf(bioData.credId),
+                            type: 'public-key',
+                            transports: ['internal']
+                        }],
+                        userVerification: 'required',
+                        timeout: 60000
+                    }
+                });
+
+                if (assertion) {
+                    const pinRecovered = atob(bioData.pin);
+                    enteredPinBuffer = pinRecovered;
+                    updatePinDotsUI();
+                    await verifyOrCreatePin(pinRecovered);
+                }
+            } catch (err) {
+                showToast('Face ID no verificado', 'No se validó tu rostro. Intenta de nuevo o usa tu PIN.');
             }
         }
 
@@ -1558,12 +1860,13 @@
             const dateEl = document.getElementById('currentDateLabel');
             if (dateEl) {
                 const now = new Date();
-                const formatted = now.toLocaleDateString('es-EC', {
+                const rawFormatted = now.toLocaleDateString('es-EC', {
                     weekday: 'short',
                     day: 'numeric',
                     month: 'short'
-                });
-                dateEl.textContent = `${formatted} • Quito, EC`;
+                }).replace(/\./g, '');
+                const capitalizedDate = rawFormatted.charAt(0).toUpperCase() + rawFormatted.slice(1);
+                dateEl.textContent = `${capitalizedDate} • Quito, EC`;
             }
 
             const liquid = (Number(appState.balances.pichincha_debito) || 0) + (Number(appState.balances.efectivo) || 0);
@@ -1613,6 +1916,7 @@
             const barEl = document.getElementById('ccProgressBar');
             const pctLabel = document.getElementById('ccUsagePercentLabel');
             const bridgeLabel = document.getElementById('ccBridgeStatusLabel');
+            const over80Alert = document.getElementById('ccOver80Alert');
 
             if (elDeuda) elDeuda.textContent = formatUSD(gDeuda);
             if (elDisp) elDisp.textContent = `${formatUSD(freeCredit)} libres`;
@@ -1625,6 +1929,14 @@
                     barEl.className = 'h-full rounded-full bg-gradient-to-r from-rose-600 to-red-400 transition-all duration-500';
                 } else {
                     barEl.className = 'h-full rounded-full bg-gradient-to-r from-guayaquil to-pink-400 transition-all duration-500';
+                }
+            }
+
+            if (over80Alert) {
+                if (gDeuda >= GUAYAQUIL_CREDIT_LIMIT * 0.8) {
+                    over80Alert.classList.remove('hidden');
+                } else {
+                    over80Alert.classList.add('hidden');
                 }
             }
 
@@ -1656,7 +1968,7 @@
 
             const methodLabels = {
                 pichincha_debito: { text: '🟡 Pichincha Débito', cls: 'text-pichincha' },
-                pichincha_transf: { text: '📲 Pichincha Transf.', cls: 'text-pichincha' },
+                pichincha_transf: { text: '📲 Pichincha Transf.', cls: 'text-[#A78BFA] bg-[#4B1D7E]/60 px-1.5 py-0.5 rounded border border-[#4B1D7E]' },
                 pichincha_ahorro: { text: '🐖 Pichincha Ahorro', cls: 'text-pichincha' },
                 guayaquil_tc: { text: '💳 Guayaquil TC', cls: 'text-guayaquilSoft' },
                 guayaquil_cuenta: { text: '🏦 Cta. Guayaquil', cls: 'text-guayaquilSoft' },
@@ -2561,6 +2873,71 @@
         function closeCalibrateModal(e) {
             if (e && e.target && e.target.id !== 'calibrateBackdrop') return;
             closeBottomSheet('calibrateBackdrop', 'calibratePanel');
+        }
+
+        function openTransferModal() {
+            const amtEl = document.getElementById('transferAmountInput');
+            const noteEl = document.getElementById('transferNoteInput');
+            if (amtEl) amtEl.value = '';
+            if (noteEl) noteEl.value = '';
+            openBottomSheet('transferBackdrop', 'transferPanel');
+        }
+
+        function closeTransferModal(e) {
+            if (e && e.target && e.target.id !== 'transferBackdrop') return;
+            closeBottomSheet('transferBackdrop', 'transferPanel');
+        }
+
+        function submitInternalTransfer(e) {
+            e.preventDefault();
+            const amount = parseDecimalInput(document.getElementById('transferAmountInput').value);
+            const fromAcc = document.getElementById('transferFromSelect').value;
+            const toAcc = document.getElementById('transferToSelect').value;
+            const noteRaw = document.getElementById('transferNoteInput').value.trim();
+
+            if (amount <= 0) {
+                showToast('Monto inválido', 'Ingresa un valor mayor a $0.00 para traspasar.');
+                return;
+            }
+            if (fromAcc === toAcc) {
+                showToast('Cuentas iguales', 'Elige una cuenta de destino diferente a la de origen.');
+                return;
+            }
+
+            const currentFromBal = Number(appState.balances[fromAcc]) || 0;
+            if (currentFromBal < amount) {
+                showToast('Saldo insuficiente', 'No tienes suficiente saldo disponible en la cuenta de origen.');
+                return;
+            }
+
+            appState.balances[fromAcc] = Math.round((currentFromBal - amount) * 100) / 100;
+            appState.balances[toAcc] = Math.round(((Number(appState.balances[toAcc]) || 0) + amount) * 100) / 100;
+
+            const accountNames = {
+                pichincha_debito: 'Pichincha Débito',
+                efectivo: 'Efectivo',
+                pichincha_ahorro: 'Pichincha Ahorro',
+                guayaquil_cuenta: 'Cta. Guayaquil'
+            };
+
+            const transferLabel = noteRaw
+                ? `⇆ ${noteRaw}`
+                : `⇆ Traspaso: ${accountNames[fromAcc]} → ${accountNames[toAcc]}`;
+
+            appState.transactions.unshift({
+                id: 'tx_' + Date.now(),
+                type: 'income',
+                amount: amount,
+                note: transferLabel,
+                category: 'ahorro',
+                method: toAcc,
+                date: new Date().toISOString()
+            });
+
+            saveStateToEncryptedVault();
+            closeTransferModal();
+            renderAllViews();
+            showToast('Traspaso Exitoso ⇆', `Pasaste $${amount.toFixed(2)} de ${accountNames[fromAcc]} a ${accountNames[toAcc]}.`);
         }
 
         function saveCalibratedBalances(e) {
