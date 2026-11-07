@@ -101,12 +101,28 @@
       max-width: 412px;
       margin: 0 auto;
       min-height: 100dvh;
-      background: radial-gradient(circle at 50% -5%, #261B47 0%, #130F20 42%, #07050C 100%);
+      background: linear-gradient(180deg, #07050C 0%, #130F20 35%, #07050C 100%);
       position: relative;
       overflow-x: hidden;
-      padding-top: calc(var(--safe-top) + 8px);
+      padding-top: 0;
       padding-bottom: calc(var(--safe-bottom) + 105px);
       box-shadow: 0 0 80px rgba(0, 0, 0, 0.85);
+    }
+
+    /* Cabecera fija con protección de Isla Dinámica y cero desenfoque */
+    .ios-header-safe {
+      padding-top: calc(max(var(--safe-top), 48px) + 8px);
+      background-color: #07050C;
+      transform: translateZ(0);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Notificación Toast debajo de la Isla Dinámica, 100% sólida y sin subpíxeles borrosos */
+    .ios-toast-safe {
+      top: calc(max(var(--safe-top), 48px) + 10px);
+      transform: translateZ(0);
+      -webkit-font-smoothing: antialiased;
+      backface-visibility: hidden;
     }
 
     /* Acabado Apple Liquid Glass */
@@ -343,8 +359,8 @@
   ========================================================================== -->
   <div class="ios-shell px-4">
 
-    <!-- ENCABEZADO SUPERIOR NITIDO SIN BLUR Y FECHA CAPITALIZADA -->
-    <header class="flex items-center justify-between pt-2 pb-4 sticky top-0 z-30 bg-[#07050C] -mx-4 px-4 border-b border-white/10">
+    <!-- ENCABEZADO SUPERIOR NÍTIDO CON ESPACIO SEGURO PARA ISLA DINÁMICA -->
+    <header class="ios-header-safe flex items-center justify-between pb-3.5 sticky top-0 z-30 -mx-4 px-4 border-b border-white/10">
       <div class="flex items-center gap-3">
         <!-- Ícono superior sincronizado con la foto personalizada de Snoopy -->
         <button onclick="switchMainTab('ajustes')" class="relative w-11 h-11 rounded-2xl overflow-hidden border border-violet-400/40 bg-[#1B152D] flex items-center justify-center shadow-md active:scale-95 transition-transform" title="Ir a Ajustes">
@@ -375,11 +391,9 @@
 
       <!-- HERO CARD: DISPONIBLE DÍA A DÍA (EXCLUSIVAMENTE PICHINCHA DÉBITO + EFECTIVO) -->
       <section class="card-violet-hero rounded-[26px] p-5 relative overflow-hidden">
-        <div class="absolute -right-8 -top-8 w-36 h-36 rounded-full bg-violet-500/20 blur-2xl pointer-events-none"></div>
-
         <div class="flex items-center justify-between mb-2">
           <span class="text-[11px] font-bold uppercase tracking-wider text-violet-200/90 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             Disponible Día a Día
           </span>
           <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/10 text-slate-200 border border-white/10">
@@ -712,33 +726,33 @@
           <div class="grid grid-cols-1 gap-3.5">
             <div>
               <label class="text-xs font-bold text-[#FACC15] block mb-1">Pichincha Débito ($)</label>
-              <input id="setValPichincha" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
+              <input id="setValPichincha" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only font-mono" />
             </div>
             <div>
               <label class="text-xs font-bold text-[#30D158] block mb-1">Billetera Efectivo ($)</label>
-              <input id="setValEfectivo" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
+              <input id="setValEfectivo" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only font-mono" />
             </div>
             <div>
               <label class="text-xs font-bold text-amber-300 block mb-1">Pichincha Ahorro Futuro ($)</label>
-              <input id="setValAhorro" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
+              <input id="setValAhorro" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only font-mono" />
             </div>
             <div>
               <label class="text-xs font-bold text-[#FF3399] block mb-1">Cuenta Guayaquil - Puente TC ($)</label>
-              <input id="setValBridge" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
+              <input id="setValBridge" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only font-mono" />
             </div>
             <div class="pt-2 border-t border-white/10">
               <label class="text-xs font-bold text-pink-300 block mb-1">Cupo Total de la Tarjeta Guayaquil ($)</label>
-              <input id="setValTcLimit" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" placeholder="52.00" />
+              <input id="setValTcLimit" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only font-mono" placeholder="52.00" />
               <p class="text-[10px] text-slate-400 mt-1">Por defecto $52.00 • Aumenta o cámbialo cuando el banco actualice tu cupo</p>
             </div>
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label class="text-xs font-bold text-slate-200 block mb-1">Cupo Total Usado TC ($)</label>
-                <input id="setValTcUsed" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
+                <input id="setValTcUsed" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only font-mono" />
               </div>
               <div>
                 <label class="text-xs font-bold text-amber-300 block mb-1">Monto a Pagar en este Corte ($)</label>
-                <input id="setValTcStatementDue" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
+                <input id="setValTcStatementDue" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only font-mono" />
               </div>
             </div>
           </div>
@@ -813,12 +827,12 @@
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="text-xs font-bold text-pink-300 block mb-1">Día de Fecha de Corte TC</label>
-              <input id="setCutDay" type="number" min="1" max="31" inputmode="numeric" pattern="[0-9]*" class="ios-input font-mono text-center text-lg font-bold" />
+              <input id="setCutDay" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" class="ios-input integer-only font-mono text-center text-lg font-bold" />
               <span class="text-[10px] text-slate-400 block mt-1">Por defecto: día 20</span>
             </div>
             <div>
               <label class="text-xs font-bold text-amber-300 block mb-1">Día Límite de Pago TC</label>
-              <input id="setPayDay" type="number" min="1" max="31" inputmode="numeric" pattern="[0-9]*" class="ios-input font-mono text-center text-lg font-bold" />
+              <input id="setPayDay" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" class="ios-input integer-only font-mono text-center text-lg font-bold" />
               <span class="text-[10px] text-slate-400 block mt-1">Por defecto: día 6</span>
             </div>
           </div>
@@ -891,7 +905,7 @@
             </div>
             <div class="col-span-1">
               <label class="text-[11px] font-bold text-slate-300 block mb-1">Precio ($)</label>
-              <input id="newSubPrice" type="number" step="0.01" inputmode="decimal" placeholder="5.99" class="ios-input font-mono" />
+              <input id="newSubPrice" type="text" inputmode="decimal" autocomplete="off" placeholder="5.99" class="ios-input decimal-only font-mono" />
             </div>
           </div>
 
@@ -1000,7 +1014,7 @@
       <!-- Monto -->
       <div>
         <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Monto en USD ($)</label>
-        <input id="txAmountInput" type="number" step="0.01" inputmode="decimal" placeholder="0.00" class="ios-input !text-2xl !font-black font-mono text-center" />
+        <input id="txAmountInput" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="0.00" class="ios-input decimal-only !text-2xl !font-black font-mono text-center" />
       </div>
 
       <!-- Método de Pago / Cuenta -->
@@ -1107,7 +1121,7 @@
 
         <div>
           <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Monto a Traspasar ($)</label>
-          <input id="transferAmountInput" type="number" step="0.01" inputmode="decimal" placeholder="0.00" class="ios-input !text-xl !font-black font-mono text-center" />
+          <input id="transferAmountInput" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="0.00" class="ios-input decimal-only !text-xl !font-black font-mono text-center" />
         </div>
 
         <div>
@@ -1166,7 +1180,7 @@
       </p>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Monto Final Debitado ($)</label>
-        <input id="subChargeAmountInput" type="number" step="0.01" inputmode="decimal" class="ios-input !text-2xl !font-black font-mono text-center" />
+        <input id="subChargeAmountInput" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only !text-2xl !font-black font-mono text-center" />
       </div>
       <button onclick="confirmSubscriptionChargeToTc()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#FF007A] to-[#FF3399] font-extrabold text-sm text-white shadow-lg shadow-pink-600/30">
         Confirmar Cargo a Guayaquil TC
@@ -1186,7 +1200,7 @@
       <p id="tcPayModalDesc" class="text-xs text-slate-300"></p>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Monto ($)</label>
-        <input id="tcPayAmountInput" type="number" step="0.01" inputmode="decimal" class="ios-input !text-2xl !font-black font-mono text-center" />
+        <input id="tcPayAmountInput" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only !text-2xl !font-black font-mono text-center" />
       </div>
       <button id="tcPayConfirmBtn" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#FF007A] to-[#FF3399] font-extrabold text-sm text-white shadow-lg shadow-pink-600/30">
         Confirmar
@@ -1209,7 +1223,7 @@
       </div>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Meta Objetivo ($)</label>
-        <input id="goalTargetInput" type="number" step="0.01" inputmode="decimal" placeholder="100.00" class="ios-input font-mono" />
+        <input id="goalTargetInput" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="100.00" class="ios-input decimal-only font-mono" />
       </div>
       <button onclick="saveNewGoal()" class="w-full py-3.5 rounded-2xl bg-violet-600 font-extrabold text-sm text-white">
         Crear Meta
@@ -1236,7 +1250,7 @@
       </div>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Precio Mensual Base ($)</label>
-        <input id="editSubPriceInput" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono text-lg font-bold" />
+        <input id="editSubPriceInput" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" class="ios-input decimal-only font-mono text-lg font-bold" />
       </div>
       <button onclick="saveEditedSubscription()" class="w-full py-3.5 rounded-2xl bg-violet-600 font-extrabold text-sm text-white">
         Guardar Cambios
@@ -1255,7 +1269,7 @@
       </div>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Nuevo PIN (4 dígitos numéricos)</label>
-        <input id="newPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="••••" class="ios-input text-center text-2xl tracking-[0.6em] font-mono" />
+        <input id="newPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="••••" class="ios-input integer-only text-center text-2xl tracking-[0.6em] font-mono" />
       </div>
       <button onclick="saveNewVaultPin()" class="w-full py-3.5 rounded-2xl bg-violet-600 font-extrabold text-sm text-white">
         Actualizar PIN y Recifrar Bóveda
@@ -1263,10 +1277,10 @@
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION FLOTANTE SÓLIDO Y NÍTIDO (SIN BLUR BORROSO EN IPHONE) -->
-  <div id="iosToast" class="fixed top-4 left-1/2 -translate-x-1/2 z-[120] pointer-events-none opacity-0 -translate-y-4 transition-all duration-300 max-w-[360px] w-[92%]">
-    <div class="bg-[#130F20] rounded-2xl px-4 py-3.5 border border-violet-400/50 shadow-[0_12px_30px_rgba(0,0,0,0.9)] flex items-center justify-center text-center">
-      <p id="iosToastMessage" class="text-xs font-extrabold text-white leading-snug tracking-wide"></p>
+  <!-- TOAST NOTIFICATION NÍTIDO DEBAJO DE LA ISLA DINÁMICA (CERO BLUR Y CERO SUBPÍXELES) -->
+  <div id="iosToast" class="ios-toast-safe fixed inset-x-4 mx-auto z-[120] pointer-events-none opacity-0 transition-opacity duration-200 max-w-[360px]">
+    <div class="bg-[#18122B] rounded-2xl px-4 py-3.5 border-2 border-violet-400 shadow-[0_14px_34px_rgba(0,0,0,0.95)] flex items-center justify-center text-center">
+      <p id="iosToastMessage" class="text-[13px] font-bold text-white leading-snug"></p>
     </div>
   </div>
 
@@ -1486,6 +1500,12 @@
       } else if (Array.isArray(loadedObj.history)) {
         merged.transactions = loadedObj.history;
       }
+
+      // Normalizar categorías previas a las 10 categorías oficiales
+      merged.transactions = merged.transactions.map(tx => ({
+        ...tx,
+        category: tx.type === 'expense' ? normalizeCategoryName(tx.category) : (tx.category || 'Ingreso')
+      }));
 
       if (Array.isArray(loadedObj.goals) && loadedObj.goals.length > 0) {
         merged.goals = loadedObj.goals;
@@ -1924,6 +1944,14 @@
       return Math.round((Number(num) + Number.EPSILON) * 100) / 100;
     }
 
+    function parseDecimalInput(rawVal) {
+      if (typeof rawVal === 'number') return rawVal;
+      const cleaned = String(rawVal || '').replace(/,/g, '.').replace(/[^0-9.]/g, '');
+      const parts = cleaned.split('.');
+      const normalized = parts.length > 2 ? parts[0] + '.' + parts.slice(1).join('') : cleaned;
+      return parseFloat(normalized);
+    }
+
     function formatUSD(val) {
       const num = Number(val) || 0;
       return '$' + num.toFixed(2);
@@ -2070,7 +2098,7 @@
 
     function confirmSubscriptionChargeToTc() {
       if (!selectedSubForCharge) return;
-      const val = parseFloat(document.getElementById('subChargeAmountInput').value);
+      const val = parseDecimalInput(document.getElementById('subChargeAmountInput').value);
       if (isNaN(val) || val <= 0) {
         showToast('Ingresa un monto válido');
         return;
@@ -2142,7 +2170,7 @@
     }
 
     function updateInstallmentPreview() {
-      const amount = parseFloat(document.getElementById('txAmountInput').value) || 0;
+      const amount = parseDecimalInput(document.getElementById('txAmountInput').value) || 0;
       const months = parseInt(document.getElementById('txInstallmentsSelect').value, 10) || 1;
       const previewEl = document.getElementById('txInstallmentPreviewText');
 
@@ -2240,7 +2268,7 @@
     }
 
     function submitTransaction() {
-      const amount = parseFloat(document.getElementById('txAmountInput').value);
+      const amount = parseDecimalInput(document.getElementById('txAmountInput').value);
       if (isNaN(amount) || amount <= 0) {
         showToast('Ingresa un monto válido mayor a $0.00');
         return;
@@ -2323,7 +2351,7 @@
     function executeInternalTransfer() {
       const fromKey = document.getElementById('transferFromSelect').value;
       const toKey = document.getElementById('transferToSelect').value;
-      const amount = parseFloat(document.getElementById('transferAmountInput').value);
+      const amount = parseDecimalInput(document.getElementById('transferAmountInput').value);
       const note = document.getElementById('transferNoteInput').value.trim();
 
       if (fromKey === toKey) {
@@ -2378,7 +2406,7 @@
 
       const confirmBtn = document.getElementById('tcPayConfirmBtn');
       confirmBtn.onclick = function() {
-        const val = parseFloat(document.getElementById('tcPayAmountInput').value);
+        const val = parseDecimalInput(document.getElementById('tcPayAmountInput').value);
         if (isNaN(val) || val <= 0) return showToast('Monto inválido');
         if (appState.pichincha < val) return showToast('Saldo insuficiente en Pichincha Débito');
 
@@ -2411,7 +2439,7 @@
 
       const confirmBtn = document.getElementById('tcPayConfirmBtn');
       confirmBtn.onclick = function() {
-        const val = parseFloat(document.getElementById('tcPayAmountInput').value);
+        const val = parseDecimalInput(document.getElementById('tcPayAmountInput').value);
         if (isNaN(val) || val <= 0) return showToast('Monto inválido');
         if (appState.guayaquilBridge < val) {
           return showToast('Saldo insuficiente en Cuenta Guayaquil. Traspasa saldo primero.');
@@ -2745,7 +2773,7 @@
         const pct = totalSpent > 0 ? Math.round((item.total / totalSpent) * 100) : 0;
         const safeCat = escapeHtml(item.category).replace(/'/g, "\\'");
         return `
-          <div onclick="openCategoryDrillDownModal('${safeCat}')" class="liquid-glass rounded-[22px] p-4 cursor-pointer hover:border-violet-400/40 active:scale-[0.98] transition space-y-2">
+          <div onclick="openCategoryDrillDownModal('${safeCat}')" class="liquid-glass rounded-[22px] p-4 cursor-pointer hover:border-violet-400/40 active:scale-[0.98] transition space-y-2.5">
             <div class="flex items-center justify-between">
               <span class="text-sm font-extrabold text-white">${escapeHtml(item.category)}</span>
               <div class="flex items-center gap-2">
@@ -2755,10 +2783,6 @@
             </div>
             <div class="w-full h-2 rounded-full bg-black/40 overflow-hidden">
               <div class="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500" style="width: ${pct}%"></div>
-            </div>
-            <div class="flex items-center justify-between text-[10px] text-slate-400">
-              <span>Representa el ${pct}% de tus gastos</span>
-              <span class="text-violet-300 font-semibold">Ver compras →</span>
             </div>
           </div>
         `;
@@ -2845,7 +2869,7 @@
 
     function saveNewGoal() {
       const title = document.getElementById('goalTitleInput').value.trim();
-      const target = parseFloat(document.getElementById('goalTargetInput').value);
+      const target = parseDecimalInput(document.getElementById('goalTargetInput').value);
 
       if (!title || isNaN(target) || target <= 0) {
         showToast('Completa el nombre y el monto objetivo');
@@ -2890,13 +2914,13 @@
     }
 
     function saveManualCalibrationValues() {
-      const pich = parseFloat(document.getElementById('setValPichincha').value);
-      const efec = parseFloat(document.getElementById('setValEfectivo').value);
-      const aho = parseFloat(document.getElementById('setValAhorro').value);
-      const bri = parseFloat(document.getElementById('setValBridge').value);
-      const lim = parseFloat(document.getElementById('setValTcLimit').value);
-      const used = parseFloat(document.getElementById('setValTcUsed').value);
-      const due = parseFloat(document.getElementById('setValTcStatementDue').value);
+      const pich = parseDecimalInput(document.getElementById('setValPichincha').value);
+      const efec = parseDecimalInput(document.getElementById('setValEfectivo').value);
+      const aho = parseDecimalInput(document.getElementById('setValAhorro').value);
+      const bri = parseDecimalInput(document.getElementById('setValBridge').value);
+      const lim = parseDecimalInput(document.getElementById('setValTcLimit').value);
+      const used = parseDecimalInput(document.getElementById('setValTcUsed').value);
+      const due = parseDecimalInput(document.getElementById('setValTcStatementDue').value);
 
       if (!isNaN(pich)) appState.pichincha = round2(Math.max(0, pich));
       if (!isNaN(efec)) appState.efectivo = round2(Math.max(0, efec));
@@ -3043,7 +3067,7 @@
       const emoji = document.getElementById('newSubEmoji').value.trim() || 'APP';
       const name = document.getElementById('newSubName').value.trim();
       const subtitle = document.getElementById('newSubSubtitle').value.trim() || 'Suscripción mensual';
-      const price = parseFloat(document.getElementById('newSubPrice').value);
+      const price = parseDecimalInput(document.getElementById('newSubPrice').value);
 
       if (!name || isNaN(price) || price <= 0) {
         showToast('Ingresa el nombre y el precio en USD de la suscripción');
@@ -3088,7 +3112,7 @@
       const emoji = document.getElementById('editSubEmojiInput').value.trim() || 'APP';
       const name = document.getElementById('editSubNameInput').value.trim();
       const subtitle = document.getElementById('editSubSubtitleInput').value.trim() || 'Suscripción mensual';
-      const price = parseFloat(document.getElementById('editSubPriceInput').value);
+      const price = parseDecimalInput(document.getElementById('editSubPriceInput').value);
 
       if (!name || isNaN(price) || price <= 0) {
         showToast('Nombre y precio válido requeridos');
@@ -3190,15 +3214,32 @@
       if (!toast || !msgEl) return;
 
       msgEl.textContent = message;
-      toast.classList.remove('opacity-0', '-translate-y-4');
-      toast.classList.add('opacity-100', 'translate-y-0');
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
 
       if (toastTimeout) clearTimeout(toastTimeout);
       toastTimeout = setTimeout(() => {
-        toast.classList.add('opacity-0', '-translate-y-4');
-        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0');
+        toast.classList.remove('opacity-100');
       }, 2800);
     }
+
+    // Filtro automático para inputs numéricos 3x4 en iOS (acepta coma o punto decimal)
+    document.addEventListener('input', (e) => {
+      const el = e.target;
+      if (!el) return;
+      if (el.classList.contains('decimal-only')) {
+        let val = el.value.replace(/,/g, '.').replace(/[^0-9.]/g, '');
+        const parts = val.split('.');
+        if (parts.length > 2) {
+          val = parts[0] + '.' + parts.slice(1).join('');
+        }
+        if (el.value !== val) el.value = val;
+      } else if (el.classList.contains('integer-only')) {
+        const val = el.value.replace(/[^0-9]/g, '');
+        if (el.value !== val) el.value = val;
+      }
+    });
 
     function escapeHtml(str) {
       return String(str ?? '')
