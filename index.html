@@ -273,7 +273,7 @@
 
         <div class="space-y-1.5">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/15 border border-violet-400/30 text-violet-300 text-xs font-semibold">
-            <span>🐾 Finanzas Universitarias</span>
+            <span>Finanzas Universitarias</span>
           </div>
           <h1 class="text-3xl font-extrabold tracking-tight text-white">UniFinanzas</h1>
           <p class="text-xs text-slate-400 max-w-[260px] mx-auto">Bóveda privada encriptada • Control inteligente de Pichincha, Guayaquil y Efectivo</p>
@@ -343,13 +343,13 @@
   ========================================================================== -->
   <div class="ios-shell px-4">
 
-    <!-- ENCABEZADO SUPERIOR CON FOTO SNOOPY SINCRONIZADA Y FECHA CAPITALIZADA -->
-    <header class="flex items-center justify-between pt-2 pb-4 sticky top-0 z-30 bg-[#07050C]/75 backdrop-blur-xl -mx-4 px-4 border-b border-white/5">
+    <!-- ENCABEZADO SUPERIOR NITIDO SIN BLUR Y FECHA CAPITALIZADA -->
+    <header class="flex items-center justify-between pt-2 pb-4 sticky top-0 z-30 bg-[#07050C] -mx-4 px-4 border-b border-white/10">
       <div class="flex items-center gap-3">
         <!-- Ícono superior sincronizado con la foto personalizada de Snoopy -->
         <button onclick="switchMainTab('ajustes')" class="relative w-11 h-11 rounded-2xl overflow-hidden border border-violet-400/40 bg-[#1B152D] flex items-center justify-center shadow-md active:scale-95 transition-transform" title="Ir a Ajustes">
           <img id="headerSnoopyImg" src="" alt="Snoopy" class="w-full h-full object-cover hidden" />
-          <span id="headerSnoopyFallback" class="text-xl">🐶</span>
+          <span id="headerSnoopyFallback" class="text-xs font-extrabold text-violet-300">UF</span>
         </button>
         <div>
           <div class="flex items-center gap-2">
@@ -362,7 +362,7 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <button onclick="lockAppNow()" class="w-9 h-9 rounded-xl liquid-glass-subtle flex items-center justify-center text-slate-300 hover:text-white active:scale-90 transition" title="Bloquear Bóveda">
+        <button onclick="lockAppNow()" class="w-9 h-9 rounded-xl bg-[#1B152D] border border-white/10 flex items-center justify-center text-slate-300 hover:text-white active:scale-90 transition" title="Bloquear Bóveda">
           <i data-lucide="lock" class="w-4 h-4"></i>
         </button>
       </div>
@@ -456,7 +456,9 @@
           <!-- Pichincha Ahorros Futuros (Blindado) -->
           <div class="liquid-glass rounded-[26px] p-4 border-l-4 border-l-[#FACC15] flex flex-col justify-between">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-base">🐖</span>
+              <div class="w-7 h-7 rounded-lg bg-[#FACC15]/15 flex items-center justify-center text-[#FACC15]">
+                <i data-lucide="shield" class="w-4 h-4"></i>
+              </div>
               <span class="text-[9px] font-bold uppercase px-2 py-0.5 rounded-full bg-[#FACC15]/15 text-[#FACC15] border border-[#FACC15]/30">
                 Blindado
               </span>
@@ -470,7 +472,9 @@
           <!-- Cuenta Banco Guayaquil (Puente TC) -->
           <div class="liquid-glass rounded-[26px] p-4 border-l-4 border-l-[#FF007A] flex flex-col justify-between">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-base">🏦</span>
+              <div class="w-7 h-7 rounded-lg bg-[#FF007A]/20 flex items-center justify-center text-[#FF3399]">
+                <i data-lucide="landmark" class="w-4 h-4"></i>
+              </div>
               <span class="text-[9px] font-bold uppercase px-2 py-0.5 rounded-full bg-[#FF007A]/20 text-[#FF3399] border border-[#FF3399]/30">
                 Puente TC
               </span>
@@ -525,7 +529,7 @@
 
           <!-- Aviso >80% del cupo disponible -->
           <div id="tcAlert80Box" class="hidden px-3 py-2 rounded-xl bg-rose-500/20 border border-rose-400/40 text-rose-200 text-xs font-bold flex items-center gap-2">
-            <span>⚠️ Has superado el 80% de tu cupo disponible</span>
+            <span>Has superado el 80% de tu cupo disponible</span>
           </div>
         </div>
 
@@ -630,7 +634,7 @@
       <div class="space-y-2.5">
         <div class="flex items-center justify-between px-1">
           <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-300">Ranking de Gastos por Categoría</h3>
-          <span class="text-[11px] text-violet-300 font-medium">Toca para desglosar 👆</span>
+          <span class="text-[11px] text-violet-300 font-medium">Toca para desglosar</span>
         </div>
         <div id="categoryRankingList" class="space-y-2.5">
           <!-- Tarjetas interactivas por categoría -->
@@ -660,7 +664,9 @@
           <p id="metasAhorroTotal" class="text-2xl font-black text-white font-mono mt-1">$0.00</p>
           <p class="text-[11px] text-slate-300 mt-0.5">Blindado del disponible día a día</p>
         </div>
-        <div class="text-4xl">🐾</div>
+        <div class="w-11 h-11 rounded-2xl bg-[#FACC15]/20 border border-[#FACC15]/40 flex items-center justify-center text-[#FACC15]">
+          <i data-lucide="shield-check" class="w-6 h-6"></i>
+        </div>
       </div>
 
       <div id="goalsListContainer" class="space-y-3">
@@ -679,21 +685,21 @@
 
       <!-- Selector Superior de 4 Pestañas Internas (Sub-Tabs) tipo píldora -->
       <div class="grid grid-cols-4 gap-1 p-1 rounded-2xl liquid-glass">
-        <button id="subTabBtn-valores" onclick="switchSettingsSubTab('valores')" class="py-2.5 px-1.5 rounded-xl text-[11px] font-extrabold bg-violet-600 text-white shadow transition flex items-center justify-center gap-1">
-          <span>💰 Valores</span>
+        <button id="subTabBtn-valores" onclick="switchSettingsSubTab('valores')" class="py-2.5 px-1.5 rounded-xl text-[11px] font-extrabold bg-violet-600 text-white shadow transition flex items-center justify-center">
+          <span>Valores</span>
         </button>
-        <button id="subTabBtn-fechas" onclick="switchSettingsSubTab('fechas')" class="py-2.5 px-1.5 rounded-xl text-[11px] font-extrabold text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
-          <span>📅 Fechas</span>
+        <button id="subTabBtn-fechas" onclick="switchSettingsSubTab('fechas')" class="py-2.5 px-1.5 rounded-xl text-[11px] font-extrabold text-slate-300 hover:text-white transition flex items-center justify-center">
+          <span>Fechas</span>
         </button>
-        <button id="subTabBtn-suscripciones" onclick="switchSettingsSubTab('suscripciones')" class="py-2.5 px-1.5 rounded-xl text-[11px] font-extrabold text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
-          <span>✨ Suscrip.</span>
+        <button id="subTabBtn-suscripciones" onclick="switchSettingsSubTab('suscripciones')" class="py-2.5 px-1.5 rounded-xl text-[11px] font-extrabold text-slate-300 hover:text-white transition flex items-center justify-center">
+          <span>Suscrip.</span>
         </button>
-        <button id="subTabBtn-historial" onclick="switchSettingsSubTab('historial')" class="py-2.5 px-1.5 rounded-xl text-[11px] font-extrabold text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
-          <span>🕒 Historial</span>
+        <button id="subTabBtn-historial" onclick="switchSettingsSubTab('historial')" class="py-2.5 px-1.5 rounded-xl text-[11px] font-extrabold text-slate-300 hover:text-white transition flex items-center justify-center">
+          <span>Historial</span>
         </button>
       </div>
 
-      <!-- SUB-PESTAÑA 1: 💰 VALORES (Saldos, Cupo TC, Snoopy Photo, Face ID, Backup) -->
+      <!-- SUB-PESTAÑA 1: VALORES (Saldos, Cupo TC, Snoopy Photo, Face ID, Backup) -->
       <div id="settingsSubTab-valores" class="space-y-5">
         <div class="liquid-glass rounded-[26px] p-5 space-y-4">
           <div class="flex items-center justify-between border-b border-white/10 pb-3">
@@ -701,39 +707,38 @@
               <h3 class="text-sm font-extrabold text-white">Calibración de Saldos y Cupo TC</h3>
               <p class="text-[11px] text-slate-400">Modifica cualquier valor directamente en USD</p>
             </div>
-            <span class="text-lg">🏦</span>
           </div>
 
           <div class="grid grid-cols-1 gap-3.5">
             <div>
-              <label class="text-xs font-bold text-[#FACC15] block mb-1">🟡 Pichincha Débito ($)</label>
-              <input id="setValPichincha" type="number" step="0.01" class="ios-input font-mono" />
+              <label class="text-xs font-bold text-[#FACC15] block mb-1">Pichincha Débito ($)</label>
+              <input id="setValPichincha" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
             </div>
             <div>
-              <label class="text-xs font-bold text-[#30D158] block mb-1">🟢 Billetera Efectivo ($)</label>
-              <input id="setValEfectivo" type="number" step="0.01" class="ios-input font-mono" />
+              <label class="text-xs font-bold text-[#30D158] block mb-1">Billetera Efectivo ($)</label>
+              <input id="setValEfectivo" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
             </div>
             <div>
-              <label class="text-xs font-bold text-amber-300 block mb-1">🐖 Pichincha Ahorro Futuro ($)</label>
-              <input id="setValAhorro" type="number" step="0.01" class="ios-input font-mono" />
+              <label class="text-xs font-bold text-amber-300 block mb-1">Pichincha Ahorro Futuro ($)</label>
+              <input id="setValAhorro" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
             </div>
             <div>
-              <label class="text-xs font-bold text-[#FF3399] block mb-1">🏦 Cuenta Guayaquil - Puente TC ($)</label>
-              <input id="setValBridge" type="number" step="0.01" class="ios-input font-mono" />
+              <label class="text-xs font-bold text-[#FF3399] block mb-1">Cuenta Guayaquil - Puente TC ($)</label>
+              <input id="setValBridge" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
             </div>
             <div class="pt-2 border-t border-white/10">
-              <label class="text-xs font-bold text-pink-300 block mb-1">💳 Cupo Total de la Tarjeta Guayaquil ($)</label>
-              <input id="setValTcLimit" type="number" step="0.01" class="ios-input font-mono" placeholder="52.00" />
+              <label class="text-xs font-bold text-pink-300 block mb-1">Cupo Total de la Tarjeta Guayaquil ($)</label>
+              <input id="setValTcLimit" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" placeholder="52.00" />
               <p class="text-[10px] text-slate-400 mt-1">Por defecto $52.00 • Aumenta o cámbialo cuando el banco actualice tu cupo</p>
             </div>
             <div class="grid grid-cols-2 gap-3">
               <div>
-                <label class="text-xs font-bold text-slate-200 block mb-1">📉 Cupo Total Usado TC ($)</label>
-                <input id="setValTcUsed" type="number" step="0.01" class="ios-input font-mono" />
+                <label class="text-xs font-bold text-slate-200 block mb-1">Cupo Total Usado TC ($)</label>
+                <input id="setValTcUsed" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
               </div>
               <div>
-                <label class="text-xs font-bold text-amber-300 block mb-1">🧾 Monto a Pagar en este Corte ($)</label>
-                <input id="setValTcStatementDue" type="number" step="0.01" class="ios-input font-mono" />
+                <label class="text-xs font-bold text-amber-300 block mb-1">Monto a Pagar en este Corte ($)</label>
+                <input id="setValTcStatementDue" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono" />
               </div>
             </div>
           </div>
@@ -752,7 +757,7 @@
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-2xl overflow-hidden bg-[#1B152D] border border-violet-400/40 flex items-center justify-center shrink-0">
                 <img id="settingsSnoopyPreview" src="" alt="Preview" class="w-full h-full object-cover hidden" />
-                <span id="settingsSnoopyEmoji" class="text-2xl">🐶</span>
+                <span id="settingsSnoopyEmoji" class="text-xs font-extrabold text-violet-300">UF</span>
               </div>
               <div>
                 <p class="text-xs font-bold text-white">Foto Personalizada (Snoopy)</p>
@@ -797,7 +802,7 @@
         </div>
       </div>
 
-      <!-- SUB-PESTAÑA 2: 📅 FECHAS (Corte, Límite de Pago y Alarmas .ics) -->
+      <!-- SUB-PESTAÑA 2: FECHAS (Corte, Límite de Pago y Alarmas .ics) -->
       <div id="settingsSubTab-fechas" class="hidden space-y-5">
         <div class="liquid-glass rounded-[26px] p-5 space-y-4">
           <div class="border-b border-white/10 pb-3">
@@ -807,13 +812,13 @@
 
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="text-xs font-bold text-pink-300 block mb-1">🗓️ Día de Fecha de Corte TC</label>
-              <input id="setCutDay" type="number" min="1" max="31" class="ios-input font-mono text-center text-lg font-bold" />
+              <label class="text-xs font-bold text-pink-300 block mb-1">Día de Fecha de Corte TC</label>
+              <input id="setCutDay" type="number" min="1" max="31" inputmode="numeric" pattern="[0-9]*" class="ios-input font-mono text-center text-lg font-bold" />
               <span class="text-[10px] text-slate-400 block mt-1">Por defecto: día 20</span>
             </div>
             <div>
-              <label class="text-xs font-bold text-amber-300 block mb-1">⏰ Día Límite de Pago TC</label>
-              <input id="setPayDay" type="number" min="1" max="31" class="ios-input font-mono text-center text-lg font-bold" />
+              <label class="text-xs font-bold text-amber-300 block mb-1">Día Límite de Pago TC</label>
+              <input id="setPayDay" type="number" min="1" max="31" inputmode="numeric" pattern="[0-9]*" class="ios-input font-mono text-center text-lg font-bold" />
               <span class="text-[10px] text-slate-400 block mt-1">Por defecto: día 6</span>
             </div>
           </div>
@@ -848,18 +853,18 @@
 
           <div class="grid grid-cols-1 gap-2.5 pt-1">
             <button onclick="downloadIcsAlarm('cutoff')" class="w-full py-3 px-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-bold text-pink-200 flex items-center justify-between active:scale-98 transition">
-              <span>📅 Descargar Alarma Día de Corte TC</span>
+              <span>Descargar Alarma Día de Corte TC</span>
               <i data-lucide="download" class="w-4 h-4"></i>
             </button>
             <button onclick="downloadIcsAlarm('payment')" class="w-full py-3 px-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-bold text-amber-200 flex items-center justify-between active:scale-98 transition">
-              <span>⏰ Descargar Alarma Día Límite de Pago</span>
+              <span>Descargar Alarma Día Límite de Pago</span>
               <i data-lucide="download" class="w-4 h-4"></i>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- SUB-PESTAÑA 3: ✨ SUSCRIPCIONES (Agregar, Editar o Eliminar a Voluntad) -->
+      <!-- SUB-PESTAÑA 3: SUSCRIPCIONES (Agregar, Editar o Eliminar a Voluntad) -->
       <div id="settingsSubTab-suscripciones" class="hidden space-y-5">
         <!-- Formulario Agregar Nueva Suscripción -->
         <div class="liquid-glass rounded-[26px] p-5 space-y-3.5">
@@ -870,8 +875,8 @@
 
           <div class="grid grid-cols-4 gap-2.5">
             <div class="col-span-1">
-              <label class="text-[11px] font-bold text-slate-300 block mb-1">Emoji</label>
-              <input id="newSubEmoji" type="text" placeholder="🎧" maxlength="4" class="ios-input text-center text-lg" />
+              <label class="text-[11px] font-bold text-slate-300 block mb-1">Ícono</label>
+              <input id="newSubEmoji" type="text" placeholder="App" maxlength="4" class="ios-input text-center text-sm font-bold" />
             </div>
             <div class="col-span-3">
               <label class="text-[11px] font-bold text-slate-300 block mb-1">Nombre</label>
@@ -886,7 +891,7 @@
             </div>
             <div class="col-span-1">
               <label class="text-[11px] font-bold text-slate-300 block mb-1">Precio ($)</label>
-              <input id="newSubPrice" type="number" step="0.01" placeholder="5.99" class="ios-input font-mono" />
+              <input id="newSubPrice" type="number" step="0.01" inputmode="decimal" placeholder="5.99" class="ios-input font-mono" />
             </div>
           </div>
 
@@ -985,27 +990,27 @@
       <!-- Selector Gasto / Ingreso -->
       <div class="grid grid-cols-2 gap-1.5 p-1 rounded-2xl bg-[#07050C]/70 border border-white/10">
         <button id="txTypeExpenseBtn" onclick="setTransactionType('expense')" class="py-2 rounded-xl text-xs font-extrabold bg-rose-500 text-white transition">
-          💸 Gasto / Compra
+          Gasto / Compra
         </button>
         <button id="txTypeIncomeBtn" onclick="setTransactionType('income')" class="py-2 rounded-xl text-xs font-extrabold text-slate-400 transition">
-          💰 Ingreso / Depósito
+          Ingreso / Depósito
         </button>
       </div>
 
       <!-- Monto -->
       <div>
         <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Monto en USD ($)</label>
-        <input id="txAmountInput" type="number" step="0.01" placeholder="0.00" class="ios-input !text-2xl !font-black font-mono text-center" />
+        <input id="txAmountInput" type="number" step="0.01" inputmode="decimal" placeholder="0.00" class="ios-input !text-2xl !font-black font-mono text-center" />
       </div>
 
       <!-- Método de Pago / Cuenta -->
       <div>
         <label id="txMethodLabel" class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">Método de Pago</label>
         <select id="txMethodSelect" onchange="handleTxMethodChange()" class="ios-input text-xs font-bold">
-          <option value="pichincha_debito">🟡 Pichincha Débito / Deuna</option>
-          <option value="pichincha_transfer">🟣 Pichincha Transferencia (#4B1D7E)</option>
-          <option value="efectivo">🟢 Billetera Efectivo</option>
-          <option value="tc_guayaquil">🩷 Guayaquil Tarjeta de Crédito</option>
+          <option value="pichincha_debito">Pichincha Débito / Deuna</option>
+          <option value="pichincha_transfer">Pichincha Transferencia</option>
+          <option value="efectivo">Billetera Efectivo</option>
+          <option value="tc_guayaquil">Guayaquil Tarjeta de Crédito</option>
         </select>
       </div>
 
@@ -1035,14 +1040,16 @@
       <div id="txCategoryBox">
         <label class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">Categoría</label>
         <select id="txCategorySelect" class="ios-input text-xs font-bold">
-          <option value="🍔 Comida/U">🍔 Comida/U</option>
-          <option value="🚌 Transporte">🚌 Transporte</option>
-          <option value="📱 Fijos/Apple">📱 Fijos/Apple</option>
-          <option value="📚 Estudio">📚 Estudio</option>
-          <option value="🍿 Salidas/Ocio">🍿 Salidas/Ocio</option>
-          <option value="🛍️ Compras/Ropa">🛍️ Compras/Ropa</option>
-          <option value="💊 Salud/Gym">💊 Salud/Gym</option>
-          <option value="✨ Otros">✨ Otros</option>
+          <option value="Comida">Comida</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Apple Pay">Apple Pay</option>
+          <option value="Estudio">Estudio</option>
+          <option value="Salidas">Salidas</option>
+          <option value="Compras">Compras</option>
+          <option value="Personal">Personal</option>
+          <option value="Salud">Salud</option>
+          <option value="Juegos">Juegos</option>
+          <option value="Otros">Otros</option>
         </select>
       </div>
 
@@ -1075,10 +1082,10 @@
         <div>
           <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Desde Cuenta Origen</label>
           <select id="transferFromSelect" class="ios-input text-xs font-bold">
-            <option value="pichincha">🟡 Pichincha Débito</option>
-            <option value="efectivo">🟢 Billetera Efectivo</option>
-            <option value="ahorroFuturo">🐖 Pichincha Ahorro Futuro</option>
-            <option value="guayaquilBridge">🏦 Cuenta Guayaquil (Puente TC)</option>
+            <option value="pichincha">Pichincha Débito</option>
+            <option value="efectivo">Billetera Efectivo</option>
+            <option value="ahorroFuturo">Pichincha Ahorro Futuro</option>
+            <option value="guayaquilBridge">Cuenta Guayaquil (Puente TC)</option>
           </select>
         </div>
 
@@ -1091,16 +1098,16 @@
         <div>
           <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Hacia Cuenta Destino</label>
           <select id="transferToSelect" class="ios-input text-xs font-bold">
-            <option value="ahorroFuturo">🐖 Pichincha Ahorro Futuro</option>
-            <option value="guayaquilBridge">🏦 Cuenta Guayaquil (Puente TC)</option>
-            <option value="pichincha">🟡 Pichincha Débito</option>
-            <option value="efectivo">🟢 Billetera Efectivo</option>
+            <option value="ahorroFuturo">Pichincha Ahorro Futuro</option>
+            <option value="guayaquilBridge">Cuenta Guayaquil (Puente TC)</option>
+            <option value="pichincha">Pichincha Débito</option>
+            <option value="efectivo">Billetera Efectivo</option>
           </select>
         </div>
 
         <div>
           <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Monto a Traspasar ($)</label>
-          <input id="transferAmountInput" type="number" step="0.01" placeholder="0.00" class="ios-input !text-xl !font-black font-mono text-center" />
+          <input id="transferAmountInput" type="number" step="0.01" inputmode="decimal" placeholder="0.00" class="ios-input !text-xl !font-black font-mono text-center" />
         </div>
 
         <div>
@@ -1120,8 +1127,8 @@
     <div class="w-full max-w-[412px] rounded-t-[32px] sm:rounded-[32px] liquid-glass border-t border-white/20 p-5 space-y-4 max-h-[86dvh] flex flex-col">
       <div class="flex items-center justify-between border-b border-white/10 pb-3 shrink-0">
         <div class="flex items-center gap-3">
-          <div id="catModalEmoji" class="w-11 h-11 rounded-2xl bg-violet-500/20 border border-violet-400/30 flex items-center justify-center text-2xl">
-            🍔
+          <div class="w-11 h-11 rounded-2xl bg-violet-500/20 border border-violet-400/30 flex items-center justify-center text-violet-300">
+            <i data-lucide="layers" class="w-5 h-5"></i>
           </div>
           <div>
             <h3 id="catModalTitle" class="text-base font-extrabold text-white">Categoría</h3>
@@ -1159,7 +1166,7 @@
       </p>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Monto Final Debitado ($)</label>
-        <input id="subChargeAmountInput" type="number" step="0.01" class="ios-input !text-2xl !font-black font-mono text-center" />
+        <input id="subChargeAmountInput" type="number" step="0.01" inputmode="decimal" class="ios-input !text-2xl !font-black font-mono text-center" />
       </div>
       <button onclick="confirmSubscriptionChargeToTc()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#FF007A] to-[#FF3399] font-extrabold text-sm text-white shadow-lg shadow-pink-600/30">
         Confirmar Cargo a Guayaquil TC
@@ -1179,7 +1186,7 @@
       <p id="tcPayModalDesc" class="text-xs text-slate-300"></p>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Monto ($)</label>
-        <input id="tcPayAmountInput" type="number" step="0.01" class="ios-input !text-2xl !font-black font-mono text-center" />
+        <input id="tcPayAmountInput" type="number" step="0.01" inputmode="decimal" class="ios-input !text-2xl !font-black font-mono text-center" />
       </div>
       <button id="tcPayConfirmBtn" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#FF007A] to-[#FF3399] font-extrabold text-sm text-white shadow-lg shadow-pink-600/30">
         Confirmar
@@ -1196,13 +1203,13 @@
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
-      <div class="grid grid-cols-4 gap-2">
-        <input id="goalEmojiInput" type="text" placeholder="🎯" value="🎓" class="ios-input text-center text-lg col-span-1" />
-        <input id="goalTitleInput" type="text" placeholder="Nombre de la meta" class="ios-input text-xs col-span-3" />
+      <div class="grid grid-cols-1 gap-2">
+        <input id="goalEmojiInput" type="hidden" value="" />
+        <input id="goalTitleInput" type="text" placeholder="Nombre de la meta" class="ios-input text-xs" />
       </div>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Meta Objetivo ($)</label>
-        <input id="goalTargetInput" type="number" step="0.01" placeholder="100.00" class="ios-input font-mono" />
+        <input id="goalTargetInput" type="number" step="0.01" inputmode="decimal" placeholder="100.00" class="ios-input font-mono" />
       </div>
       <button onclick="saveNewGoal()" class="w-full py-3.5 rounded-2xl bg-violet-600 font-extrabold text-sm text-white">
         Crear Meta
@@ -1220,7 +1227,7 @@
         </button>
       </div>
       <div class="grid grid-cols-4 gap-2">
-        <input id="editSubEmojiInput" type="text" class="ios-input text-center text-lg col-span-1" />
+        <input id="editSubEmojiInput" type="text" class="ios-input text-center text-sm font-bold col-span-1" />
         <input id="editSubNameInput" type="text" class="ios-input text-xs col-span-3" />
       </div>
       <div>
@@ -1229,7 +1236,7 @@
       </div>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Precio Mensual Base ($)</label>
-        <input id="editSubPriceInput" type="number" step="0.01" class="ios-input font-mono text-lg font-bold" />
+        <input id="editSubPriceInput" type="number" step="0.01" inputmode="decimal" class="ios-input font-mono text-lg font-bold" />
       </div>
       <button onclick="saveEditedSubscription()" class="w-full py-3.5 rounded-2xl bg-violet-600 font-extrabold text-sm text-white">
         Guardar Cambios
@@ -1248,7 +1255,7 @@
       </div>
       <div>
         <label class="text-[11px] font-bold uppercase text-slate-400 block mb-1">Nuevo PIN (4 dígitos numéricos)</label>
-        <input id="newPinInput" type="password" inputmode="numeric" maxlength="4" placeholder="••••" class="ios-input text-center text-2xl tracking-[0.6em] font-mono" />
+        <input id="newPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="••••" class="ios-input text-center text-2xl tracking-[0.6em] font-mono" />
       </div>
       <button onclick="saveNewVaultPin()" class="w-full py-3.5 rounded-2xl bg-violet-600 font-extrabold text-sm text-white">
         Actualizar PIN y Recifrar Bóveda
@@ -1256,11 +1263,10 @@
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION FLOTANTE (SIN USAR ALERT NUNCA) -->
-  <div id="iosToast" class="fixed top-12 left-1/2 -translate-x-1/2 z-[120] pointer-events-none opacity-0 -translate-y-4 transition-all duration-300 max-w-[360px] w-[90%]">
-    <div class="liquid-glass rounded-2xl px-4 py-3 border border-violet-400/40 shadow-2xl flex items-center gap-3">
-      <span id="iosToastIcon" class="text-lg">✨</span>
-      <p id="iosToastMessage" class="text-xs font-bold text-white leading-snug"></p>
+  <!-- TOAST NOTIFICATION FLOTANTE SÓLIDO Y NÍTIDO (SIN BLUR BORROSO EN IPHONE) -->
+  <div id="iosToast" class="fixed top-4 left-1/2 -translate-x-1/2 z-[120] pointer-events-none opacity-0 -translate-y-4 transition-all duration-300 max-w-[360px] w-[92%]">
+    <div class="bg-[#130F20] rounded-2xl px-4 py-3.5 border border-violet-400/50 shadow-[0_12px_30px_rgba(0,0,0,0.9)] flex items-center justify-center text-center">
+      <p id="iosToastMessage" class="text-xs font-extrabold text-white leading-snug tracking-wide"></p>
     </div>
   </div>
 
@@ -1291,14 +1297,14 @@
     const DEFAULT_SUBSCRIPTIONS = [
       {
         id: 'sub_apple_music',
-        emoji: '🎵',
+        emoji: 'AM',
         name: 'Apple Music',
         subtitle: 'Plan Estudiante • Mensual',
         price: 3.49
       },
       {
         id: 'sub_icloud',
-        emoji: '☁️',
+        emoji: 'iC',
         name: 'iCloud+ 50GB',
         subtitle: 'Almacenamiento Apple',
         price: 0.99
@@ -1322,7 +1328,7 @@
       subscriptionsList: JSON.parse(JSON.stringify(DEFAULT_SUBSCRIPTIONS)),
       transactions: [],
       goals: [
-        { id: 'goal_1', emoji: '🐾', title: 'Fondo de Emergencia Snoopy', target: 200.00, saved: 120.00 }
+        { id: 'goal_1', emoji: '', title: 'Fondo de Emergencia Snoopy', target: 200.00, saved: 120.00 }
       ]
     };
 
@@ -1583,7 +1589,7 @@
           const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
           localStorage.setItem(STORAGE_KEYS.CUSTOM_PHOTO, dataUrl);
           syncCustomPhotoUI();
-          showToast('🐶 Foto de Snoopy sincronizada en toda la app');
+          showToast('Foto de Snoopy sincronizada en toda la app');
         };
         img.src = ev.target.result;
       };
@@ -1593,7 +1599,7 @@
     function removeCustomPhoto() {
       localStorage.removeItem(STORAGE_KEYS.CUSTOM_PHOTO);
       syncCustomPhotoUI();
-      showToast('🐾 Se restauró el arte original de Snoopy');
+      showToast('Se restauró el arte original de Snoopy');
     }
 
     /***************************************************************************
@@ -1672,7 +1678,7 @@
         localStorage.setItem(STORAGE_KEYS.PIN_HASH, enteredHash);
         activeVaultPin = enteredPin;
         await persistAppState();
-        showToast('🔐 PIN configurado y bóveda cifrada');
+        showToast('PIN configurado y bóveda cifrada');
         unlockAppSuccess();
         return;
       }
@@ -1692,7 +1698,7 @@
           currentPinBuffer = '';
           updatePinDotsUI();
         }, 420);
-        showToast('❌ PIN incorrecto, intenta nuevamente');
+        showToast('PIN incorrecto, intenta nuevamente');
       }
     }
 
@@ -1700,7 +1706,7 @@
     async function enrollWebAuthnFaceId() {
       try {
         if (!window.PublicKeyCredential || !navigator.credentials) {
-          showToast('⚠️ Tu navegador actual no soporta WebAuthn nativo');
+          showToast('Tu navegador actual no soporta WebAuthn nativo');
           return;
         }
         const challenge = window.crypto.getRandomValues(new Uint8Array(32));
@@ -1731,18 +1737,18 @@
           const credIdBase64 = bufToBase64(credential.rawId);
           localStorage.setItem(STORAGE_KEYS.WEBAUTHN_CRED_ID, credIdBase64);
           updateFaceIdButtonStatus();
-          showToast('✅ Face ID vinculado correctamente');
+          showToast('Face ID vinculado correctamente');
         }
       } catch (err) {
         console.warn('WebAuthn enroll cancelado o no disponible:', err);
-        showToast('ℹ️ No se pudo completar el registro de Face ID en este contexto');
+        showToast('No se pudo completar el registro de Face ID en este contexto');
       }
     }
 
     async function triggerFaceIdUnlock() {
       try {
         if (!window.PublicKeyCredential || !navigator.credentials) {
-          showToast('ℹ️ Face ID requiere HTTPS o Safari en iOS. Usa tu PIN.');
+          showToast('Face ID requiere HTTPS o Safari en iOS. Usa tu PIN.');
           showPinPadView();
           return;
         }
@@ -1774,12 +1780,12 @@
         });
 
         if (assertion) {
-          showToast('🔓 Desbloqueado con Face ID');
+          showToast('Desbloqueado con Face ID');
           unlockAppSuccess();
         }
       } catch (err) {
         console.warn('Verificación Face ID cancelada o fallida:', err);
-        showToast('🔐 Ingresa tu PIN de 4 dígitos');
+        showToast('Ingresa tu PIN de 4 dígitos');
         showPinPadView();
       }
     }
@@ -1987,7 +1993,7 @@
         statusBadge.className = 'inline-flex items-center text-[11px] font-bold text-amber-300 mt-0.5';
 
         // Mostrar aviso de cobro únicamente si hay monto pendiente en este corte y no se ha silenciado
-        paymentAlert.textContent = `🔔 Tienes ${formatUSD(statementDue)} por cancelar antes del día ${appState.tcPayDay} de este ciclo.`;
+        paymentAlert.textContent = `Tienes ${formatUSD(statementDue)} por cancelar antes del día ${appState.tcPayDay} de este ciclo.`;
         paymentAlert.classList.remove('hidden');
       }
 
@@ -2037,8 +2043,8 @@
       container.innerHTML = appState.subscriptionsList.map(sub => `
         <div class="liquid-glass rounded-[24px] p-4 flex flex-col justify-between space-y-3 border border-white/10">
           <div class="flex items-start justify-between gap-2">
-            <div class="w-10 h-10 rounded-2xl bg-violet-500/15 border border-violet-400/25 flex items-center justify-center text-xl shrink-0">
-              ${escapeHtml(sub.emoji || '📱')}
+            <div class="w-10 h-10 rounded-2xl bg-violet-500/15 border border-violet-400/25 flex items-center justify-center text-xs font-extrabold text-violet-200 shrink-0">
+              ${escapeHtml(sub.emoji || 'APP')}
             </div>
             <span class="text-sm font-black font-mono text-white">${formatUSD(sub.price)}</span>
           </div>
@@ -2047,7 +2053,7 @@
             <p class="text-[10px] text-slate-400 truncate mt-0.5">${escapeHtml(sub.subtitle || 'Suscripción mensual')}</p>
           </div>
           <button onclick="openSubChargeModal('${sub.id}')" class="w-full py-2 px-3 rounded-xl bg-[#FF007A]/20 hover:bg-[#FF007A]/35 active:scale-95 transition border border-[#FF3399]/40 text-[11px] font-extrabold text-[#FF3399] flex items-center justify-center gap-1.5">
-            <span>💳 Cargar a TC</span>
+            <span>Cargar a TC</span>
           </button>
         </div>
       `).join('');
@@ -2057,7 +2063,7 @@
       const sub = appState.subscriptionsList.find(s => s.id === subId);
       if (!sub) return;
       selectedSubForCharge = sub;
-      document.getElementById('subChargeModalTitle').textContent = `${sub.emoji} Cargar ${sub.name}`;
+      document.getElementById('subChargeModalTitle').textContent = `Cargar ${sub.name}`;
       document.getElementById('subChargeAmountInput').value = Number(sub.price).toFixed(2);
       openModal('subChargeModal');
     }
@@ -2066,16 +2072,16 @@
       if (!selectedSubForCharge) return;
       const val = parseFloat(document.getElementById('subChargeAmountInput').value);
       if (isNaN(val) || val <= 0) {
-        showToast('⚠️ Ingresa un monto válido');
+        showToast('Ingresa un monto válido');
         return;
       }
 
       // Aplicar la regla inteligente de TC Guayaquil (Corriente 1 mes)
-      applyGuayaquilTcPurchase(val, 1, `${selectedSubForCharge.name} (${selectedSubForCharge.subtitle})`, '📱 Fijos/Apple');
+      applyGuayaquilTcPurchase(val, 1, `${selectedSubForCharge.name} (${selectedSubForCharge.subtitle})`, 'Apple Pay');
 
       closeModal('subChargeModal');
       refreshAllUI();
-      showToast(`✅ ${selectedSubForCharge.name} cargado a Guayaquil TC (${formatUSD(val)})`);
+      showToast(`${selectedSubForCharge.name} cargado a Guayaquil TC (${formatUSD(val)})`);
     }
 
     /***************************************************************************
@@ -2104,10 +2110,10 @@
         catBox.classList.remove('hidden');
         methodLabel.textContent = 'Método de Pago';
         methodSelect.innerHTML = `
-          <option value="pichincha_debito">🟡 Pichincha Débito / Deuna</option>
-          <option value="pichincha_transfer">🟣 Pichincha Transferencia (#4B1D7E)</option>
-          <option value="efectivo">🟢 Billetera Efectivo</option>
-          <option value="tc_guayaquil">🩷 Guayaquil Tarjeta de Crédito</option>
+          <option value="pichincha_debito">Pichincha Débito / Deuna</option>
+          <option value="pichincha_transfer">Pichincha Transferencia</option>
+          <option value="efectivo">Billetera Efectivo</option>
+          <option value="tc_guayaquil">Guayaquil Tarjeta de Crédito</option>
         `;
       } else {
         incBtn.className = 'py-2 rounded-xl text-xs font-extrabold bg-emerald-500 text-white transition shadow';
@@ -2115,10 +2121,10 @@
         catBox.classList.add('hidden');
         methodLabel.textContent = 'Cuenta Destino del Ingreso';
         methodSelect.innerHTML = `
-          <option value="pichincha_debito">🟡 Pichincha Débito</option>
-          <option value="efectivo">🟢 Billetera Efectivo</option>
-          <option value="ahorro_futuro">🐖 Pichincha Ahorro Futuro</option>
-          <option value="guayaquil_bridge">🏦 Cuenta Guayaquil (Puente TC)</option>
+          <option value="pichincha_debito">Pichincha Débito</option>
+          <option value="efectivo">Billetera Efectivo</option>
+          <option value="ahorro_futuro">Pichincha Ahorro Futuro</option>
+          <option value="guayaquil_bridge">Cuenta Guayaquil (Puente TC)</option>
         `;
       }
       handleTxMethodChange();
@@ -2211,7 +2217,7 @@
         type: 'expense',
         amount: cleanAmount,
         method: 'tc_guayaquil',
-        category: category || '✨ Otros',
+        category: normalizeCategoryName(category || 'Otros'),
         note: months > 1 ? `${note} (Diferido ${months}m • ${formatUSD(cleanAmount / months)}/m)` : note,
         installments: months,
         goesToNextCycle: goesToNextCycle,
@@ -2221,28 +2227,40 @@
       persistAppState();
     }
 
+    function normalizeCategoryName(rawCat) {
+      const clean = String(rawCat || '').replace(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*/gu, '').trim();
+      const map = {
+        'Comida/U': 'Comida',
+        'Fijos/Apple': 'Apple Pay',
+        'Salidas/Ocio': 'Salidas',
+        'Compras/Ropa': 'Compras',
+        'Salud/Gym': 'Salud'
+      };
+      return map[clean] || clean || 'Otros';
+    }
+
     function submitTransaction() {
       const amount = parseFloat(document.getElementById('txAmountInput').value);
       if (isNaN(amount) || amount <= 0) {
-        showToast('⚠️ Ingresa un monto válido mayor a $0.00');
+        showToast('Ingresa un monto válido mayor a $0.00');
         return;
       }
 
       const method = document.getElementById('txMethodSelect').value;
-      const category = document.getElementById('txCategorySelect').value;
+      const category = normalizeCategoryName(document.getElementById('txCategorySelect').value);
       const rawNote = document.getElementById('txNoteInput').value.trim();
       const note = rawNote || (currentTxType === 'expense' ? category : 'Ingreso registrado');
 
       if (currentTxType === 'expense') {
         if (method === 'pichincha_debito' || method === 'pichincha_transfer') {
           if (appState.pichincha < amount) {
-            showToast('⚠️ Saldo insuficiente en Pichincha Débito');
+            showToast('Saldo insuficiente en Pichincha Débito');
             return;
           }
           appState.pichincha = round2(appState.pichincha - amount);
         } else if (method === 'efectivo') {
           if (appState.efectivo < amount) {
-            showToast('⚠️ Saldo insuficiente en tu Billetera de Efectivo');
+            showToast('Saldo insuficiente en tu Billetera de Efectivo');
             return;
           }
           appState.efectivo = round2(appState.efectivo - amount);
@@ -2252,8 +2270,8 @@
           closeModal('transactionModal');
           refreshAllUI();
           showToast(installments > 1
-            ? `💳 Compra diferida a ${installments} meses registrada`
-            : '💳 Gasto con Tarjeta Guayaquil registrado');
+            ? `Compra diferida a ${installments} meses registrada`
+            : 'Gasto con Tarjeta Guayaquil registrado');
           return;
         }
 
@@ -2267,7 +2285,7 @@
           date: new Date().toISOString()
         });
 
-        showToast('✅ Gasto registrado correctamente');
+        showToast('Gasto registrado correctamente');
       } else {
         // Ingreso
         if (method === 'pichincha_debito') appState.pichincha = round2(appState.pichincha + amount);
@@ -2280,12 +2298,12 @@
           type: 'income',
           amount: round2(amount),
           method,
-          category: '💰 Ingreso',
+          category: 'Ingreso',
           note,
           date: new Date().toISOString()
         });
 
-        showToast('💰 Ingreso sumado correctamente');
+        showToast('Ingreso sumado correctamente');
       }
 
       persistAppState();
@@ -2309,15 +2327,15 @@
       const note = document.getElementById('transferNoteInput').value.trim();
 
       if (fromKey === toKey) {
-        showToast('⚠️ Selecciona cuentas distintas para el traspaso');
+        showToast('Selecciona cuentas distintas para el traspaso');
         return;
       }
       if (isNaN(amount) || amount <= 0) {
-        showToast('⚠️ Ingresa un monto válido a traspasar');
+        showToast('Ingresa un monto válido a traspasar');
         return;
       }
       if ((appState[fromKey] || 0) < amount) {
-        showToast('⚠️ Saldo insuficiente en la cuenta de origen');
+        showToast('Saldo insuficiente en la cuenta de origen');
         return;
       }
 
@@ -2337,7 +2355,7 @@
         type: 'transfer',
         amount: round2(amount),
         method: 'internal_transfer',
-        category: '⇆ Traspaso Interno',
+        category: 'Traspaso Interno',
         note: note || `${accountNames[fromKey]} → ${accountNames[toKey]}`,
         date: new Date().toISOString()
       });
@@ -2345,15 +2363,15 @@
       persistAppState();
       closeModal('transferModal');
       refreshAllUI();
-      showToast(`⇆ Traspaso de ${formatUSD(amount)} completado`);
+      showToast(`Traspaso de ${formatUSD(amount)} completado`);
     }
 
     /***************************************************************************
-     * PAGO DE TARJETA GUAYAQUIL EN 2 PASOS + REGLA DE CORTE PAGADO
+     * PAGO DE TARJETA GUAYAQUIL + REGLA DE CORTE PAGADO
      ***************************************************************************/
     function openFundBridgeModal() {
       const needed = Math.max(0, round2(appState.tcStatementDue - appState.guayaquilBridge));
-      document.getElementById('tcPayModalTitle').textContent = 'Paso 1: Fondear Cuenta Puente';
+      document.getElementById('tcPayModalTitle').textContent = 'Fondear Cuenta Puente';
       document.getElementById('tcPayModalDesc').textContent =
         'Transfiere desde Pichincha Débito hacia tu Cuenta Banco Guayaquil (Puente TC) sin contarlo como gasto.';
       document.getElementById('tcPayAmountInput').value = (needed > 0 ? needed : appState.tcStatementDue || 10).toFixed(2);
@@ -2361,8 +2379,8 @@
       const confirmBtn = document.getElementById('tcPayConfirmBtn');
       confirmBtn.onclick = function() {
         const val = parseFloat(document.getElementById('tcPayAmountInput').value);
-        if (isNaN(val) || val <= 0) return showToast('⚠️ Monto inválido');
-        if (appState.pichincha < val) return showToast('⚠️ Saldo insuficiente en Pichincha Débito');
+        if (isNaN(val) || val <= 0) return showToast('Monto inválido');
+        if (appState.pichincha < val) return showToast('Saldo insuficiente en Pichincha Débito');
 
         appState.pichincha = round2(appState.pichincha - val);
         appState.guayaquilBridge = round2(appState.guayaquilBridge + val);
@@ -2371,14 +2389,14 @@
           type: 'transfer',
           amount: round2(val),
           method: 'pichincha_transfer',
-          category: '🏦 Fondeo Puente TC',
+          category: 'Fondeo Puente TC',
           note: 'Pichincha Débito → Cuenta Guayaquil Puente',
           date: new Date().toISOString()
         });
         persistAppState();
         closeModal('tcPayModal');
         refreshAllUI();
-        showToast('🏦 Cuenta Guayaquil fondeada con éxito');
+        showToast('Cuenta Guayaquil fondeada con éxito');
       };
 
       openModal('tcPayModal');
@@ -2386,7 +2404,7 @@
 
     function openPayTcModal() {
       const dueNow = appState.tcStatementDue > 0 ? appState.tcStatementDue : appState.tcUsado;
-      document.getElementById('tcPayModalTitle').textContent = 'Paso 2: Pagar Tarjeta con Cuenta';
+      document.getElementById('tcPayModalTitle').textContent = 'Pagar Tarjeta Guayaquil';
       document.getElementById('tcPayModalDesc').textContent =
         `Usa el saldo de tu Cuenta Guayaquil (${formatUSD(appState.guayaquilBridge)}) para pagar tu tarjeta y liberar cupo.`;
       document.getElementById('tcPayAmountInput').value = dueNow.toFixed(2);
@@ -2394,9 +2412,9 @@
       const confirmBtn = document.getElementById('tcPayConfirmBtn');
       confirmBtn.onclick = function() {
         const val = parseFloat(document.getElementById('tcPayAmountInput').value);
-        if (isNaN(val) || val <= 0) return showToast('⚠️ Monto inválido');
+        if (isNaN(val) || val <= 0) return showToast('Monto inválido');
         if (appState.guayaquilBridge < val) {
-          return showToast('⚠️ Saldo insuficiente en Cuenta Guayaquil. Usa el Paso 1 primero.');
+          return showToast('Saldo insuficiente en Cuenta Guayaquil. Traspasa saldo primero.');
         }
 
         appState.guayaquilBridge = round2(appState.guayaquilBridge - val);
@@ -2407,7 +2425,7 @@
           const leftover = Math.max(0, round2(val - appState.tcStatementDue));
           appState.tcStatementDue = 0;
           appState.tcNextCycle = Math.max(0, round2(appState.tcNextCycle - leftover));
-          // Regla Inteligente: Cambia a "✅ Corte del mes pagado" y silencia alertas hasta el próximo corte
+          // Regla Inteligente: Cambia a "Corte del mes pagado" y silencia alertas hasta el próximo corte
           appState.tcCyclePaid = true;
         } else {
           appState.tcStatementDue = round2(appState.tcStatementDue - val);
@@ -2418,7 +2436,7 @@
           type: 'transfer',
           amount: round2(val),
           method: 'tc_payment',
-          category: '✅ Pago Tarjeta Guayaquil',
+          category: 'Pago Tarjeta Guayaquil',
           note: 'Pago de corte TC desde Cuenta Guayaquil',
           date: new Date().toISOString()
         });
@@ -2426,7 +2444,7 @@
         persistAppState();
         closeModal('tcPayModal');
         refreshAllUI();
-        showToast('✅ Pago de tarjeta aplicado y alertas del ciclo silenciadas');
+        showToast('Pago de tarjeta aplicado y alertas del ciclo silenciadas');
       };
 
       openModal('tcPayModal');
@@ -2473,8 +2491,19 @@
         ? ''
         : d.toLocaleDateString('es-EC', { day: '2-digit', month: 'short' });
 
-      const emojiMatch = (tx.category || '').match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})/u);
-      const iconEmoji = emojiMatch ? emojiMatch[0] : (tx.type === 'income' ? '💰' : (tx.type === 'transfer' ? '⇆' : '🛍️'));
+      const cleanCat = normalizeCategoryName(tx.category);
+      let lucideIconName = 'shopping-bag';
+      if (tx.type === 'income') lucideIconName = 'arrow-down-left';
+      else if (tx.type === 'transfer') lucideIconName = 'repeat';
+      else if (cleanCat === 'Comida') lucideIconName = 'utensils';
+      else if (cleanCat === 'Transporte') lucideIconName = 'bus';
+      else if (cleanCat === 'Apple Pay') lucideIconName = 'smartphone';
+      else if (cleanCat === 'Estudio') lucideIconName = 'book-open';
+      else if (cleanCat === 'Salidas') lucideIconName = 'coffee';
+      else if (cleanCat === 'Compras') lucideIconName = 'shopping-bag';
+      else if (cleanCat === 'Personal') lucideIconName = 'user';
+      else if (cleanCat === 'Salud') lucideIconName = 'heart-pulse';
+      else if (cleanCat === 'Juegos') lucideIconName = 'gamepad-2';
 
       let amountColor = 'text-rose-400';
       let prefix = '-';
@@ -2489,13 +2518,13 @@
       return `
         <div class="liquid-glass-subtle rounded-[20px] p-3 flex items-center justify-between gap-3 border border-white/5">
           <!-- Ícono dentro de recuadro redondeado oscuro a la izquierda -->
-          <div class="w-11 h-11 rounded-2xl bg-[#07050C]/90 border border-white/10 flex items-center justify-center text-lg shrink-0 shadow-inner">
-            ${iconEmoji}
+          <div class="w-11 h-11 rounded-2xl bg-[#07050C]/90 border border-white/10 flex items-center justify-center text-violet-300 shrink-0 shadow-inner">
+            <i data-lucide="${lucideIconName}" class="w-5 h-5"></i>
           </div>
 
           <!-- Título, fecha e insignia de método al centro -->
           <div class="flex-1 min-w-0">
-            <p class="text-xs font-extrabold text-white truncate">${escapeHtml(tx.note || tx.category || 'Movimiento')}</p>
+            <p class="text-xs font-extrabold text-white truncate">${escapeHtml(tx.note || cleanCat || 'Movimiento')}</p>
             <div class="flex items-center gap-1.5 mt-1 flex-wrap">
               <span class="text-[10px] text-slate-400 font-medium">${dateStr}</span>
               <span class="px-2 py-0.5 rounded-md text-[9px] font-bold" style="${badge.badgeStyle}">
@@ -2508,7 +2537,7 @@
           <div class="text-right flex items-center gap-2 shrink-0">
             <div>
               <p class="text-sm font-black font-mono ${amountColor}">${prefix}${formatUSD(tx.amount)}</p>
-              <p class="text-[9px] text-slate-400 truncate max-w-[85px]">${escapeHtml(tx.category || '')}</p>
+              <p class="text-[9px] text-slate-400 truncate max-w-[85px]">${escapeHtml(cleanCat)}</p>
             </div>
             ${allowDelete ? `
               <button onclick="deleteAndRevertTransaction('${tx.id}')" class="w-7 h-7 rounded-xl bg-rose-500/15 hover:bg-rose-500/30 text-rose-300 flex items-center justify-center active:scale-90 transition" title="Revertir y eliminar">
@@ -2601,7 +2630,7 @@
         openCategoryDrillDownModal(currentOpenedCategoryName);
       }
 
-      showToast('↩️ Movimiento revertido y eliminado');
+      showToast('Movimiento revertido y eliminado');
     }
 
     /***************************************************************************
@@ -2642,10 +2671,10 @@
       const totalSpent = expenses.reduce((acc, tx) => acc + (Number(tx.amount) || 0), 0);
       document.getElementById('analysisTotalSpent').textContent = formatUSD(totalSpent);
 
-      // Agrupar por categoría
+      // Agrupar por categoría normalizada
       const catMap = {};
       expenses.forEach(tx => {
-        const cat = tx.category || '✨ Otros';
+        const cat = normalizeCategoryName(tx.category || 'Otros');
         if (!catMap[cat]) catMap[cat] = { total: 0, count: 0, items: [] };
         catMap[cat].total = round2(catMap[cat].total + Number(tx.amount));
         catMap[cat].count += 1;
@@ -2669,7 +2698,7 @@
         emptyState.classList.remove('hidden');
       } else {
         emptyState.classList.add('hidden');
-        const palette = ['#8B5CF6', '#FF007A', '#FACC15', '#10B981', '#38BDF8', '#F97316', '#A78BFA', '#EC4899'];
+        const palette = ['#8B5CF6', '#FF007A', '#FACC15', '#10B981', '#38BDF8', '#F97316', '#A78BFA', '#EC4899', '#14B8A6', '#6366F1'];
         expensesChartInstance = new Chart(canvas, {
           type: 'doughnut',
           data: {
@@ -2701,7 +2730,7 @@
         });
       }
 
-      // Renderizar Ranking de Gastos por Categoría (Interactivo / Clicable)
+      // Renderizar Ranking de Gastos por Categoría (Solo nombre de la categoría, sin conteo de compras aquí)
       const rankingContainer = document.getElementById('categoryRankingList');
       if (sortedCategories.length === 0) {
         rankingContainer.innerHTML = `
@@ -2718,12 +2747,7 @@
         return `
           <div onclick="openCategoryDrillDownModal('${safeCat}')" class="liquid-glass rounded-[22px] p-4 cursor-pointer hover:border-violet-400/40 active:scale-[0.98] transition space-y-2">
             <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <span class="text-lg font-bold text-white">${escapeHtml(item.category)}</span>
-                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-400/30">
-                  ${item.count} ${item.count === 1 ? 'compra' : 'compras'}
-                </span>
-              </div>
+              <span class="text-sm font-extrabold text-white">${escapeHtml(item.category)}</span>
               <div class="flex items-center gap-2">
                 <span class="text-sm font-black font-mono text-white">${formatUSD(item.total)}</span>
                 <i data-lucide="chevron-right" class="w-4 h-4 text-violet-300"></i>
@@ -2734,7 +2758,7 @@
             </div>
             <div class="flex items-center justify-between text-[10px] text-slate-400">
               <span>Representa el ${pct}% de tus gastos</span>
-              <span class="text-violet-300 font-semibold">Ver qué he comprado →</span>
+              <span class="text-violet-300 font-semibold">Ver compras →</span>
             </div>
           </div>
         `;
@@ -2745,13 +2769,9 @@
 
     function openCategoryDrillDownModal(categoryName) {
       currentOpenedCategoryName = categoryName;
-      const expenses = getFilteredExpensesForAnalysis().filter(tx => (tx.category || '✨ Otros') === categoryName);
+      const expenses = getFilteredExpensesForAnalysis().filter(tx => normalizeCategoryName(tx.category || 'Otros') === categoryName);
       const total = expenses.reduce((sum, tx) => sum + (Number(tx.amount) || 0), 0);
 
-      const emojiMatch = categoryName.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})/u);
-      const emoji = emojiMatch ? emojiMatch[0] : '🛍️';
-
-      document.getElementById('catModalEmoji').textContent = emoji;
       document.getElementById('catModalTitle').textContent = categoryName;
       document.getElementById('catModalCount').textContent = `${expenses.length} ${expenses.length === 1 ? 'compra realizada' : 'compras realizadas'}`;
       document.getElementById('catModalTotal').textContent = formatUSD(total);
@@ -2796,7 +2816,9 @@
           <div class="liquid-glass rounded-[24px] p-4 space-y-3">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2.5">
-                <span class="text-2xl">${escapeHtml(g.emoji || '🎯')}</span>
+                <div class="w-9 h-9 rounded-xl bg-violet-500/20 border border-violet-400/30 flex items-center justify-center text-violet-300">
+                  <i data-lucide="target" class="w-4 h-4"></i>
+                </div>
                 <div>
                   <h4 class="text-sm font-extrabold text-white">${escapeHtml(g.title)}</h4>
                   <p class="text-[11px] text-slate-400 font-mono">${formatUSD(saved)} de ${formatUSD(target)} (${pct}%)</p>
@@ -2822,17 +2844,16 @@
     }
 
     function saveNewGoal() {
-      const emoji = document.getElementById('goalEmojiInput').value.trim() || '🎯';
       const title = document.getElementById('goalTitleInput').value.trim();
       const target = parseFloat(document.getElementById('goalTargetInput').value);
 
       if (!title || isNaN(target) || target <= 0) {
-        showToast('⚠️ Completa el nombre y el monto objetivo');
+        showToast('Completa el nombre y el monto objetivo');
         return;
       }
       appState.goals.push({
         id: 'goal_' + Date.now(),
-        emoji,
+        emoji: '',
         title,
         target: round2(target),
         saved: appState.ahorroFuturo
@@ -2840,19 +2861,19 @@
       persistAppState();
       closeModal('goalModal');
       renderGoalsView();
-      showToast('🎯 Nueva meta agregada');
+      showToast('Nueva meta agregada');
     }
 
     function deleteGoal(goalId) {
       appState.goals = appState.goals.filter(g => g.id !== goalId);
       persistAppState();
       renderGoalsView();
-      showToast('🗑️ Meta eliminada');
+      showToast('Meta eliminada');
     }
 
     /***************************************************************************
-     * 7. CENTRO DE AJUSTES EN 3 PESTAÑAS INTERNAS:
-     *    1) 💰 VALORES   2) 📅 FECHAS (.ics)   3) ✨ SUSCRIPCIONES
+     * 7. CENTRO DE AJUSTES EN 4 PESTAÑAS INTERNAS:
+     *    1) VALORES   2) FECHAS (.ics)   3) SUSCRIPCIONES   4) HISTORIAL
      ***************************************************************************/
     function populateSettingsInputs() {
       document.getElementById('setValPichincha').value = Number(appState.pichincha).toFixed(2);
@@ -2890,7 +2911,7 @@
 
       persistAppState();
       refreshAllUI();
-      showToast('💰 Saldos y Cupo TC calibrados correctamente');
+      showToast('Saldos y Cupo TC calibrados correctamente');
     }
 
     function updateCyclePaidToggleUI() {
@@ -2914,22 +2935,22 @@
       persistAppState();
       refreshAllUI();
       showToast(appState.tcCyclePaid
-        ? '✅ Marcado como Corte Pagado (alertas silenciadas)'
-        : '⏳ Aviso de pago del corte reactivado');
+        ? 'Marcado como Corte Pagado (alertas silenciadas)'
+        : 'Aviso de pago del corte reactivado');
     }
 
     function saveBillingDatesSettings() {
       const cut = parseInt(document.getElementById('setCutDay').value, 10);
       const pay = parseInt(document.getElementById('setPayDay').value, 10);
       if (isNaN(cut) || cut < 1 || cut > 31 || isNaN(pay) || pay < 1 || pay > 31) {
-        showToast('⚠️ Ingresa días válidos entre 1 y 31');
+        showToast('Ingresa días válidos entre 1 y 31');
         return;
       }
       appState.tcCutDay = cut;
       appState.tcPayDay = pay;
       persistAppState();
       refreshAllUI();
-      showToast(`📅 Ciclo TC actualizado: Corte día ${cut} • Pago día ${pay}`);
+      showToast(`Ciclo TC actualizado: Corte día ${cut} • Pago día ${pay}`);
     }
 
     // Generación y descarga de alarmas nativas .ics para iPhone Calendar
@@ -2942,8 +2963,8 @@
       const dtEnd = `${year}${month}${day}T093000`;
 
       const summary = type === 'cutoff'
-        ? `💳 Fecha de Corte Tarjeta Guayaquil (Día ${appState.tcCutDay})`
-        : `⏰ Fecha Límite de Pago Tarjeta Guayaquil (Día ${appState.tcPayDay})`;
+        ? `Fecha de Corte Tarjeta Guayaquil (Día ${appState.tcCutDay})`
+        : `Fecha Límite de Pago Tarjeta Guayaquil (Día ${appState.tcPayDay})`;
 
       const description = type === 'cutoff'
         ? 'Hoy cierra el estado de cuenta de tu Tarjeta Guayaquil en UniFinanzas Snoopy Edition.'
@@ -2979,10 +3000,10 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast('📅 Archivo de alarma .ics descargado para tu Calendario');
+      showToast('Archivo de alarma .ics descargado para tu Calendario');
     }
 
-    // Gestión de Suscripciones en Ajustes (Sub-Pestaña 3: ✨ Suscripciones)
+    // Gestión de Suscripciones en Ajustes (Sub-Pestaña 3: Suscripciones)
     function renderSettingsSubscriptionsList() {
       const container = document.getElementById('settingsSubscriptionsList');
       if (!container) return;
@@ -2995,7 +3016,9 @@
       container.innerHTML = appState.subscriptionsList.map(sub => `
         <div class="p-3.5 rounded-2xl bg-[#07050C]/65 border border-white/10 flex items-center justify-between gap-2">
           <div class="flex items-center gap-3 min-w-0">
-            <span class="text-2xl shrink-0">${escapeHtml(sub.emoji || '📱')}</span>
+            <div class="w-9 h-9 rounded-xl bg-violet-500/15 border border-violet-400/25 flex items-center justify-center text-xs font-extrabold text-violet-200 shrink-0">
+              ${escapeHtml(sub.emoji || 'APP')}
+            </div>
             <div class="min-w-0">
               <p class="text-xs font-extrabold text-white truncate">${escapeHtml(sub.name)}</p>
               <p class="text-[10px] text-slate-400 truncate">${escapeHtml(sub.subtitle || 'Suscripción mensual')}</p>
@@ -3017,13 +3040,13 @@
     }
 
     function addNewSubscriptionFromSettings() {
-      const emoji = document.getElementById('newSubEmoji').value.trim() || '✨';
+      const emoji = document.getElementById('newSubEmoji').value.trim() || 'APP';
       const name = document.getElementById('newSubName').value.trim();
       const subtitle = document.getElementById('newSubSubtitle').value.trim() || 'Suscripción mensual';
       const price = parseFloat(document.getElementById('newSubPrice').value);
 
       if (!name || isNaN(price) || price <= 0) {
-        showToast('⚠️ Ingresa el nombre y el precio en USD de la suscripción');
+        showToast('Ingresa el nombre y el precio en USD de la suscripción');
         return;
       }
 
@@ -3043,14 +3066,14 @@
       persistAppState();
       renderSettingsSubscriptionsList();
       refreshAllUI();
-      showToast(`✨ ${name} agregada al Dashboard`);
+      showToast(`${name} agregada al Dashboard`);
     }
 
     function openEditSubscriptionModal(subId) {
       const sub = appState.subscriptionsList.find(s => s.id === subId);
       if (!sub) return;
       editingSubId = subId;
-      document.getElementById('editSubEmojiInput').value = sub.emoji || '📱';
+      document.getElementById('editSubEmojiInput').value = sub.emoji || 'APP';
       document.getElementById('editSubNameInput').value = sub.name || '';
       document.getElementById('editSubSubtitleInput').value = sub.subtitle || '';
       document.getElementById('editSubPriceInput').value = Number(sub.price).toFixed(2);
@@ -3062,13 +3085,13 @@
       const sub = appState.subscriptionsList.find(s => s.id === editingSubId);
       if (!sub) return;
 
-      const emoji = document.getElementById('editSubEmojiInput').value.trim() || '📱';
+      const emoji = document.getElementById('editSubEmojiInput').value.trim() || 'APP';
       const name = document.getElementById('editSubNameInput').value.trim();
       const subtitle = document.getElementById('editSubSubtitleInput').value.trim() || 'Suscripción mensual';
       const price = parseFloat(document.getElementById('editSubPriceInput').value);
 
       if (!name || isNaN(price) || price <= 0) {
-        showToast('⚠️ Nombre y precio válido requeridos');
+        showToast('Nombre y precio válido requeridos');
         return;
       }
 
@@ -3081,7 +3104,7 @@
       closeModal('editSubModal');
       renderSettingsSubscriptionsList();
       refreshAllUI();
-      showToast('✅ Suscripción actualizada');
+      showToast('Suscripción actualizada');
     }
 
     function deleteSubscription(subId) {
@@ -3089,7 +3112,7 @@
       persistAppState();
       renderSettingsSubscriptionsList();
       refreshAllUI();
-      showToast('🗑️ Suscripción eliminada');
+      showToast('Suscripción eliminada');
     }
 
     /***************************************************************************
@@ -3103,7 +3126,7 @@
     async function saveNewVaultPin() {
       const newPin = document.getElementById('newPinInput').value.trim();
       if (!/^\d{4}$/.test(newPin)) {
-        showToast('⚠️ El PIN debe tener exactamente 4 dígitos numéricos');
+        showToast('El PIN debe tener exactamente 4 dígitos numéricos');
         return;
       }
       activeVaultPin = newPin;
@@ -3111,7 +3134,7 @@
       localStorage.setItem(STORAGE_KEYS.PIN_HASH, newHash);
       await persistAppState();
       closeModal('changePinModal');
-      showToast('🔐 PIN actualizado y bóveda recifrada');
+      showToast('PIN actualizado y bóveda recifrada');
     }
 
     function exportBackupJson() {
@@ -3130,7 +3153,7 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast('📦 Respaldo JSON exportado');
+      showToast('Respaldo JSON exportado');
     }
 
     function importBackupJson(event) {
@@ -3149,9 +3172,9 @@
           populateSettingsInputs();
           renderSettingsSubscriptionsList();
           refreshAllUI();
-          showToast('✅ Respaldo JSON importado y migrado sin errores');
+          showToast('Respaldo JSON importado y migrado sin errores');
         } catch (err) {
-          showToast('❌ Archivo JSON inválido');
+          showToast('Archivo JSON inválido');
         }
       };
       reader.readAsText(file);
@@ -3161,14 +3184,12 @@
      * UTILIDADES GENERALES (TOAST Y ESCAPE HTML)
      ***************************************************************************/
     let toastTimeout = null;
-    function showToast(message, icon = '✨') {
+    function showToast(message) {
       const toast = document.getElementById('iosToast');
       const msgEl = document.getElementById('iosToastMessage');
-      const iconEl = document.getElementById('iosToastIcon');
       if (!toast || !msgEl) return;
 
       msgEl.textContent = message;
-      iconEl.textContent = icon;
       toast.classList.remove('opacity-0', '-translate-y-4');
       toast.classList.add('opacity-100', 'translate-y-0');
 
